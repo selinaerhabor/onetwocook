@@ -1,7 +1,11 @@
 import os
-from Flask import Flask
+from flask import Flask
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+app.config["MONGO_DBNAME"]  = 'online-cookbook'
+app.config["MONGO_URI"] = 'mongodb://admin:u537@6m1n@ds213665.mlab.com:13665/online-cookbook'
+
 
 @app.route('/')
 def Hello():
