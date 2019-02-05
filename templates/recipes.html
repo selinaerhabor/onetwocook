@@ -1,6 +1,5 @@
-<html>
-    <head>
-        <body>
+{% extends 'base.html' %}
+{% block document %}
             {% for recipe in recipes %}
             {{recipe.cuisine_type}}
             {{recipe.recipe_name}}
@@ -13,6 +12,4 @@
             {{recipe.method}}
             {{recipe.author}}
             {% endfor %}
-        </body>
-    </head>
-</html>
+{% endblock %}
