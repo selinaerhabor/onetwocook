@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block document %}
+            {% for cuisine in cuisines %}
+            {{cuisine.cuisine_type}}
+            
+            {% endfor %}
+{% endblock %}

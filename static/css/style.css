@@ -1,4 +1,6 @@
-body
- {
-    font-family: 'Cookie', cursive;
- }
+@import url('https://fonts.googleapis.com/css?family=Cookie');
+@import url('https://fonts.googleapis.com/css?family=Courgette');
+
+h1, h2, h3, h4, h5, h6 {
+ font-family: 'Cookie', cursive;
+}
