@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
     </head>
     <body>
-        <!--<h1>Cuisine</h1>-->
-        {% block document %}
-        {% endblock %}
+        <div class="container">
+        {% block document %}{% endblock %}
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     </body>
 </html>
