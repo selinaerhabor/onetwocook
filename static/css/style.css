@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie');
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
-h1, h2, h3, h4, h5, h6 {
- font-family: 'Cookie', cursive;
+body {
+    font-family: 'Cookie', cursive;
+}
+
+p {
+    font-family: 'Courgette', cursive;
+}
+
+.card-image {
+    height: 150px; 
+}
+
+.logo {
+    padding: 10px;
+}
+
+.nav-wrapper {
+    font-size: 16px;
 }
