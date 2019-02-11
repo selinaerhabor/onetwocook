@@ -20,8 +20,9 @@
         <img class="activator" src="{{url_for('static', filename='images/coverphoto_thai.jpeg')}}" />
       {% elif cuisine.cuisine_type == 'Turkish' %}
         <img class="activator" src="{{url_for('static', filename='images/coverphoto_turkish.jpg')}}" />
+      <!--If the image does not load or user creates adds a new cuisine then coverphoto_other will appear-->
       {% else %}
-        <img class="activator" src="{{url_for('static', filename='images/mustard_champ.jpg')}}" />
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
       {% endif %}
       </div>
       <div class="card card-content">
