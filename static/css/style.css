@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie');
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
-body {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Cookie', cursive;
 }
 
@@ -17,6 +17,18 @@ p {
     padding: 10px;
 }
 
-.nav-wrapper {
-    font-size: 16px;
+.nav-tab {
+    color: #778899;
+    font-family: 'Courgette', cursive;
+    font-size: 30px;
+    -webkit-transition: background-color 0.3s, color 0.3s;
+    -moz-transition: background-color 0.3s, color 0.3s;
+    -o-transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-tab:hover,
+.nav-tab:focus {
+    color: #ffffff;
+    background-color: #b0c4de;
 }
