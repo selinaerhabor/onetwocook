@@ -6,7 +6,23 @@
   {% for cuisine in cuisines %}
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
+      {% if cuisine.cuisine_type == 'African' %}
         <img class="activator" src="{{url_for('static', filename='images/coverphoto_african.jpg')}}" />
+      {% elif cuisine.cuisine_type == 'Caribbean' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_caribbean.jpg')}}" />
+      {% elif cuisine.cuisine_type == 'Chinese' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_chinese.jpg')}}" />
+      {% elif cuisine.cuisine_type == 'Indian' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_indian.jpg')}}" />
+      {% elif cuisine.cuisine_type == 'Irish' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_irish.jpg')}}" />
+      {% elif cuisine.cuisine_type == 'Thai' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_thai.jpeg')}}" />
+      {% elif cuisine.cuisine_type == 'Turkish' %}
+        <img class="activator" src="{{url_for('static', filename='images/coverphoto_turkish.jpg')}}" />
+      {% else %}
+        <img class="activator" src="{{url_for('static', filename='images/mustard_champ.jpg')}}" />
+      {% endif %}
       </div>
       <div class="card card-content">
         <span class="card-title activator grey-text text-darken-4"><h3>{{cuisine.cuisine_type}}</h3><i class="material-icons right">more_vert</i></span>
