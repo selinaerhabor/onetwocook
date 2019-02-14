@@ -27,12 +27,14 @@
       {% endif %}
       </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><h3>{{cuisine.cuisine_type}}</h3><i class="material-icons right">more_vert</i></span>
-        <p>{{cuisine.cuisine_summary}}<p>
+        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
+        <h3>{{cuisine.cuisine_type}}</h3></span>
       </div>
       <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><h3>{{cuisine.cuisine_type}}</h3><i class="material-icons right">close</i></span>
+        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
+        <h3>{{cuisine.cuisine_type}}</h3></span>
         <p>{{cuisine.cuisine_summary}}<p>
+        <button href="">Explore {{cuisine.cuisine_type}} Cuisine!</button>
       </div>
     </div>
 
