@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block document %}
+            {% for recipe in recipes %}
+            <div class="col s12">
+                <a href="{{ url_for('load_cuisines') }}" class="breadcrumb">Home</a>
+                <a href="" class="breadcrumb">{{recipe.cuisine_type}}</a>
+                <a class="breadcrumb">{{recipe.recipe_name}}</a>
+            </div>
+            <h3>{{recipe.recipe_name}}</h3>
+            {{recipe.recipe_summary}}
+            {{recipe.recipe_serves}}
+            {{recipe.preparation_time}}
+            {{recipe.cook_time}}
+            {{recipe.thumbs_up}}
+            {{recipe.ingredients}}
+            {{recipe.method}}
+            {{recipe.author}}
+            {% endfor %}
+{% endblock %}
