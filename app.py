@@ -16,9 +16,14 @@ def load_cuisines():
     cuisines=mongo.db.cuisines.find())
     
     
-@app.route('/load_recipes')
-def load_recipes():
-    return render_template("recipes.html",
+@app.route('/load_listofrecipes')
+def load_listofrecipes():
+    return render_template("listofrecipes.html",
+    recipes=mongo.db.recipes.find())
+
+@app.route('/load_recipe')
+def load_recipe():
+    return render_template("recipe.html",
     recipes=mongo.db.recipes.find())
     
     
