@@ -9,9 +9,9 @@
     <body>
         <nav>
             <div class="nav-wrapper green lighten-4">
-                <a href=""><img class="logo" src="{{url_for('static', filename='images/cookbook_logo.png')}}"></a>
+                <a href="{{ url_for('home') }}"><img class="logo" src="{{url_for('static', filename='images/cookbook_logo.png')}}"></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="nav-tab"><a href="">Home</a></li>
+                        <li class="nav-tab"><a href="{{ url_for('home') }}">Home</a></li>
                         <li class="nav-tab"><a href="">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="">Manage Recipes</a></li>
                     </ul>

@@ -2,7 +2,7 @@
 {% block document %}
             {% for recipe in recipes %}
             <div class="col s12">
-                <a href="{{ url_for('load_cuisines') }}" class="breadcrumb">Home</a>
+                <a href="{{ url_for('home') }}" class="breadcrumb">Home</a>
                 <a href="" class="breadcrumb">{{recipe.cuisine_type}}</a>
                 <a class="breadcrumb">{{recipe.recipe_name}}</a>
             </div>
