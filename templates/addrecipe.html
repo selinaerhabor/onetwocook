@@ -23,6 +23,7 @@
           <input id="recipe_name" type="text" class="validate">
           <label for="recipe_name">Recipe Name</label>
         </div>
+        <img class="right" src="{{url_for('static', filename='images/placeholder_image.png')}}"></img>
       </div>
       <div class="row">
         <h4>Ingredients</h4>
@@ -92,8 +93,21 @@
               <option value="8">South America</option>
             </select>
             <label for="author_country">Select Your Region</label>
-          </div>
         </div>
+        
+        </div>
+        <span>
+        <button class="save-btn right">Save</button>
+        <div class="switch">
+            <label>
+              Off
+              <input type="checkbox">
+              <span class="lever"></span>
+              On
+            </label>
+            <span class="caption">Make Recipe Public</span>
+        </div>
+        </span>
       </div>
     </form>
   </div>
