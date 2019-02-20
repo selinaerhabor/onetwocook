@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block document %}
   <div class="row">
-    <h2>Cuisines</h2>
+    <h2>Welcome</h2>
+    <p>Start exploring through selecting a cuisine below.</p>
   </div>
   {% for cuisine in cuisines %}
 
@@ -34,7 +35,7 @@
         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
         <h3>{{cuisine.cuisine_type}}</h3></span>
         <p>{{cuisine.cuisine_summary}}<p>
-        <a class="button" href="{{ url_for('load_listofrecipes') }}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
+        <a class="button" href="{{ url_for('list_of_recipes') }}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
       </div>
     </div>
 

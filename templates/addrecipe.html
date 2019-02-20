@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block document %}
+
+<h2>Add A Recipe</h2>
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s3">
+            <select>
+              <option value="" disabled selected>Choose a Cuisine</option>
+              <option value="1">Add a Cuisine</option>
+              <option value="2">African</option>
+              <option value="3">Caribbean</option>
+              <option value="4">Chinese</option>
+              <option value="5">Indian</option>
+              <option value="6">Irish</option>
+              <option value="7">Thai</option>
+              <option value="8">Turkish</option>
+            </select>
+            <label>Type of Cuisine</label>
+        </div>
+        <div class="input-field col s5">
+          <input id="recipe_name" type="text" class="validate">
+          <label for="recipe_name">Recipe Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <h4>Ingredients</h4>
+        <div class="input-field col s4">
+          <input id="ingredient_name" type="text" class="validate">
+          <label for="ingredient_name">Name of Ingredient</label>
+        </div>
+        <div class="input-field col s2">
+          <input id="ingredient_quantity" type="number" class="validate">
+          <label for="ingredient_quantity">Quantity</label>
+        </div>
+        <div class="input-field col s2">
+            <select>
+              <option value="" disabled selected>Choose Units</option>
+              <option value="1">Add a unit</option>
+              <option value="2">pinch(es)</option>
+              <option value="3">teaspoon(s)</option>
+              <option value="4">tablespoon(s)</option>
+              <option value="5">cup(s)</option>
+              <option value="6">millilitres(ml)</option>
+              <option value="7">milligrams(mg)</option>
+              <option value="8">litres(l)</option>
+              <option value="9">grams(g)</option>
+            </select>
+          <label for="ingredient_units">Units</label>
+        </div>
+      </div>
+      <div class="row">
+          <h4>Method</h4>
+        <div class="input-field col s2">
+            <select>
+              <option value="" disabled selected>Choose Step No.</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <label>Step No.</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="method" type="text" class="validate">
+          <label for="method">Method</label>
+        </div>
+      </div>
+      <div class="row">
+          <h5>Author:</h5>
+          <div class="input-field col s4">
+            <input id="author_name" type="text" class="validate">
+            <label for="author_name">Your Name</label>
+          </div>
+        <div class="input-field col s3">
+            <select>
+              <option value="" disabled selected>Choose Your Region</option>
+              <option value="1">Africa</option>
+              <option value="2">Asia</option>
+              <option value="3">Caribbean</option>
+              <option value="4">Central America</option>
+              <option value="5">Europe</option>
+              <option value="6">North America</option>
+              <option value="7">Oceania</option>
+              <option value="8">South America</option>
+            </select>
+            <label for="author_country">Select Your Region</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

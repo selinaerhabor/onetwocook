@@ -14,19 +14,29 @@ mongo = PyMongo(app)
 def home():
     return render_template("cuisines.html",
     cuisines=mongo.db.cuisines.find())
+
+@app.route('/addrecipe')
+def add_recipe():
+    return render_template("addrecipe.html")
+
+@app.route('/managerecipes')
+def manage_recipes():
+    return render_template("managerecipes.html")
     
+@app.route('/editrecipe')
+def edit_recipe():
+    return render_template("editrecipe.html")
     
-@app.route('/load_listofrecipes')
-def load_listofrecipes():
+@app.route('/listofrecipes')
+def list_of_recipes():
     return render_template("listofrecipes.html",
     recipes=mongo.db.recipes.find())
-
+    
+    
 @app.route('/load_recipe')
 def load_recipe():
     return render_template("recipe.html",
-    recipes=mongo.db.recipes.find())
-    
-    
+    recipes=mongo.db.recipes.find({}))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

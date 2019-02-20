@@ -12,16 +12,22 @@
                 <a href="{{ url_for('home') }}"><img class="logo" src="{{url_for('static', filename='images/cookbook_logo.png')}}"></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li class="nav-tab"><a href="{{ url_for('home') }}">Home</a></li>
-                        <li class="nav-tab"><a href="">Add a Recipe</a></li>
-                        <li class="nav-tab"><a href="">Manage Recipes</a></li>
+                        <li class="nav-tab"><a href="{{ url_for('add_recipe') }}">Add a Recipe</a></li>
+                        <li class="nav-tab"><a href="{{ url_for('manage_recipes') }}">Manage Recipes</a></li>
                     </ul>
             </div>
         </nav>
         <div class="container">
             {% block document %}{% endblock %}
         </div>
+        
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
     crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('select').material_select();
+    });
+        </script>
     </body>
 </html>
