@@ -5,7 +5,6 @@
     <p>Start exploring through selecting a cuisine below.</p>
   </div>
   {% for cuisine in cuisines %}
-
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
       {% if cuisine.cuisine_type == 'African' %}
@@ -26,18 +25,20 @@
       {% else %}
         <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
       {% endif %}
+      <!--/If user adds a new cuisine then coverphoto_other will appear as its image-->
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-        <h3>{{cuisine.cuisine_type}}</h3></span>
+          <h3>{{cuisine.cuisine_type}}</h3>
+        </span>
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
-        <h3>{{cuisine.cuisine_type}}</h3></span>
-        <p>{{cuisine.cuisine_summary}}<p>
+          <h3>{{cuisine.cuisine_type}}</h3>
+        </span>
+        <p>{{cuisine.cuisine_summary}}</p>
         <a class="button" href="{{ url_for('list_of_recipes') }}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
       </div>
     </div>
-
   {% endfor %}
 {% endblock %}
