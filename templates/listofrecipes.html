@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 {% block document %}
-  {% for recipe in recipes %}
-    <h2>List of {{recipe.cuisine_type}} Recipes</h2>
-    <div class="col s12 m6">
-      <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="{{url_for('static', filename='images/placeholder_image.png')}}" />
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-            <h3>{{recipe.recipe_name}}</h3>
-          </span>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">
-            <i class="material-icons right">close</i>
-            <h3>{{recipe.recipe_name}}</h3>
-          </span>
-          <p>{{recipe.recipe_summary}}<p>
-          <a class="button" href="{{url_for('load_recipe')}}">{{recipe.recipe_name}} Recipe</a>
+  <h2>Recipes</h2>
+    <div class="row">
+      <div class="col s12">
+        <a href="{{url_for('home')}}" class="breadcrumb">Home</a>
+        <a href="{{url_for('home')}}" class="breadcrumb">Cuisine</a>
+        <a class="breadcrumb">Recipes</a>
+      </div>
+    </div>
+    {% for recipe in recipes %}
+    <div class="row">
+      <div class="col s12 m6 l6">
+        <div class="card">
+          <div class="card-image waves-effect waves-block">
+            <img class="#" src="{{url_for('static', filename='images/placeholder_image.png')}}" />
+            <a href="#" class="btn-floating red pulse">
+              <i class="material-icons">thumb_up</i>
+            </a>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
+              <h3>{{recipe.recipe_name}}</h3>
+            </span>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">
+              <i class="material-icons right">close</i>
+              <h3>{{recipe.recipe_name}}</h3>
+            </span>
+            <p>{{recipe.recipe_summary}}<p>
+            <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">{{recipe.recipe_name}} Recipe</a>
+          </div>
         </div>
       </div>
     </div>
