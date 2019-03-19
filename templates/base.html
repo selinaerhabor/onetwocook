@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!--Website Icon-->
+        <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
+        <!--Material Icons-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--Materialize 0.100.2 Framework-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!--Custom CSS-->
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <!--Navigation Bar-->
         <nav>
             <div class="nav-wrapper green lighten-4">
                 <a href="{{ url_for('home') }}"><img class="logo" src="{{url_for('static', filename='images/cookbook_logo.png')}}"></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="nav-tab"><a href="{{ url_for('home') }}">Home</a></li>
-                        <li class="nav-tab"><a href="{{ url_for('add_recipe') }}">Add a Recipe</a></li>
-                        <li class="nav-tab"><a href="{{ url_for('manage_recipes') }}">Manage Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('home')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                        <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Recipes</a></li>
                     </ul>
             </div>
         </nav>
+        <!--Main Body-->
         <div class="container">
             {% block document %}{% endblock %}
         </div>
@@ -27,6 +34,10 @@
             $(document).ready(function(){
                 $('select').material_select();
             });
+            function addCuisine(){
+                var option = document.createElement("input");
+                document.body.appendChild(option);
+            }
         </script>
     </body>
 </html>
