@@ -5,7 +5,7 @@
         <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
         <!--Material Icons-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!--Materialize 0.100.2 Framework-->
+        <!--Materialize 0.100.2 CSS Framework-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!--Custom CSS-->
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
@@ -23,13 +23,42 @@
                     </ul>
             </div>
         </nav>
+        <!--Navigation Bar-->
+        
         <!--Main Body-->
-        <div class="container">
-            {% block document %}{% endblock %}
-        </div>
+        {% block document %}{% endblock %}
+        <!--/Main Body-->
+        
+        <!--Footer-->
+        <footer class="page-footer green lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l8 s12">
+                <h6 class="white-text">Looking for a Recipe? You can also browse through the cuisines here...</h6>
+                <div class="row">
+                    {% for cuisine in cuisines %}
+                    <div class="col s12 m6">
+                        {{cuisine.cuisine_type}}
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright center">
+            <div class="container">
+            © 2019 OneTwoCook by Selina
+            </div>
+          </div>
+        </footer>
+        <!--/Footer-->
+        
+        <!--JQuery Framework-->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
     crossorigin="anonymous"></script>
+        <!--Materialize 0.100.2 Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--Custom Javascript-->
         <script type="text/javascript">
             $(document).ready(function(){
                 $('select').material_select();
@@ -38,6 +67,12 @@
                 var option = document.createElement("input");
                 document.body.appendChild(option);
             }
+            function upload(){
+                document.getElementById("uploadFile").multiple;
+            }
+            $("#uploadFile").click(function(){
+                upload();
+            });
         </script>
     </body>
 </html>
