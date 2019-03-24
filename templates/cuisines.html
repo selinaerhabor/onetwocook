@@ -1,44 +1,48 @@
 {% extends 'base.html' %}
-{% block document %}
-  <div class="row">
-    <h2>Welcome</h2>
-    <p>Start exploring through selecting a cuisine below.</p>
-  </div>
-  {% for cuisine in cuisines %}
-    <div class="card">
-      <div class="card-image waves-effect waves-block waves-light">
-      {% if cuisine.cuisine_type == 'African' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_african.jpg')}}" />
-      {% elif cuisine.cuisine_type == 'Caribbean' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_caribbean.jpg')}}" />
-      {% elif cuisine.cuisine_type == 'Chinese' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_chinese.jpg')}}" />
-      {% elif cuisine.cuisine_type == 'Indian' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_indian.jpg')}}" />
-      {% elif cuisine.cuisine_type == 'Irish' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_irish.jpg')}}" />
-      {% elif cuisine.cuisine_type == 'Thai' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_thai.jpeg')}}" />
-      {% elif cuisine.cuisine_type == 'Turkish' %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_turkish.jpg')}}" />
-      <!--If user adds a new cuisine then coverphoto_other will appear as its image-->
-      {% else %}
-        <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
-      {% endif %}
-      <!--/If user adds a new cuisine then coverphoto_other will appear as its image-->
-      </div>
-      <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-          <h3>{{cuisine.cuisine_type}}</h3>
-        </span>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
-          <h3>{{cuisine.cuisine_type}}</h3>
-        </span>
-        <p>{{cuisine.cuisine_summary}}</p>
-        <a class="button" href="{{url_for('list_of_recipes', cuisine_type=cuisine.cuisine_type)}}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
+  {% block document %}
+    <div class="background">
+      <div class="container">
+        <div class="row">
+          <h2 class="center">Welcome</h2>
+          <p class="center">Start exploring recipes through selecting a cuisine below.</p>
+        </div>
+        {% for cuisine in cuisines %}
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+            {% if cuisine.cuisine_type == 'African' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_african.png')}}" />
+            {% elif cuisine.cuisine_type == 'Caribbean' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_caribbean.png')}}" />
+            {% elif cuisine.cuisine_type == 'Chinese' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_chinese.png')}}" />
+            {% elif cuisine.cuisine_type == 'Indian' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_indian.jpg')}}" />
+            {% elif cuisine.cuisine_type == 'Irish' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_irish.jpg')}}" />
+            {% elif cuisine.cuisine_type == 'Thai' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_thai.png')}}" />
+            {% elif cuisine.cuisine_type == 'Turkish' %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_turkish.png')}}" />
+            <!--If user adds a new cuisine then coverphoto_other will appear as its image-->
+            {% else %}
+              <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
+            {% endif %}
+            <!--/If user adds a new cuisine then coverphoto_other will appear as its image-->
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
+                <h3>{{cuisine.cuisine_type}}</h3>
+              </span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
+                <h3>{{cuisine.cuisine_type}}</h3>
+              </span>
+              <p>{{cuisine.cuisine_summary}}</p>
+              <a class="button" href="{{url_for('list_of_recipes', cuisine_type=cuisine.cuisine_type)}}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
-  {% endfor %}
 {% endblock %}
