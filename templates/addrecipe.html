@@ -1,332 +1,340 @@
 {% extends 'base.html' %}
-{% block document %}
-<div class="card-panel addrecipe-border">
-  <h2>Add A Recipe</h2>
-    <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
-      <div class="row">
-        <div class="input-field col s4 m2 xl2">
-          <select id="cuisine" name="cuisine_type">
-            <option value="" disabled selected>Cuisine</option>
-              <option value="">Add a Cuisine</option>
-                {% for cuisine in cuisines %}
-                  <option value="{{cuisine.cuisine_type}}">{{cuisine.cuisine_type}}</option>
-                {% endfor %}
-          </select>
-          <label>Type of Cuisine</label>
+  {% block document %}
+    <div class="background">
+      <div class="container">
+        <div class="card-panel addrecipe-border">
+          <h2>Add A Recipe</h2>
+            <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+              <div class="row">
+                <div class="input-field col s4 m2 xl2">
+                  <select id="cuisine" name="cuisine_type">
+                    <option value="" disabled selected>Cuisine</option>
+                      <option value="">Add a Cuisine</option>
+                        {% for cuisine in cuisines %}
+                          <option value="{{cuisine.cuisine_type}}">{{cuisine.cuisine_type}}</option>
+                        {% endfor %}
+                  </select>
+                  <label>Type of Cuisine</label>
+                </div>
+                <div class="input-field col s8 m4">
+                  <input id="recipe_name" type="text" name="recipe_name" class="validate">
+                  <label for="recipe_name">Recipe Name</label>
+                </div>
+                <div class="input-field col s2">
+                  <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
+                  <label for="recipe_serves">Serves:</label>
+                </div>
+              </div>
+              <div class="row">
+                <a href="" id="uploadFile">
+                  <img src="{{url_for('static', filename='images/placeholder_image.png')}}" alt="Image of Food">
+                </a>
+              </div>
+              <div class="row">
+                <input id="allergen1" type="text" name="allergen_1" class="validate">
+                <label for="allergens">Allergen(s)</label>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <h4 class="sub-title">Ingredients</h4>
+                <div class="input-field col s5 m4">
+                  <input id="ingredient_name1" type="text" name="ingredient_name1" class="validate">
+                  <label for="ingredient_name1">Ingredient</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="ingredient_quantity1" type="number" name="ingredient_quantity1" min="0" class="validate">
+                  <label for="ingredient_quantity1">Quantity</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="ingredient_units1">
+                    <option value="" disabled selected>Units</option>
+                    <option value="1">Add a unit</option>
+                    <option value="2">pinch(es)</option>
+                    <option value="3">teaspoon(s)</option>
+                    <option value="4">tablespoon(s)</option>
+                    <option value="5">cup(s)</option>
+                    <option value="6">millilitres(ml)</option>
+                    <option value="7">milligrams(mg)</option>
+                    <option value="8">litres(l)</option>
+                    <option value="9">grams(g)</option>
+                  </select>
+                  <label for="ingredient_units1">Units</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s5 m4">
+                  <input id="ingredient_name2" type="text" name="ingredient_name2" class="validate">
+                  <label for="ingredient_name2">Ingredient</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="ingredient_quantity2" type="number" name="ingredient_quantity2" min="0" class="validate">
+                  <label for="ingredient_quantity2">Quantity</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="ingredient_units2">
+                    <option value="" disabled selected>Units</option>
+                    <option value="1">Add a unit</option>
+                    <option value="2">pinch(es)</option>
+                    <option value="3">teaspoon(s)</option>
+                    <option value="4">tablespoon(s)</option>
+                    <option value="5">cup(s)</option>
+                    <option value="6">millilitres(ml)</option>
+                    <option value="7">milligrams(mg)</option>
+                    <option value="8">litres(l)</option>
+                    <option value="9">grams(g)</option>
+                  </select>
+                  <label for="ingredient_units2">Units</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s5 m4">
+                  <input id="ingredient_name3" type="text" name="ingredient_name3" class="validate">
+                  <label for="ingredient_name3">Ingredient</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="ingredient_quantity3" type="number" name="ingredient_quantity3" min="0" class="validate">
+                  <label for="ingredient_quantity3">Quantity</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="ingredient_units3">
+                    <option value="" disabled selected>Units</option>
+                    <option value="1">Add a unit</option>
+                    <option value="2">pinch(es)</option>
+                    <option value="3">teaspoon(s)</option>
+                    <option value="4">tablespoon(s)</option>
+                    <option value="5">cup(s)</option>
+                    <option value="6">millilitres(ml)</option>
+                    <option value="7">milligrams(mg)</option>
+                    <option value="8">litres(l)</option>
+                    <option value="9">grams(g)</option>
+                  </select>
+                  <label for="ingredient_units3">Units</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s5 m4">
+                  <input id="ingredient_name4" type="text" name="ingredient_name4" class="validate">
+                  <label for="ingredient_name4">Ingredient</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="ingredient_quantity4" type="number" name="ingredient_quantity4" min="0" class="validate">
+                  <label for="ingredient_quantity4">Quantity</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="ingredient_units4">
+                    <option value="" disabled selected>Units</option>
+                    <option value="1">Add a unit</option>
+                    <option value="2">pinch(es)</option>
+                    <option value="3">teaspoon(s)</option>
+                    <option value="4">tablespoon(s)</option>
+                    <option value="5">cup(s)</option>
+                    <option value="6">millilitres(ml)</option>
+                    <option value="7">milligrams(mg)</option>
+                    <option value="8">litres(l)</option>
+                    <option value="9">grams(g)</option>
+                  </select>
+                  <label for="ingredient_units4">Units</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s5 m4">
+                  <input id="ingredient_name5" type="text" name="ingredient_name5" class="validate">
+                  <label for="ingredient_name5">Ingredient</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="ingredient_quantity5" type="number" name="ingredient_quantity5" min="0" class="validate">
+                  <label for="ingredient_quantity5">Quantity</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="ingredient_units5">
+                    <option value="" disabled selected>Units</option>
+                    <option value="1">Add a unit</option>
+                    <option value="2">pinch(es)</option>
+                    <option value="3">teaspoon(s)</option>
+                    <option value="4">tablespoon(s)</option>
+                    <option value="5">cup(s)</option>
+                    <option value="6">millilitres(ml)</option>
+                    <option value="7">milligrams(mg)</option>
+                    <option value="8">litres(l)</option>
+                    <option value="9">grams(g)</option>
+                  </select>
+                  <label for="ingredient_units5">Units</label>
+                </div>
+                <a href="" id="addIngredients">
+                  <i class="material-icons">add_circle</i>
+                </a>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <h4 class="sub-title">Method</h4>
+                <div class="input-field col s5 m2">
+                  <input id="preparation_time" type="number" name="preparation_time" min="0" class="validate">
+                  <label for="preparation_time hidden-xs">Prepare Time:</label>
+                </div>
+                <div class="input-field col s4 m2">
+                  <input id="cook_time" type="number" name="cook_time" min="0" class="validate">
+                  <label for="cook_time hidden-xs">Cook Time:</label>
+                </div>
+                <div class="input-field col s3 m2">
+                  <select name="time_units">
+                    <option disabled selected>Units</option>
+                    <option value="1">second(s)</option>
+                    <option value="2">minute(s)</option>
+                    <option value="3">hour(s)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s3 m2">
+                    <select name="method_step">
+                      <option value="" disabled selected>No.</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <label>Step No.</label>
+                  </div>
+                  <div class="input-field col s9 m8">
+                    <input id="method1" type="text" name="method1" class="validate">
+                    <label for="method1">Method</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s3 m2">
+                    <select name="method_step">
+                      <option value="" disabled selected>No.</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <label>Step No.</label>
+                  </div>
+                  <div class="input-field col s9 m8">
+                    <input id="method2" type="text" name="method2" class="validate">
+                    <label for="method2">Method</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s3 m2">
+                    <select name="method_step">
+                      <option value="" disabled selected>No.</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <label>Step No.</label>
+                  </div>
+                  <div class="input-field col s9 m8">
+                    <input id="method3" type="text" name="method3" class="validate">
+                    <label for="method3">Method</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s3 m2">
+                    <select name="method_step">
+                      <option value="" disabled selected>No.</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <label>Step No.</label>
+                  </div>
+                  <div class="input-field col s9 m8">
+                    <input id="method4" type="text" name="method4" class="validate">
+                    <label for="method4">Method</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s3 m2">
+                    <select name="method_step">
+                      <option value="" disabled selected>No.</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                    <label>Step No.</label>
+                  </div>
+                  <div class="input-field col s9 m8">
+                    <input id="method5" type="text" name="method5" class="validate">
+                    <label for="method5">Method</label>
+                  </div>
+                <a href="" id="addMethod">
+                  <i class="material-icons">add_circle</i>
+                </a>
+              </div>
+              <div class="divider"></div>
+              <div class="row">
+                <h4 class="sub-title">Author:</h4>
+                <div class="input-field col s7 m4">
+                  <input id="author_name" type="text" name="author_name" class="validate">
+                  <label for="author_name">Your Name</label>
+                </div>
+                <div class="input-field col s5 m2">
+                  <select name="author_region">
+                    <option value="" disabled selected>Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Caribbean">Caribbean</option>
+                    <option value="Central America">Central America</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="Oceania">Oceania</option>
+                    <option value="South America">South America</option>
+                  </select>
+                  <label for="author_country">Select Your Region</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="switch">
+                  <p class="caption">Make Recipe Public</p>
+                  <label>
+                    Off
+                    <input type="checkbox" name="public_visibility">
+                    <span class="lever"></span>
+                    On
+                  </label>
+                </div>
+                <button class="btn waves-effect waves-light right" type="submit">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
         </div>
-        <div class="input-field col s8 m4">
-          <input id="recipe_name" type="text" name="recipe_name" class="validate">
-          <label for="recipe_name">Recipe Name</label>
-        </div>
-        <div class="input-field col s2">
-          <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
-          <label for="recipe_serves">Serves:</label>
-        </div>
-      </div>
-      <div class="row">
-        <a href="">
-          <img src="{{url_for('static', filename='images/placeholder_image.png')}}" alt="Image of Food">
-        </a>
-      </div>
-      <div class="divider"></div>
-      <div class="row">
-        <h4 class="sub-title">Ingredients</h4>
-        <div class="input-field col s5 m4">
-          <input id="ingredient_name" type="text" name="ingredient_name1" class="validate">
-          <label for="ingredient_name">Ingredient</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="ingredient_quantity" type="number" name="ingredient_quantity1" min="0" class="validate">
-          <label for="ingredient_quantity">Quantity</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="ingredient_units1">
-            <option value="" disabled selected>Units</option>
-            <option value="1">Add a unit</option>
-            <option value="2">pinch(es)</option>
-            <option value="3">teaspoon(s)</option>
-            <option value="4">tablespoon(s)</option>
-            <option value="5">cup(s)</option>
-            <option value="6">millilitres(ml)</option>
-            <option value="7">milligrams(mg)</option>
-            <option value="8">litres(l)</option>
-            <option value="9">grams(g)</option>
-          </select>
-          <label for="ingredient_units">Units</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s5 m4">
-          <input id="ingredient_name" type="text" name="ingredient_name2" class="validate">
-          <label for="ingredient_name">Ingredient</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="ingredient_quantity" type="number" name="ingredient_quantity2" min="0" class="validate">
-          <label for="ingredient_quantity">Quantity</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="ingredient_units2">
-            <option value="" disabled selected>Units</option>
-            <option value="1">Add a unit</option>
-            <option value="2">pinch(es)</option>
-            <option value="3">teaspoon(s)</option>
-            <option value="4">tablespoon(s)</option>
-            <option value="5">cup(s)</option>
-            <option value="6">millilitres(ml)</option>
-            <option value="7">milligrams(mg)</option>
-            <option value="8">litres(l)</option>
-            <option value="9">grams(g)</option>
-          </select>
-          <label for="ingredient_units">Units</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s5 m4">
-          <input id="ingredient_name" type="text" name="ingredient_name3" class="validate">
-          <label for="ingredient_name">Ingredient</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="ingredient_quantity" type="number" name="ingredient_quantity3" min="0" class="validate">
-          <label for="ingredient_quantity">Quantity</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="ingredient_units3">
-            <option value="" disabled selected>Units</option>
-            <option value="1">Add a unit</option>
-            <option value="2">pinch(es)</option>
-            <option value="3">teaspoon(s)</option>
-            <option value="4">tablespoon(s)</option>
-            <option value="5">cup(s)</option>
-            <option value="6">millilitres(ml)</option>
-            <option value="7">milligrams(mg)</option>
-            <option value="8">litres(l)</option>
-            <option value="9">grams(g)</option>
-          </select>
-          <label for="ingredient_units">Units</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s5 m4">
-          <input id="ingredient_name" type="text" name="ingredient_name4" class="validate">
-          <label for="ingredient_name">Ingredient</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="ingredient_quantity" type="number" name="ingredient_quantity4" min="0" class="validate">
-          <label for="ingredient_quantity">Quantity</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="ingredient_units4">
-            <option value="" disabled selected>Units</option>
-            <option value="1">Add a unit</option>
-            <option value="2">pinch(es)</option>
-            <option value="3">teaspoon(s)</option>
-            <option value="4">tablespoon(s)</option>
-            <option value="5">cup(s)</option>
-            <option value="6">millilitres(ml)</option>
-            <option value="7">milligrams(mg)</option>
-            <option value="8">litres(l)</option>
-            <option value="9">grams(g)</option>
-          </select>
-          <label for="ingredient_units">Units</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s5 m4">
-          <input id="ingredient_name" type="text" name="ingredient_name5" class="validate">
-          <label for="ingredient_name">Ingredient</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="ingredient_quantity" type="number" name="ingredient_quantity5" min="0" class="validate">
-          <label for="ingredient_quantity">Quantity</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="ingredient_units5">
-            <option value="" disabled selected>Units</option>
-            <option value="1">Add a unit</option>
-            <option value="2">pinch(es)</option>
-            <option value="3">teaspoon(s)</option>
-            <option value="4">tablespoon(s)</option>
-            <option value="5">cup(s)</option>
-            <option value="6">millilitres(ml)</option>
-            <option value="7">milligrams(mg)</option>
-            <option value="8">litres(l)</option>
-            <option value="9">grams(g)</option>
-          </select>
-          <label for="ingredient_units">Units</label>
-        </div>
-        <a href="" id="addIngredients">
-          <i class="material-icons">add_circle</i>
-        </a>
-      </div>
-      <div class="divider"></div>
-      <div class="row">
-        <h4 class="sub-title">Method</h4>
-        <div class="input-field col s5 m2">
-          <input id="preparation_time" type="number" name="preparation_time" min="0" class="validate">
-          <label for="preparation_time hidden-xs">Prepare Time:</label>
-        </div>
-        <div class="input-field col s4 m2">
-          <input id="cook_time" type="number" name="cook_time" min="0" class="validate">
-          <label for="cook_time hidden-xs">Cook Time:</label>
-        </div>
-        <div class="input-field col s3 m2">
-          <select name="time_units">
-            <option disabled selected>Units</option>
-            <option value="1">second(s)</option>
-            <option value="2">minute(s)</option>
-            <option value="3">hour(s)</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-          <div class="input-field col s3 m2">
-            <select name="method_step">
-              <option value="" disabled selected>No.</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label>Step No.</label>
-          </div>
-          <div class="input-field col s9 m8">
-            <input id="method" type="text" name="method1" class="validate">
-            <label for="method">Method</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3 m2">
-            <select name="method_step">
-              <option value="" disabled selected>No.</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label>Step No.</label>
-          </div>
-          <div class="input-field col s9 m8">
-            <input id="method" type="text" name="method2" class="validate">
-            <label for="method">Method</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3 m2">
-            <select name="method_step">
-              <option value="" disabled selected>No.</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label>Step No.</label>
-          </div>
-          <div class="input-field col s9 m8">
-            <input id="method" type="text" name="method3" class="validate">
-            <label for="method">Method</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3 m2">
-            <select name="method_step">
-              <option value="" disabled selected>No.</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label>Step No.</label>
-          </div>
-          <div class="input-field col s9 m8">
-            <input id="method" type="text" name="method4" class="validate">
-            <label for="method">Method</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3 m2">
-            <select name="method_step">
-              <option value="" disabled selected>No.</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label>Step No.</label>
-          </div>
-          <div class="input-field col s9 m8">
-            <input id="method" type="text" name="method5" class="validate">
-            <label for="method">Method</label>
-          </div>
-        <a href="">
-          <i class="material-icons">add_circle</i>
-        </a>
-      </div>
-      <div class="divider"></div>
-      <div class="row">
-        <h4 class="sub-title">Author:</h4>
-        <div class="input-field col s7 m4">
-          <input id="author_name" type="text" name="author_name" class="validate">
-          <label for="author_name">Your Name</label>
-        </div>
-        <div class="input-field col s5 m2">
-          <select name="author_region">
-            <option value="" disabled selected>Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Asia">Asia</option>
-            <option value="Caribbean">Caribbean</option>
-            <option value="Central America">Central America</option>
-            <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="Oceania">Oceania</option>
-            <option value="South America">South America</option>
-          </select>
-          <label for="author_country">Select Your Region</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="switch">
-          <p class="caption">Make Recipe Public</p>
-          <label>
-            Off
-            <input type="checkbox" name="public_visibility">
-            <span class="lever"></span>
-            On
-          </label>
-        </div>
-        <button class="btn waves-effect waves-light right" type="submit">Save
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-    </form>
     </div>
+  </div>
 {% endblock %}
