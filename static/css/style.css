@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie');
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
-/*body {
+body {
     overflow-x: hidden;
-    background: url("../../static/images/cooking-background.jpg") no-repeat center center fixed;
+}
+
+.background {
+    background: url("../../static/images/cookbook_background.jpg") no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -11,24 +14,82 @@
     display: flex;
     z-index: -1;
     justify-content: center;
-}*/
+    margin-top: 2px;
+}
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5{
     font-family: 'Cookie', cursive;
 }
 
-p {
+p, h6 {
     font-family: 'Courgette', cursive;
 }
 
+
+
+/*--------------------------------------------------------------Media Queries*/
+
+/*@media(min-width: 992px){
+
+}
+
+@media(min-width: 769px) and (max-width: 991px){
+    
+}
+
+@media(min-width: 469px) and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 468px) {
+    
+}*/
+
+
+
+
+/*-----------------------------------------------------------------Add Recipes*/
+.addrecipe-border {
+    border: dashed;
+    border-color: #ff0000;
+}
+
+.switch {
+    padding: 5px;
+}
+
+.btn-floating {
+    padding: -5px;
+}
+
+
+
+/*--------------------------------------------------------------------Cuisines*/
 .card-image {
-    height: 150px; 
+    height: 250px; 
 }
 
 .card {
     margin-bottom: 100px;
 }
 
+.wrap {
+    background-color: #20b2aa;
+}
+
+.card-panel{
+    padding: 20px;
+}
+
+.home {
+    text-align: center;
+}
+
+.card-content {
+    margin: 0px;
+}
+
+/*------------------------------------------------------------------Navigation*/
 .logo {
     padding: 10px;
 }
@@ -49,37 +110,26 @@ p {
     background-color: #20b2aa;
 }
 
-.breadcrumb {
-    color: grey;
-}
 
-.switch {
-    padding: 5px;
-}
 
-.btn-floating {
-    padding: -5px;
-}
-
-.wrap {
-    background-color: #20b2aa;
-}
-
-.card-panel{
-    padding: 20px;
-}
-
-.addrecipe-border {
+/*---------------------------------------------------------Manage Recipes Page*/
+.managerecipe-border {
     border: dashed;
-    border-color: #ff0000;
+    border-color: #ff9800;
 }
 
+
+
+/*-----------------------------------------------------------------Recipe Page*/
 .recipe-border {
     border: dashed;
     border-color: #20b2aa;
 }
 
-.managerecipe-border {
-    border: dashed;
-    border-color: #ff9800;
+.breadcrumb {
+    color: grey;
 }
+
+
+
+
