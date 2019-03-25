@@ -39,7 +39,7 @@
                 <h3>{{cuisine.cuisine_type}}</h3>
               </span>
               <p>{{cuisine.cuisine_summary}}</p>
-              <a class="button" href="{{url_for('list_of_recipes', cuisine_type=cuisine.cuisine_type)}}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
+              <a class="button" href="{{url_for('recipes_for_cuisine', cuisine_type=cuisine.cuisine_type)}}">Explore {{cuisine.cuisine_type}} Cuisine!</a>
             </div>
           </div>
         {% endfor %}

@@ -6,9 +6,7 @@
         <h2 class="center">Recipes</h2>
           <div class="row">
             <div class="col s12 center">
-              <a href="{{url_for('home')}}" class="breadcrumb">Home</a>
-              <a href="{{url_for('home')}}" class="breadcrumb">Cuisine</a>
-              <a class="breadcrumb">Recipes</a>
+              <a href="{{url_for('home')}}">Want to look at another cuisine?</a>
             </div>
           </div>
           <div class="row">
@@ -17,10 +15,8 @@
               <div class="card">
                 <div class="card-image waves-effect waves-block">
                   <img class="#" src="{{url_for('static', filename='images/placeholder_image.png')}}" />
-                  <a href="#" class="btn-floating red pulse">
-                    <i class="material-icons">thumb_up</i>
-                  </a>
                 </div>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">thumb_up</i></a>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
                     <h3>{{recipe.recipe_name}}</h3>
@@ -36,9 +32,10 @@
                 </div>
               </div>
             </div>
-          </div>
-          </div>
+        
         {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
