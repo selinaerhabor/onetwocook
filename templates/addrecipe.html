@@ -7,10 +7,10 @@
             <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
               <div class="row">
                 <div class="input-field col s4 m2 xl2">
+                  {% for cuisine in cuisines %}
                   <select id="cuisine" name="cuisine_type">
                     <option value="" disabled selected>Cuisine</option>
                       <option value="">Add a Cuisine</option>
-                        {% for cuisine in cuisines %}
                           <option value="{{cuisine.cuisine_type}}">{{cuisine.cuisine_type}}</option>
                         {% endfor %}
                   </select>
@@ -27,7 +27,7 @@
               </div>
               <div class="row">
                 <a href="" id="uploadFile">
-                  <img src="{{url_for('static', filename='images/placeholder_image.png')}}" alt="Image of Food">
+                  <img src="{{url_for('static', filename='images/placeholder_image.png')}}" alt="Image of cooked meal">
                 </a>
               </div>
               <div class="row">

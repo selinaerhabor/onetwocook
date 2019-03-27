@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block document %}
+  <form method="POST">
+    <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+        <button class="btn waves-effect waves-light right" type="submit">Submit
+          <i class="material-icons right">send</i>
+        </button>
+  </form>
+{% endblock %}

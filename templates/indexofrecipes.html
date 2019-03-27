@@ -7,14 +7,14 @@
         <p class="center">Below is a collection of all the recipes already available and visible to the public on this site.</p>
           <div class="row">
             {% for recipe in recipes %}
-            <div class="col s12 m6 l6">
+            <div class="col s12 m6 l6 xl4">
               <div class="card">
                 <div class="card-image waves-effect waves-block">
                   <img class="#" src="{{url_for('static', filename='images/placeholder_image.png')}}" />
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <h3>{{recipe.recipe_name}}</h3>
+                    <h4>{{recipe.recipe_name}}</h4>
                   </span>
                 </div>
                 <div class="card-reveal">
