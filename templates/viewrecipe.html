@@ -1,43 +1,45 @@
 {% extends 'base.html' %}
 {% block document %}
-<div class="card-panel recipe-border">
-    {% for recipe in recipes %}
-    <h3>{{recipe.recipe_name}}</h3>
-    <div class="col s12">
-        <a href="{{ url_for('home') }}" class="breadcrumb">Cuisine</a>
-        <a href="" class="breadcrumb">{{recipe.cuisine_type}}</a>
-        <a href="" class="breadcrumb">{{recipe.recipe_name}}</a>
-    </div>
-    <div class ="row">
-         <img class="right" src="{{url_for('static', filename='images/placeholder_image.png')}}"></img>
-        <h4>Ingredients</h4>
-        <div class="col s4">
-            <ul>
-                <li>{{recipe.ingredients}}</li>
-            </ul>
+  <div class="background">
+    <div class="container">
+        <div class="card-panel recipe-border">
+        {% for recipe in recipes %}
+        <h3>{{recipe.recipe_name}}<span><a class="btn-floating right red"><i class="material-icons">thumb_up</i></a></span></h3>
+        <!--Navigation Breadcrumbs-->
+        <div class="col s12">
+            <a href="{{ url_for('home') }}">Cuisine</a> >
+            <a href="{{ url_for('recipes_for_cuisine', cuisine_type=recipe.cuisine_type) }}">{{recipe.cuisine_type}}</a> >
+            {{recipe.recipe_name}}
         </div>
-    </div>
-    <div class="row">
-        <h4>Method</h4>
-        <div class="col s4">
-            {{recipe.method}}
+        <!--/Navigation Breadcrumbs-->
+        <div class ="row">
+            <img class="right" src="{{url_for('static', filename='images/placeholder_image.png')}}"></img>
+                <h4>Ingredients</h4>
+                <div class="col s4">
+                    <ol><li>{{recipe.ingredients}}</li></ol>
+                </div>
         </div>
+        <div class="row">
+            <h4>Method</h4>
+            <div class="col s4">
+                {{recipe.method}}
+            </div>
+        </div>
+        <div class="row">
+            <h5>Author:</h5>
+            <span class="col s4">
+                {{recipe.author}}
+            </span>
+            <span class="col s3">
+                {{recipe.author_region}}
+            </span>
+        </div>
+        {{recipe.recipe_serves}}
+        {{recipe.preparation_time}}
+        {{recipe.cook_time}}
+        {{recipe.thumbs_up}}
+        {% endfor %}
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <h5>Author:</h5>
-        <span class="col s4">
-            {{recipe.author}}
-        </span>
-        <span class="col s3">
-            {{recipe.author_region}}
-        </span>
-    </div>
-        
-    {{recipe.recipe_serves}}
-    {{recipe.preparation_time}}
-    {{recipe.cook_time}}
-    {{recipe.thumbs_up}}
-
-    {% endfor %}
-</div>
 {% endblock %}
