@@ -29,6 +29,17 @@ p, h6 {
 
 /*--------------------------------------------------------------Media Queries*/
 
+@media(min-width: 993px) and (max-width: 1124px){
+    div.card-image {
+        height: 200px;
+    }
+}
+
+@media(min-width: 600px) and (max-width: 970px){
+    div.card-image {
+        height: 175px;
+    }
+}
 
 @media(min-width: 350px) and (max-width: 435px){
     div.card-image {
