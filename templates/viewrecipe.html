@@ -6,38 +6,62 @@
         <div class="row">
           <div class="col s12">
             {% for recipe in recipes %}
-            
             <h3 class="center">{{recipe.recipe_name}}<span><a class="btn-floating right red"><i class="material-icons">thumb_up</i></a></span></h3>
             <a class="left" href="{{url_for('recipes_for_cuisine', cuisine_type=recipe.cuisine_type)}}"><i class="material-icons left">arrow_back</i>Back to Recipes</a>
           </div>
         </div>
-        
-        <div class ="row">
-            <img class="right" src="{{url_for('static', filename='images/placeholder_image.png')}}"></img>
-                <h4>Ingredients</h4>
-                <div class="col s4">
-                    <ol><li>{{recipe.ingredients}}</li></ol>
-                </div>
+        <div class="row">
+            <div class="col s6">
+                <h4>Summary</h4>
+                    <p>{{recipe.recipe_summary}}</p>
+                    <p>Serves: {{recipe.recipe_serves}}</p>
+                    <p>Cook Time: {{recipe.cook_time}}</p>
+                    <p>Preparation Time: {{recipe.preparation_time}}</p>
+            </div>
+            <div class="col s6">
+                <img class="right" src="{{recipe.img_path}}"></img>
+            </div>
+        </div>
+        <div class="row">
+            <h4>Ingredients</h4>
+            <div class="col s8">
+                <p>{{recipe.ingredients.ingredient1_quantity}} {{recipe.ingredients.ingredient1_units}}  {{recipe.ingredients.ingredient1_name}}</p>
+                <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_units}}  {{recipe.ingredients.ingredient2_name}}</p>
+                <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_units}}  {{recipe.ingredients.ingredient3_name}}</p>
+                <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_units}}  {{recipe.ingredients.ingredient4_name}}</p>
+                <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_units}}  {{recipe.ingredients.ingredient5_name}}</p>
+                <p>{{recipe.ingredients.ingredient6_quantity}} {{recipe.ingredients.ingredient6_units}}  {{recipe.ingredients.ingredient6_name}}</p>
+                <p>{{recipe.ingredients.ingredient7_quantity}} {{recipe.ingredients.ingredient7_units}}  {{recipe.ingredients.ingredient7_name}}</p>
+                <p>{{recipe.ingredients.ingredient8_quantity}} {{recipe.ingredients.ingredient8_units}}  {{recipe.ingredients.ingredient8_name}}</p>
+                <p>{{recipe.ingredients.ingredient9_quantity}} {{recipe.ingredients.ingredient9_units}}  {{recipe.ingredients.ingredient9_name}}</p>
+                <p>{{recipe.ingredients.ingredient10_quantity}} {{recipe.ingredients.ingredient10_units}} {{recipe.ingredients.ingredient10_name}}</p>
+            </div>
         </div>
         <div class="row">
             <h4>Method</h4>
-            <div class="col s4">
-                {{recipe.method}}
+            <div class="col s8">
+                <p>{{recipe.method.method_step1}}</p>
+                <p>{{recipe.method.method_step2}}</p>
+                <p>{{recipe.method.method_step3}}</p>
+                <p>{{recipe.method.method_step4}}</p>
+                <p>{{recipe.method.method_step5}}</p>
+                <p>{{recipe.method.method_step6}}</p>
+                <p>{{recipe.method.method_step7}}</p>
+                <p>{{recipe.method.method_step8}}</p>
+                <p>{{recipe.method.method_step9}}</p>
+                <p>{{recipe.method.method_step10}}</p>
             </div>
         </div>
         <div class="row">
             <h5>Author:</h5>
-            <span class="col s4">
-                {{recipe.author}}
+            <span class="col s3">
+                <p>Author: {{recipe.author.author_username}}</p>
             </span>
             <span class="col s3">
-                {{recipe.author_region}}
+                <p>Region: {{recipe.author.author_region}}</p>
             </span>
         </div>
-        {{recipe.recipe_serves}}
-        {{recipe.preparation_time}}
-        {{recipe.cook_time}}
-        {{recipe.thumbs_up}}
+        
         {% endfor %}
         </div>
       </div>
