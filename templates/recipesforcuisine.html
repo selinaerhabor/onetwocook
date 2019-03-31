@@ -18,16 +18,19 @@
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <h4>{{recipe.recipe_name}}</h4>
+                    <h5>{{recipe.recipe_name}}</h5>
                   </span>
                 </div>
                 <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4">
                     <i class="material-icons right">close</i>
-                    <h3>{{recipe.recipe_name}}</h3>
+                    <h4>{{recipe.recipe_name}}</h4>
+                    <hr>
                   </span>
-                  <p>{{recipe.recipe_summary}}<p>
-                  <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">{{recipe.recipe_name}} Recipe</a>
+                  <p>{{recipe.recipe_summary}}</p>
+                  <p>Serves: {{recipe.recipe_serves}} people</p>
+                  <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                  <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
                 </div>
               </div>
             </div>
