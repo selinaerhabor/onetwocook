@@ -30,7 +30,7 @@ def edit_recipe():
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
     return render_template('recipesforcuisine.html',
-    recipes=mongo.db.recipes.find({'cuisine_type': cuisine_type}))
+    recipes=mongo.db.recipes.find({'cuisine_type': cuisine_type}).sort('recipe_name', 1))
     
     
 @app.route('/load_recipe/<recipe_name>')
