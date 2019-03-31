@@ -6,7 +6,7 @@ body {
 }
 
 .background {
-    background: url("../../static/images/cookbook_background.jpg") no-repeat center fixed;
+    background: url("../../static/images/cookbook_background.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -62,9 +62,6 @@ p, h6 {
     border-color: #ff0000;
 }
 
-.switch {
-    padding: 5px;
-}
 
 
 
@@ -127,6 +124,8 @@ p, h6 {
     border-color: #20b2aa;
 }
 
+/*-----------------------------------------------------------Footer*/
+.footer-copyright {
 
-
+}
 

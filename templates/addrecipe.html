@@ -7,12 +7,11 @@
             <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
               <div class="row">
                 <div class="input-field col s4 m2 xl2">
-                  {% for cuisine in cuisines %}
                   <select id="cuisine" name="cuisine_type">
                     <option value="" disabled selected>Cuisine</option>
                       <option value="">Add a Cuisine</option>
-                        <option value="{{cuisine.cuisine_type}}">{{cuisine.cuisine_type}}</option>
-                        {% endfor %}
+                        <option value=""></option>
+                        
                   </select>
                   <label>Type of Cuisine</label>
                 </div>
@@ -24,15 +23,15 @@
                   <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
                   <label for="recipe_serves">Serves:</label>
                 </div>
+                <div class="input-field col s2">
+                  <div class="chips chips-placeholder"></div>
+                  <label for="allergens">Allergen(s)</label>
+                </div>
               </div>
               <div class="row">
-                <a href="" id="uploadFile">
-                  <img src="{{url_for('static', filename='images/placeholder_image.png')}}" alt="Image of cooked meal">
-                </a>
-              </div>
-              <div class="row">
-                <input id="allergen1" type="text" name="allergen_1" class="validate">
-                <label for="allergens">Allergen(s)</label>
+                <label for="input-file">File input</label>
+                  <input type="file" class="form-control" id="input-file" >
+                    <p class="help-block"><small>Please upload here any relevant documents.</small></p>
               </div>
               <div class="divider"></div>
               <div class="row">
@@ -301,7 +300,7 @@
               <div class="row">
                 <h4 class="sub-title">Author:</h4>
                 <div class="input-field col s7 m4">
-                  <input id="author_name" type="text" name="author_username" class="validate">
+                  <input id="author_name" type="text" name="author_username" class="validate" required/>
                   <label for="author_username">Your Name</label>
                 </div>
                 <div class="input-field col s5 m2">
@@ -320,15 +319,12 @@
                 </div>
               </div>
               <div class="row">
-                <div class="switch">
-                  <p class="caption">Make Recipe Public</p>
-                  <label>
-                    Off
-                    <input type="checkbox" name="public_visibility">
-                    <span class="lever"></span>
-                    On
+                <p>
+                  <label for="public_visibility">
+                    <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" />
+                    <span class="caption">Make Recipe Public</span>
                   </label>
-                </div>
+                </p>
                 <button class="btn waves-effect waves-light right" type="submit">Submit
                   <i class="material-icons right">send</i>
                 </button>
