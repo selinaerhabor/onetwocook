@@ -11,35 +11,53 @@
           </div>
         </div>
         <div class="row">
-            <div class="col s6">
+            <div class="col s12 m6">
                 <h4>Summary</h4>
                     <p>{{recipe.recipe_summary}}</p>
                     <p>Serves: {{recipe.recipe_serves}}</p>
                     <p>Cook Time: {{recipe.cook_time}}</p>
                     <p>Preparation Time: {{recipe.preparation_time}}</p>
             </div>
-            <div class="col s6">
-                <img class="right" src="{{recipe.img_path}}"></img>
+            <div class="col s12 m6">
+                <a href ="../../static/images/{{recipe.img_path}}" target="_blank">
+                    <img class="responsive-img right" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}"/>
+                </a>
             </div>
         </div>
         <div class="row">
             <h4>Ingredients</h4>
-            <div class="col s8">
+            <div class="col s12 m3">
                 <p>{{recipe.ingredients.ingredient1_quantity}} {{recipe.ingredients.ingredient1_units}}  {{recipe.ingredients.ingredient1_name}}</p>
                 <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_units}}  {{recipe.ingredients.ingredient2_name}}</p>
                 <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_units}}  {{recipe.ingredients.ingredient3_name}}</p>
                 <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_units}}  {{recipe.ingredients.ingredient4_name}}</p>
                 <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_units}}  {{recipe.ingredients.ingredient5_name}}</p>
+            </div>
+            <div class="col s12 m3">      
                 <p>{{recipe.ingredients.ingredient6_quantity}} {{recipe.ingredients.ingredient6_units}}  {{recipe.ingredients.ingredient6_name}}</p>
                 <p>{{recipe.ingredients.ingredient7_quantity}} {{recipe.ingredients.ingredient7_units}}  {{recipe.ingredients.ingredient7_name}}</p>
                 <p>{{recipe.ingredients.ingredient8_quantity}} {{recipe.ingredients.ingredient8_units}}  {{recipe.ingredients.ingredient8_name}}</p>
                 <p>{{recipe.ingredients.ingredient9_quantity}} {{recipe.ingredients.ingredient9_units}}  {{recipe.ingredients.ingredient9_name}}</p>
                 <p>{{recipe.ingredients.ingredient10_quantity}} {{recipe.ingredients.ingredient10_units}} {{recipe.ingredients.ingredient10_name}}</p>
             </div>
+            <div class="col s12 m3">      
+                <p>{{recipe.ingredients.ingredient11_quantity}} {{recipe.ingredients.ingredient11_units}} {{recipe.ingredients.ingredient11_name}}</p>
+                <p>{{recipe.ingredients.ingredient12_quantity}} {{recipe.ingredients.ingredient12_units}} {{recipe.ingredients.ingredient12_name}}</p>
+                <p>{{recipe.ingredients.ingredient13_quantity}} {{recipe.ingredients.ingredient13_units}} {{recipe.ingredients.ingredient13_name}}</p>
+                <p>{{recipe.ingredients.ingredient14_quantity}} {{recipe.ingredients.ingredient14_units}} {{recipe.ingredients.ingredient14_name}}</p>
+                <p>{{recipe.ingredients.ingredient15_quantity}} {{recipe.ingredients.ingredient15_units}} {{recipe.ingredients.ingredient15_name}}</p>
+            </div>
+            <div class="col s12 m3"> 
+                <p>{{recipe.ingredients.ingredient16_quantity}} {{recipe.ingredients.ingredient16_units}} {{recipe.ingredients.ingredient16_name}}</p>
+                <p>{{recipe.ingredients.ingredient17_quantity}} {{recipe.ingredients.ingredient17_units}} {{recipe.ingredients.ingredient17_name}}</p>
+                <p>{{recipe.ingredients.ingredient18_quantity}} {{recipe.ingredients.ingredient18_units}} {{recipe.ingredients.ingredient18_name}}</p>
+                <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
+                <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
+            </div>
         </div>
         <div class="row">
             <h4>Method</h4>
-            <div class="col s8">
+            <div class="col s12">
                 <p>{{recipe.method.method_step1}}</p>
                 <p>{{recipe.method.method_step2}}</p>
                 <p>{{recipe.method.method_step3}}</p>
@@ -54,10 +72,10 @@
         </div>
         <div class="row">
             <h5>Author:</h5>
-            <span class="col s3">
-                <p>Author: {{recipe.author.author_username}}</p>
+            <span class="col s6 m3">
+                <p>{{recipe.author.author_username}}</p>
             </span>
-            <span class="col s3">
+            <span class="col s6 m3">
                 <p>Region: {{recipe.author.author_region}}</p>
             </span>
         </div>
