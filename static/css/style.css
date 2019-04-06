@@ -31,7 +31,7 @@ p, h6 {
 
 @media(min-width: 993px) and (max-width: 1124px){
     div.card-image {
-        height: 200px;
+        height: 250px;
     }
 }
 
