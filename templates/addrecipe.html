@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-  {% block document %}
+{% block document %}
   <title>Add a Recipe | OneTwoCook</title>
-    <div class="background">
+    <div class="background responsive-img">
       <div class="container">
         <div class="card-panel addrecipe-border">
           <h2>Add A Recipe</h2>
@@ -303,7 +303,7 @@
                   <input id="author_name" type="text" name="author_username" class="validate" required/>
                   <label for="author_username">Your Name</label>
                 </div>
-                <div class="input-field col s5 m2">
+                <div class="input-field col s5 m3">
                   <select name="author_region">
                     <option value="" disabled selected>Region</option>
                     <option value="Africa">Africa</option>
@@ -319,15 +319,25 @@
                 </div>
               </div>
               <div class="row">
-                <p>
-                  <label for="public_visibility">
-                    <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" />
-                    <span class="caption">Make Recipe Public</span>
-                  </label>
-                </p>
-                <button class="btn waves-effect waves-light right" type="submit">Submit
-                  <i class="material-icons right">send</i>
-                </button>
+                <div class="col s7 m3">
+                  <p class="caption">Make Recipe Public</p>
+                    <div class="switch">
+                      <label for="public_visibility">
+                        Off
+                        <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" >
+                        <span class="lever"></span>
+                        On
+                      </label>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s7 offset-s5 m7 offset-m9">
+                  <button class="btn waves-effect waves-light" type="submit">
+                    Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
               </div>
             </form>
         </div>
