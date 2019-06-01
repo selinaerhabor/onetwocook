@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block document %}
-  <div class="background">
+  <div class="background responsive-img">
     <div class="container">
       <div class="card-panel recipe-border">
         <h2 class="center">Recipes</h2>
@@ -15,7 +15,7 @@
             <div class="col s12 m6 l6">
               <div class="card">
                 <div class="card-image waves-effect waves-block">
-                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}}/>
+                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>

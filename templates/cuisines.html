@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
   {% block document %}
   <title>Home | OneTwoCook</title>
-    <div class="background">
+    <div class="background responsive-img">
       <div class="container">
+        <div class="card-panel cuisine-border">
         <div class="row">
           <div class="col s12">
             <h2 class="center">Welcome</h2>
@@ -28,7 +29,6 @@
                   <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_thai.png')}}" />
                 {% elif cuisine.cuisine_type == 'Turkish' %}
                   <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_turkish.png')}}" />
-                  
                 <!--If user adds a new cuisine then coverphoto_other will appear as its image-->
                 {% else %}
                   <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
@@ -43,12 +43,14 @@
                 </div>
                 <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
-                    <h3>{{cuisine.cuisine_type}}</h3>
+                    <h2>{{cuisine.cuisine_type}}</h2>
                   </span>
                   <p>{{cuisine.cuisine_summary}}</p>
-                  <a class="button" href="{{url_for('recipes_for_cuisine', cuisine_type=cuisine.cuisine_type)}}">
-                    <button class="cuisine-btn">Explore {{cuisine.cuisine_type}} Cuisine!</button>
-                  </a>
+                  <div class="col m12 center">
+                    <a class="button center" href="{{url_for('recipes_for_cuisine', cuisine_type=cuisine.cuisine_type)}}">
+                      <button class="cuisine-btn">Explore {{cuisine.cuisine_type}} Cuisine!</button>
+                    </a>
+                  </div>
                 </div>
               </div>
           {% endfor %}
@@ -56,4 +58,5 @@
         </div>
       </div>
     </div>
+  </div>
   {% endblock %}

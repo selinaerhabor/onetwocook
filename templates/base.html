@@ -9,17 +9,29 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <!--Custom CSS-->
         <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+    crossorigin="anonymous"></script>
         <!--Navigation Bar-->
         <nav>
             <div class="nav-wrapper green lighten-4">
-                <a href="{{ url_for('home') }}"><img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}"></a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <a href="{{ url_for('home') }}" class="center">
+                    <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
+                </a>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
                         <li class="nav-tab"><a href="{{url_for('home')}}">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li class="nav-tab"><a href="{{url_for('home')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                        <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
                     </ul>
             </div>
         </nav>
@@ -54,20 +66,21 @@
         <!--/Footer-->
         
         <!--JQuery Framework-->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-    crossorigin="anonymous"></script>
+        
         <!--Materialize 0.100.2 Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!--Custom Javascript-->
         <script type="text/javascript">
             $(document).ready(function(){
                 $('select').material_select();
-            });
+            
             function upload(){
                 document.getElementById("uploadFile").multiple;
             }
             $("#uploadFile").click(function(){
                 upload();
+            });
+            $(".button-collapse").sideNav();
             });
         </script>
     </body>

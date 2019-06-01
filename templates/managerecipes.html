@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
   {% block document %}
   <title>Manage Your Recipes | OneTwoCook</title>
-    <div class="background">
+    <div class="background responsive-img">
       <div class="container">
         <div class="card-panel managerecipe-border">
           <h2>Manage Recipes</h2>
             <div class="row">
+              <!--{% if user.is_authenticated %}-->
               {% for recipe in recipes %}
               <div class="col s12 m6 l6">
                 <div class="card">
@@ -36,6 +37,7 @@
                 </div>
               </div>
               {% endfor %}
+              <!--{% endif %}-->
             </div>
         </div>
       </div>

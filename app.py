@@ -17,7 +17,8 @@ def home():
 
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('addrecipe.html')
+    cuisines = mongo.db.cuisines.find()
+    return render_template('addrecipe.html', cuisines=cuisines)
 
 @app.route('/manage_recipes')
 def manage_recipes():
