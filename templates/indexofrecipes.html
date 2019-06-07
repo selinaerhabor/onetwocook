@@ -26,7 +26,7 @@
                   </span>
                   <p>{{recipe.recipe_summary}}<p>
                   <p>Serves: {{recipe.recipe_serves}} people</p>
-                  <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                  <p>Ingredients contain: {{recipes.allergens.allergen_1}} {{recipes.allergens.allergen_2}} {{recipes.allergens.allergen_3}} {{recipes.allergens.allergen_4}} {{recipes.allergens.allergen_5}}</p>
                   <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
                 </div>
               </div>

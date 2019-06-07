@@ -9,12 +9,11 @@
               <div class="row">
                 <div class="input-field col s4 m2 xl2">
                   <select id="cuisine" name="cuisine_type">
+                    <option value="" disabled selected>Cuisine</option>
+                    <option value="add a cuisine" id="addACuisine">Add a Cuisine</option>
                     {% for cuisine in cuisines %}
                       <option value="{{ cuisine.cuisine_type|lower }}">{{ cuisine.cuisine_type }}</option>
                     {% endfor %}
-                    <option value="" disabled selected>Cuisine</option>
-                      <option value="">Add a Cuisine</option>
-                        <option value=""></option>
                   </select>
                   <label>Type of Cuisine</label>
                 </div>
@@ -31,6 +30,7 @@
                   <label for="recipe_serves">Allergen(s):</label>
                 </div>
               </div>
+              <div class="newInput" id=""></div>
               <div class="row">
                 <label for="input-file">File input</label>
                   <input type="file" class="form-control" id="input-file" >
@@ -48,19 +48,19 @@
                   <label for="ingredient_quantity1">Quantity</label>
                 </div>
                 <div class="input-field col s3 m2">
-                  <select name="ingredient_units1">
+                  <select name="ingredient1_units">
                     <option value="" disabled selected>Units</option>
-                    <option value="1">Add a unit</option>
-                    <option value="2">pinch(es)</option>
-                    <option value="3">teaspoon(s)</option>
-                    <option value="4">tablespoon(s)</option>
-                    <option value="5">cup(s)</option>
-                    <option value="6">millilitres(ml)</option>
-                    <option value="7">milligrams(mg)</option>
-                    <option value="8">litres(l)</option>
-                    <option value="9">grams(g)</option>
+                    <option value="">Add a unit</option>
+                    <option value="pinch(es)">pinch(es)</option>
+                    <option value="teaspoon(s)">teaspoon(s)</option>
+                    <option value="tablespoon(s)">tablespoon(s)</option>
+                    <option value="cup(s)">cup(s)</option>
+                    <option value="millilitres(ml)">millilitres(ml)</option>
+                    <option value="milligrams(mg)">milligrams(mg)</option>
+                    <option value="litres(l)">litres(l)</option>
+                    <option value="grams(g)">grams(g)</option>
                   </select>
-                  <label for="ingredient_units1">Units</label>
+                  <label for="ingredient1_units">Units</label>
                 </div>
               </div>
               <div class="row">
@@ -73,19 +73,19 @@
                   <label for="ingredient_quantity2">Quantity</label>
                 </div>
                 <div class="input-field col s3 m2">
-                  <select name="ingredient_units2">
+                  <select name="ingredient2_units">
                     <option value="" disabled selected>Units</option>
                     <option value="1">Add a unit</option>
-                    <option value="2">pinch(es)</option>
-                    <option value="3">teaspoon(s)</option>
-                    <option value="4">tablespoon(s)</option>
-                    <option value="5">cup(s)</option>
-                    <option value="6">millilitres(ml)</option>
-                    <option value="7">milligrams(mg)</option>
-                    <option value="8">litres(l)</option>
-                    <option value="9">grams(g)</option>
+                    <option value="pinch(es)">pinch(es)</option>
+                    <option value="teaspoon(s)">teaspoon(s)</option>
+                    <option value="tablespoon(s)">tablespoon(s)</option>
+                    <option value="cup(s)">cup(s)</option>
+                    <option value="millilitres(ml)">millilitres(ml)</option>
+                    <option value="milligrams(mg)">milligrams(mg)</option>
+                    <option value="litres(l)">litres(l)</option>
+                    <option value="grams(g)">grams(g)</option>
                   </select>
-                  <label for="ingredient_units2">Units</label>
+                  <label for="ingredient2_units">Units</label>
                 </div>
               </div>
               <div class="row">
@@ -98,19 +98,19 @@
                   <label for="ingredient_quantity3">Quantity</label>
                 </div>
                 <div class="input-field col s3 m2">
-                  <select name="ingredient_units3">
+                  <select name="ingredient3_units">
                     <option value="" disabled selected>Units</option>
                     <option value="1">Add a unit</option>
-                    <option value="2">pinch(es)</option>
-                    <option value="3">teaspoon(s)</option>
-                    <option value="4">tablespoon(s)</option>
-                    <option value="5">cup(s)</option>
-                    <option value="6">millilitres(ml)</option>
-                    <option value="7">milligrams(mg)</option>
-                    <option value="8">litres(l)</option>
-                    <option value="9">grams(g)</option>
+                    <option value="pinch(es)">pinch(es)</option>
+                    <option value="teaspoon(s)">teaspoon(s)</option>
+                    <option value="tablespoon(s)">tablespoon(s)</option>
+                    <option value="cup(s)">cup(s)</option>
+                    <option value="millilitres(ml)">millilitres(ml)</option>
+                    <option value="milligrams(mg)">milligrams(mg)</option>
+                    <option value="litres(l)">litres(l)</option>
+                    <option value="grams(g)">grams(g)</option>
                   </select>
-                  <label for="ingredient_units3">Units</label>
+                  <label for="ingredient3_units">Units</label>
                 </div>
               </div>
               <div class="row">
@@ -123,19 +123,19 @@
                   <label for="ingredient_quantity4">Quantity</label>
                 </div>
                 <div class="input-field col s3 m2">
-                  <select name="ingredient_units4">
+                  <select name="ingredient4_units">
                     <option value="" disabled selected>Units</option>
                     <option value="1">Add a unit</option>
-                    <option value="2">pinch(es)</option>
-                    <option value="3">teaspoon(s)</option>
-                    <option value="4">tablespoon(s)</option>
-                    <option value="5">cup(s)</option>
-                    <option value="6">millilitres(ml)</option>
-                    <option value="7">milligrams(mg)</option>
-                    <option value="8">litres(l)</option>
-                    <option value="9">grams(g)</option>
+                    <option value="pinch(es)">pinch(es)</option>
+                    <option value="teaspoon(s)">teaspoon(s)</option>
+                    <option value="tablespoon(s)">tablespoon(s)</option>
+                    <option value="cup(s)">cup(s)</option>
+                    <option value="millilitres(ml)">millilitres(ml)</option>
+                    <option value="milligrams(mg)">milligrams(mg)</option>
+                    <option value="litres(l)">litres(l)</option>
+                    <option value="grams(g)">grams(g)</option>
                   </select>
-                  <label for="ingredient_units4">Units</label>
+                  <label for="ingredient4_units">Units</label>
                 </div>
               </div>
               <div class="row">
@@ -148,19 +148,19 @@
                   <label for="ingredient_quantity5">Quantity</label>
                 </div>
                 <div class="input-field col s3 m2">
-                  <select name="ingredient_units5">
+                  <select name="ingredient5_units">
                     <option value="" disabled selected>Units</option>
                     <option value="1">Add a unit</option>
-                    <option value="2">pinch(es)</option>
-                    <option value="3">teaspoon(s)</option>
-                    <option value="4">tablespoon(s)</option>
-                    <option value="5">cup(s)</option>
-                    <option value="6">millilitres(ml)</option>
-                    <option value="7">milligrams(mg)</option>
-                    <option value="8">litres(l)</option>
-                    <option value="9">grams(g)</option>
+                    <option value="pinch(es)">pinch(es)</option>
+                    <option value="teaspoon(s)">teaspoon(s)</option>
+                    <option value="tablespoon(s)">tablespoon(s)</option>
+                    <option value="cup(s)">cup(s)</option>
+                    <option value="millilitres(ml)">millilitres(ml)</option>
+                    <option value="milligrams(mg)">milligrams(mg)</option>
+                    <option value="litres(l)">litres(l)</option>
+                    <option value="grams(g)">grams(g)</option>
                   </select>
-                  <label for="ingredient_units5">Units</label>
+                  <label for="ingredient5_units">Units</label>
                 </div>
                 <a id="add_ingredient_button" id="addIngredients">
                   <i class="material-icons">add_circle</i>
@@ -349,6 +349,12 @@
   <script type="text/javascript">
     $('#add_ingredient_button').click(function() {
       console.log('It worked!');
-    })
+    });
+    $('#addACuisine').click(function(){
+      displayNewInput();
+    });
+    function displayNewInput(){
+      newInput
+    }
   </script>
 {% endblock %}
