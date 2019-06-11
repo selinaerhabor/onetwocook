@@ -17,7 +17,7 @@ body {
     margin-top: 2px;
 }
 
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5 {
     font-family: 'Cookie', cursive;
 }
 
@@ -182,8 +182,6 @@ p, h6 {
     border-color: #20b2aa;
 }
 
-/*-----------------------------------------------------------Footer*/
-.footer-copyright {
-
+.link {
+    color: #000;
 }
-
