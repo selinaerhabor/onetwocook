@@ -11,11 +11,15 @@
             <div class="col s12 m6 l6">
               <div class="card">
                 <div class="card-image waves-effect waves-block">
-                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}}/>
+                  <a href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                    <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}"  alt={{recipe.recipe_name}}/>
+                  </a>
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <h5>{{recipe.recipe_name}}</h5>
+                    <a class="link" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                      <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                    </a>
                   </span>
                 </div>
                 <div class="card-reveal">
@@ -26,7 +30,10 @@
                   </span>
                   <p>{{recipe.recipe_summary}}<p>
                   <p>Serves: {{recipe.recipe_serves}} people</p>
-                  <p>Ingredients contain: {{recipes.allergens.allergen_1}} {{recipes.allergens.allergen_2}} {{recipes.allergens.allergen_3}} {{recipes.allergens.allergen_4}} {{recipes.allergens.allergen_5}}</p>
+                  {% for allergens in recipe %}
+                    <p>Ingredients contain: 
+                      {{allergens.allergen_}}</p>
+                  {% endfor %}
                   <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
                 </div>
               </div>

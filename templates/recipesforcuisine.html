@@ -15,11 +15,15 @@
             <div class="col s12 m6 l6">
               <div class="card">
                 <div class="card-image waves-effect waves-block">
-                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
+                  <a href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                    <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
+                  </a>
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <h5>{{recipe.recipe_name}}</h5>
+                    <a class="link" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                      <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                    </a>
                   </span>
                 </div>
                 <div class="card-reveal">
