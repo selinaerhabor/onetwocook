@@ -18,17 +18,17 @@
         <!--Navigation Bar-->
         <nav>
             <div class="nav-wrapper green lighten-4">
-                <a href="{{ url_for('home') }}" class="center">
+                <a href="" class="center">
                     <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
                 </a>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li class="nav-tab"><a href="{{url_for('home')}}">Home</a></li>
+                        <li class="nav-tab"><a href="">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
                     </ul>
                     <ul id="nav-mobile" class="side-nav">
-                        <li class="nav-tab"><a href="{{url_for('home')}}">Home</a></li>
+                        <li class="nav-tab"><a href="">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
                         <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
@@ -80,6 +80,7 @@
             $("#uploadFile").click(function(){
                 upload();
             });
+            $('.tooltipped').tooltip();
             $(".button-collapse").sideNav();
             });
         </script>
