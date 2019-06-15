@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -10,15 +10,25 @@ app.config["MONGO_URI"] = 'mongodb://admin:u537a6m1n@ds213665.mlab.com:13665/onl
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/home')
-def home():
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/guest')
+def guest():
+    return render_template('guesthome.html',
+    cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
+    
+@app.route('/<username>')
+def username_in_session(username):
     return render_template('home.html',
     cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
+    
 
 @app.route('/add_recipe')
 def add_recipe():
     cuisines = mongo.db.cuisines.find()
-    return render_template('addrecipe.html', cuisines=cuisines)
+    return render_template('addrecipe.html', cuisines = cuisines)
 
 @app.route('/manage_recipes')
 def manage_recipes():
