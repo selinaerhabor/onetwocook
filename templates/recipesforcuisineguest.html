@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseforguest.html' %}
 {% block document %}
   <div class="background responsive-img">
     <div class="container">
@@ -6,7 +6,7 @@
         <h2 class="center">Recipes</h2>
           <div class="row">
             <div class="col s12">
-              <a href=""><i class="material-icons left">arrow_back</i>Back to Home</a>
+              <a href="{{url_for('guest')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
             </div>
           </div>
           <div class="row">
@@ -15,13 +15,13 @@
             <div class="col s12 m6 l6">
               <div class="card">
                 <div class="card-image waves-effect waves-block">
-                  <a href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                  <a href="{{url_for('load_recipe_guest', recipe_name=recipe.recipe_name)}}">
                     <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
                   </a>
                 </div>
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <a class="link" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
+                    <a class="link" href="{{url_for('load_recipe_guest', recipe_name=recipe.recipe_name)}}">
                       <h5 class="truncate">{{recipe.recipe_name}}</h5>
                     </a>
                   </span>
@@ -35,7 +35,7 @@
                   <p>{{recipe.recipe_summary}}</p>
                   <p>Serves: {{recipe.recipe_serves}} people</p>
                   <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
-                  <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
+                  <a class="button" href="{{url_for('load_recipe_guest', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
                 </div>
               </div>
             </div>

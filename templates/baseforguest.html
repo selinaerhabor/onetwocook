@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Website Icon-->
+        <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
+        <!--Material Icons-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--Materialize 0.100.2 CSS Framework-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <!--Custom CSS-->
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+    crossorigin="anonymous"></script>
+        <!--Navigation Bar-->
+        <nav>
+            <div class="nav-wrapper green lighten-4">
+                <a href="{{url_for('guest')}}" class="center">
+                    <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
+                </a>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                    </ul>
+            </div>
+        </nav>
+        <!--Navigation Bar-->
+        
+        <!--Main Body-->
+        {% block document %}{% endblock %}
+        <!--/Main Body-->
+        
+        <!--Footer-->
+        <footer class="page-footer green lighten-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l8 s12">
+                <h5 class="black-text">Looking for a Recipe? Check our index of recipes <a href="{{url_for('index_of_recipes_guest')}}">here</a></h5>
+                <div class="row">
+                    {% for cuisine in cuisines %}
+                    <div class="col s12 m6">
+                        {{cuisine.cuisine_type}}
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright center">
+            <div class="container">
+                OneTwoCook by Selina Erhabor
+            </div>
+          </div>
+        </footer>
+        <!--/Footer-->
+        
+        <!--JQuery Framework-->
+        
+        <!--Materialize 0.100.2 Javascript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--Custom Javascript-->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('select').material_select();
+            
+            function upload(){
+                document.getElementById("uploadFile").multiple;
+            }
+            $("#uploadFile").click(function(){
+                upload();
+            });
+            $('.tooltipped').tooltip();
+            $(".button-collapse").sideNav();
+            });
+        </script>
+    </body>
+</html>

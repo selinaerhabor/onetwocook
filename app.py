@@ -19,8 +19,24 @@ def guest():
     return render_template('guesthome.html',
     cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
     
-@app.route('/<username>')
-def username_in_session(username):
+@app.route('/guest/recipes_for_cuisine/<cuisine_type>')
+def recipes_for_cuisine_guest(cuisine_type):
+    return render_template('recipesforcuisineguest.html',
+    recipes=mongo.db.recipes.find({'cuisine_type': cuisine_type}).sort('recipe_name', 1))
+    
+@app.route('/guest/load_recipe/<recipe_name>')
+def load_recipe_guest(recipe_name):
+    return render_template('viewrecipeguest.html',
+    recipes=mongo.db.recipes.find({'recipe_name': recipe_name}))
+    
+@app.route('/guest/index_of_recipes')
+def index_of_recipes_guest():
+    return render_template('indexofrecipesguest.html',
+    recipes=mongo.db.recipes.find().sort('recipe_name', 1))
+    
+@app.route('/home/<username>')
+def home(username):
+    session['username'] = username
     return render_template('home.html',
     cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
     
@@ -60,6 +76,7 @@ def insert_recipe():
 def index_of_recipes():
     return render_template('indexofrecipes.html',
     recipes=mongo.db.recipes.find().sort('recipe_name', 1))
+
 
 
 if __name__ == '__main__':
