@@ -114,7 +114,7 @@ p, h6 {
     height: 250px;
 }
 
-.cuisine-border {
+.home-border {
     border: dashed;
     border-color: #2f4f4f;
 }
@@ -193,17 +193,21 @@ p, h6 {
 }
 
 /*------------------------------------------------------------------Login Page*/
-.input-text {
-    margin: 40px;
-}
 
 .guest {
     margin-top: 40px;
     padding-bottom: 65px;
 }
 
+/*-----------------------------------------------------------------Logout Page*/
+
 .position {
     margin-top: 60px;
+    margin-bottom: 45px;
 }
 
-/*--------------------------------------------------------------------Footer*/
+.logout-msg {
+    font-size: 20px;
+}
+
+
