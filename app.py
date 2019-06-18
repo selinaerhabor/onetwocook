@@ -19,10 +19,15 @@ def login():
         return redirect(session["username"])
     
     return render_template('login.html')
+    
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return render_template('logout.html')
 
 @app.route('/guest')
 def guest():
-    return render_template('guesthome.html',
+    return render_template('homeguest.html',
     cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
     
 @app.route('/guest/recipes_for_cuisine/<cuisine_type>')

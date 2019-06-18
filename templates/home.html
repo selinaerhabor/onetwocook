@@ -15,7 +15,7 @@
             {% for cuisine in cuisines %}
               <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                  <a href="{{url_for('recipes_for_cuisine_guest', cuisine_type = cuisine.cuisine_type)}}">
+                  <a href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
                     {% if cuisine.cuisine_type == 'African' %}
                       <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_african.png')}}" />
                     {% elif cuisine.cuisine_type == 'Caribbean' %}
@@ -40,7 +40,7 @@
                 
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <a class="link" href="{{url_for('recipes_for_cuisine_guest', cuisine_type = cuisine.cuisine_type)}}">
+                    <a class="link" href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
                       <h3>{{cuisine.cuisine_type}}</h3>
                     </a>
                   </span>

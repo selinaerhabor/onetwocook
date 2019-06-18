@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block document %}
+    <title>Login | OneTwoCook</title>
+    <div class="background responsive-img">
+        <div class="container">
+            <div class="card-panel cuisine-border">
+                <div class="row">
+                    <div class="col s12">
+                        <h2>Thanks for Visiting!</h2>
+                        <p>You have now been successfully logged out! We hope to see you again soon...</p>
+                        <a href="{{url_for('login')}}"><button class="btn position">Return to Login Page</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
