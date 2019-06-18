@@ -18,20 +18,33 @@
         <!--Navigation Bar-->
         <nav>
             <div class="nav-wrapper green lighten-4">
-                <a href="" class="center">
+                <a href="{{url_for('login')}}" class="center">
                     <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
                 </a>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li class="nav-tab"><a href="">Home</a></li>
+                        {% if "username" in session %}
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                        {% else %}
+                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                        {% endif %}
                     </ul>
                     <ul id="nav-mobile" class="side-nav">
-                        <li class="nav-tab"><a href="">Home</a></li>
+                        {% if "username" in session %}
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
                         <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                        {% else %}
+                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                        {% endif %}
                     </ul>
             </div>
         </nav>
