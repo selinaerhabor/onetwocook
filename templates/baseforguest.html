@@ -71,15 +71,20 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $('select').material_select();
-            
-            function upload(){
-                document.getElementById("uploadFile").multiple;
-            }
-            $("#uploadFile").click(function(){
-                upload();
-            });
-            $('.tooltipped').tooltip();
-            $(".button-collapse").sideNav();
+                function print(){
+                    window.print();
+                }
+                $("#printButton").click(function(){
+                    print();
+                });
+                function upload(){
+                    document.getElementById("uploadFile").multiple;
+                }
+                $("#uploadFile").click(function(){
+                    upload();
+                });
+                $('.tooltipped').tooltip();
+                $(".button-collapse").sideNav();
             });
         </script>
     </body>

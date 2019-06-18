@@ -189,6 +189,7 @@ p, h6 {
 .options {
     color: #000;
     font-size: 40px;
+    cursor: pointer;
 }
 
 /*------------------------------------------------------------------Login Page*/
@@ -198,9 +199,7 @@ p, h6 {
 
 .guest {
     margin-top: 40px;
+    padding-bottom: 65px;
 }
 
 /*--------------------------------------------------------------------Footer*/
-.page-footer {
-    margin: 0 auto;
-}
