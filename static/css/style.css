@@ -186,6 +186,11 @@ p, h6 {
     color: #000;
 }
 
+.options {
+    color: #000;
+    font-size: 40px;
+}
+
 /*------------------------------------------------------------------Login Page*/
 .input-text {
     margin: 40px;

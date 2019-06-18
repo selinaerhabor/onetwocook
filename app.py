@@ -4,14 +4,20 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+app.secret_key = 'randomstring'
 app.config["MONGO_DBNAME"]  = 'online-cookbook'
 app.config["MONGO_URI"] = 'mongodb://admin:u537a6m1n@ds213665.mlab.com:13665/online-cookbook'
 
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/login')
+@app.route('/login', methods = ["GET", "POST"])
 def login():
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+    if "username" in session:
+        return redirect(session["username"])
+    
     return render_template('login.html')
 
 @app.route('/guest')
@@ -29,18 +35,19 @@ def load_recipe_guest(recipe_name):
     return render_template('viewrecipeguest.html',
     recipes=mongo.db.recipes.find({'recipe_name': recipe_name}))
     
+    
 @app.route('/guest/index_of_recipes')
 def index_of_recipes_guest():
     return render_template('indexofrecipesguest.html',
     recipes=mongo.db.recipes.find().sort('recipe_name', 1))
     
-@app.route('/home/<username>')
+    
+@app.route('/<username>')
 def home(username):
-    session['username'] = username
     return render_template('home.html',
     cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
     
-
+    
 @app.route('/add_recipe')
 def add_recipe():
     cuisines = mongo.db.cuisines.find()
@@ -76,7 +83,6 @@ def insert_recipe():
 def index_of_recipes():
     return render_template('indexofrecipes.html',
     recipes=mongo.db.recipes.find().sort('recipe_name', 1))
-
 
 
 if __name__ == '__main__':
