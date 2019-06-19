@@ -35,12 +35,16 @@
                     </ul>
                     <ul id="nav-mobile" class="side-nav">
                         {% if "username" in session %}
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
+                        <hr>
+                        <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
                         <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
                         <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
                         <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
                         <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
                         {% else %}
+                        <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
+                        <hr>
                         <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
                         <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
                         <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>

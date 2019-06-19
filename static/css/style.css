@@ -147,7 +147,7 @@ p, h6 {
 }
 
 .side-nav {
-    background-image: url("../../static/images/cookbook_background.jpg");
+    background: #c8e6c9;
 }
 
 .nav-tab {
