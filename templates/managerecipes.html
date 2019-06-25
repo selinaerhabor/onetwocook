@@ -1,25 +1,42 @@
 {% extends 'base.html' %}
-  {% block document %}
-  <title>Manage Your Recipes | OneTwoCook</title>
-    <div class="background responsive-img">
-      <div class="container">
-        <div class="card-panel managerecipe-border">
-          <h2>Manage Recipes</h2>
-            <div class="row">
-              {% for recipe in recipes %}
-              <div class="col s12 m6 l6">
-                <div class="card">
-                  <div class="card-image">
-                    <img src="images/sample-1.jpg">
-                    <span class="card-title">{{recipe.recipe_name}}</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
-                  </div>
-                  <div class="card-content">
-                    <p>{{recipe.recipe_summary}}</p>
+{% block document %}
+<title>Manage Your Recipes | OneTwoCook</title>
+  <div class="background responsive-img">
+    <div class="container">
+      <div class="card-panel managerecipe-border">
+        <h2>Manage Recipes</h2>
+          <div class="row">
+            {% for author in recipes %}
+              {% if "username" in session == author.author_username %}
+                <div class="col s12 m6 l6">
+                  <div class="card">
+                    <div class="card-image waves-effect waves-block">
+                      <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}">
+                        <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
+                      </a>
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
+                        <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}">
+                          <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                        </a>
+                      </span>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">
+                        <i class="material-icons right">close</i>
+                        <h4>{{recipe.recipe_name}}</h4>
+                        <hr>
+                      </span>
+                      <p>{{recipe.recipe_summary}}</p>
+                      <p>Serves: {{recipe.recipe_serves}} people</p>
+                      <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                      <a class="button" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}"><button>Go to Recipe</button></a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="divider"></div>
+            {% endif %}
+            <div class="divider"></div>
               <div class="row">
                 <h4>Saved Recipes</h4>
                 <div class="col s12 m6 l6">
@@ -35,9 +52,9 @@
                   </div>
                 </div>
               </div>
-              {% endfor %}
-            </div>
-        </div>
+            {% endfor %}
+          </div>
       </div>
     </div>
-  {% endblock %}
+  </div>
+{% endblock %}
