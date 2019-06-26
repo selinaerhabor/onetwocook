@@ -44,7 +44,8 @@ def add_recipe():
 
 @app.route('/manage_recipes')
 def manage_recipes():
-    return render_template('managerecipes.html')
+    return render_template('managerecipes.html',
+    recipes=mongo.db.recipes.find({'author.author_username': session["username"]}))
     
 @app.route('/edit_recipe')
 def edit_recipe():
