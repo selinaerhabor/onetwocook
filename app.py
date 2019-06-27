@@ -28,13 +28,13 @@ def logout():
 @app.route('/guest')
 def guest():
     return render_template('home.html',
-    cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
+    cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1))
     
     
 @app.route('/<username>')
 def home(username):
     return render_template('home.html',
-    cuisines=mongo.db.cuisines.find().sort('cuisine_type', 1))
+    cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1))
     
     
 @app.route('/add_recipe')
@@ -45,22 +45,23 @@ def add_recipe():
 @app.route('/manage_recipes')
 def manage_recipes():
     return render_template('managerecipes.html',
-    recipes=mongo.db.recipes.find({'author.author_username': session["username"]}))
+    recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
     
 @app.route('/edit_recipe')
 def edit_recipe():
-    return render_template('editrecipe.html')
+    return render_template('editrecipe.html',
+    recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
     
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
     return render_template('recipesforcuisine.html',
-    recipes=mongo.db.recipes.find({'cuisine_type': cuisine_type}).sort('recipe_name', 1))
+    recipes = mongo.db.recipes.find({'cuisine_type' : cuisine_type}).sort('recipe_name', 1))
     
     
 @app.route('/load_recipe/<recipe_name>')
 def load_recipe(recipe_name):
     return render_template('viewrecipe.html',
-    recipes=mongo.db.recipes.find({'recipe_name': recipe_name}))
+    recipes = mongo.db.recipes.find({'recipe_name' : recipe_name}))
 
 
 @app.route('/insert_recipe', methods=['POST'])
@@ -72,10 +73,10 @@ def insert_recipe():
 @app.route('/index_of_recipes')
 def index_of_recipes():
     return render_template('indexofrecipes.html',
-    recipes=mongo.db.recipes.find().sort('recipe_name', 1))
+    recipes = mongo.db.recipes.find().sort('recipe_name', 1))
 
 
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
-        debug=True)
+    app.run(host = os.environ.get('IP'),
+        port = int(os.environ.get('PORT')),
+        debug = True)

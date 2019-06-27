@@ -28,13 +28,17 @@
                       <hr>
                     </span>
                     <p>{{recipe.recipe_summary}}</p>
-                    <p>Serves: {{recipe.recipe_serves}} people</p>
-                    <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
-                    <a class="button" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}"><button>Go to Recipe</button></a>
+                    <div class="col-12">
+                    <a href="{{url_for('edit_recipe', recipe_name = recipe.recipe_name)}}" class="btn halfway-fab waves-effect grey lighten-2">Edit<i class="material-icons">edit</i></a>
+                    <a href="" class="btn halfway-fab waves-effect waves-light red">Delete<i class="material-icons">delete</i></a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            {% if recipes == 0 %}
+            <h3>You have no yet created any recipes? <a href="">Ready to create one?</a></h3>
+            {% endif %}
             <div class="divider"></div>
               <div class="row">
                 <h4>Saved Recipes</h4>

@@ -1,7 +1,171 @@
 {% extends 'base.html' %}
 {% block document %}
-
-<h2>Edit A Recipe</h2>
-
-
+    <div class="background responsive-img">
+        <div class="container">
+            <div class="card-panel recipe-border">
+                <h2>Edit A Recipe</h2>
+                <div class="row">
+                    <div class="col s12">
+                        {% for recipe in recipes %}
+                        <title>Edit Recipe: {{recipe.recipe_name}} | OneTwoCook</title>
+                        <a class="left" href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <p><input value="{{recipe.recipe_name}}"></p>
+                        <h5><b>Summary</b></h5>
+                        <p><input value="{{recipe.recipe_summary}}"></p>
+                        <p>Serves: <input value="{{recipe.recipe_serves}}"></p>
+                        <p>Cook Time: <input value="{{recipe.cook_time}}"></p>
+                        <p>Preparation Time: <input value="{{recipe.preparation_time}}"></p>
+                    </div>
+                    <div class="col s12 m6">
+                        <a href ="../../static/images/{{recipe.img_path}}" target="_blank">
+                            <img class="responsive-img right" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <h5><b>Ingredients</b></h5>
+                    </div>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient1_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient1_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient1_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient2_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient2_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient2_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient3_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient3_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient3_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient4_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient4_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient4_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient5_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient5_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient5_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient6_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient6_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient6_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient7_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient7_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient7_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient8_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient8_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient8_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient9_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient9_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient9_name}}"/>
+                    </span>
+                    
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient10_quantity}}"/>
+                    </span>
+                    <span class="col s12 m3">
+                        <input value="{{recipe.ingredients.ingredient10_units}}"/>
+                    </span>
+                    <span class="col s12 m6">
+                        <input value="{{recipe.ingredients.ingredient10_name}}"/>
+                    </span>
+                
+                        <p>{{recipe.ingredients.ingredient11_quantity}} {{recipe.ingredients.ingredient11_units}} {{recipe.ingredients.ingredient11_name}}</p>
+                        <p>{{recipe.ingredients.ingredient12_quantity}} {{recipe.ingredients.ingredient12_units}} {{recipe.ingredients.ingredient12_name}}</p>
+                        <p>{{recipe.ingredients.ingredient13_quantity}} {{recipe.ingredients.ingredient13_units}} {{recipe.ingredients.ingredient13_name}}</p>
+                        <p>{{recipe.ingredients.ingredient14_quantity}} {{recipe.ingredients.ingredient14_units}} {{recipe.ingredients.ingredient14_name}}</p>
+                        <p>{{recipe.ingredients.ingredient15_quantity}} {{recipe.ingredients.ingredient15_units}} {{recipe.ingredients.ingredient15_name}}</p>
+                    
+                        <p>{{recipe.ingredients.ingredient16_quantity}} {{recipe.ingredients.ingredient16_units}} {{recipe.ingredients.ingredient16_name}}</p>
+                        <p>{{recipe.ingredients.ingredient17_quantity}} {{recipe.ingredients.ingredient17_units}} {{recipe.ingredients.ingredient17_name}}</p>
+                        <p>{{recipe.ingredients.ingredient18_quantity}} {{recipe.ingredients.ingredient18_units}} {{recipe.ingredients.ingredient18_name}}</p>
+                        <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
+                        <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <h5><b>Method</b></h5>
+                        <input value="{{recipe.method.method_step1}}"/>
+                        <input value="{{recipe.method.method_step2}}"/>
+                        <input value="{{recipe.method.method_step3}}"/>
+                        <input value="{{recipe.method.method_step4}}"/>
+                        <input value="{{recipe.method.method_step5}}"/>
+                        <input value="{{recipe.method.method_step6}}"/>
+                        <input value="{{recipe.method.method_step7}}"/>
+                        <input value="{{recipe.method.method_step8}}"/>
+                        <input value="{{recipe.method.method_step9}}"/>
+                        <input value="{{recipe.method.method_step10}}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 m3">
+                        <h5><b>Author</b></h5>
+                        <p>{{recipe.author.author_username}}</p>
+                        <p>Region:<input value="{{recipe.author.author_region}}"/></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
