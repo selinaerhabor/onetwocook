@@ -10,14 +10,12 @@ app.config["MONGO_URI"] = 'mongodb://admin:u537a6m1n@ds213665.mlab.com:13665/onl
 
 mongo = PyMongo(app)
 
-@app.route('/')
-@app.route('/login', methods = ["GET", "POST"])
+@app.route('/', methods = ["GET", "POST"])
 def login():
     if request.method == "POST":
         session["username"] = request.form["username"]
     if "username" in session:
         return redirect(session["username"])
-    
     return render_template('login.html')
     
 @app.route('/logout')
@@ -74,7 +72,6 @@ def insert_recipe():
 def index_of_recipes():
     return render_template('indexofrecipes.html',
     recipes = mongo.db.recipes.find().sort('recipe_name', 1))
-
 
 if __name__ == '__main__':
     app.run(host = os.environ.get('IP'),
