@@ -7,6 +7,8 @@
         <div class="row">
           <div class="col s12 m6 l6">
             <h2>Manage Your Recipes</h2>
+            {% if recipes|length > 0 %}
+            
             {% for recipe in recipes %}
               <div class="card">
                 <div class="card-image waves-effect waves-block">
@@ -34,9 +36,12 @@
                   </div>
                 </div>
               </div>
-              <!--Add if statement-->
-              <!--<h3>You have no yet created any recipes? <a href="">Ready to create one?</a></h3>-->
+              
               {% endfor %}
+              {% else %}
+                <h3>You have no yet created any recipes? <a href="">Ready to create one?</a></h3>
+              
+              {% endif %}
               <div class="divider"></div>
               <div class="row">
                 <div class="col-12">
