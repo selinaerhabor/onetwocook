@@ -20,20 +20,20 @@
                   </a>
                 </div>
                 <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}">
-                      <h5 class="truncate">{{recipe.recipe_name}}</h5>
-                    </a>
-                  </span>
+                  <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}">
+                    <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                  </a>
                 </div>
                 <div class="card-reveal">
                   <span class="card-title grey-text text-darken-4">
                     <i class="material-icons right">close</i>
                     <h4>{{recipe.recipe_name}}</h4>
+                    <small>Created By: {{recipe.author.author_username}}</small>
                     <hr>
                   </span>
                   <p>{{recipe.recipe_summary}}</p>
                   <p>Serves: {{recipe.recipe_serves}} people</p>
+                  <!--Add If statement to display allergens and hide text if no allergens are listed-->
                   <p>Ingredients contain: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
                   <a class="button" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name)}}"><button>Go to Recipe</button></a>
                 </div>
