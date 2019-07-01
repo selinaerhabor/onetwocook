@@ -139,6 +139,16 @@ p, h6 {
     background-color: #00cc00;
 }
 
+#cuisine-card .text{
+    position: relative;
+    visibility: hidden;
+}
+
+#cuisine-card:hover .text{
+    visibility: visible;
+    color: #000;
+}
+
 
 
 /*------------------------------------------------------------------Navigation*/
@@ -192,6 +202,11 @@ p, h6 {
     cursor: pointer;
 }
 
+.options:hover {
+    color: #20b2aa;
+    cursor: pointer;
+}
+
 /*------------------------------------------------------------------Login Page*/
 
 .guest {
@@ -209,5 +224,3 @@ p, h6 {
 .logout-msg {
     font-size: 20px;
 }
-
-

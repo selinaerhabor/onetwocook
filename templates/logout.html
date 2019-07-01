@@ -6,10 +6,13 @@
             <div class="card-panel home-border">
                 <div class="row">
                     <div class="col s12">
-                        <h2>Thanks for Visiting!</h2>
-                        <p class="logout-msg">You have now been successfully logged out! </p>
-                        <p class="logout-msg">We hope to see you again soon...</p>
-                        <a href="{{url_for('login')}}"><button class="btn position">Return to Login Page</button></a>
+                        <h2 class="center">Thanks for Visiting!</h2>
+                        <div class="center">
+                            <img class="logo responsive-img center" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
+                        </div>
+                        <p class="logout-msg center">You have now been successfully logged out!</p>
+                        <p class="logout-msg center">We hope to see you again soon. To log back in click the button below</p>
+                        <a href="{{url_for('login')}}"><button class="btn position col s12 m4 offset-m4 center">Return to Login Page</button></a>
                     </div>
                 </div>
             </div>
