@@ -4,13 +4,18 @@ from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+### Flask
 app = Flask(__name__)
+
+### Environment Variables
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["MONGO_DBNAME"]  = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
+### Mongo
 mongo = PyMongo(app)
 
+### Application Login
 @app.route('/', methods = ["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -18,51 +23,56 @@ def login():
     if "username" in session:
         return redirect(session["username"])
     return render_template('login.html')
-    
+
+### Logout Page
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return render_template('logout.html')
 
+### Welcome Page - Guest View
 @app.route('/guest')
 def guest():
     return render_template('home.html',
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1))
-    
-    
+
+### Welcome Page - Username
 @app.route('/<username>')
 def home(username):
     return render_template('home.html',
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1))
     
-    
+### Add a Recipe Page
 @app.route('/add_recipe')
 def add_recipe():
     cuisines = mongo.db.cuisines.find()
     return render_template('addrecipe.html', cuisines = cuisines)
 
+### Manage Your Recipes Page
 @app.route('/manage_recipes')
 def manage_recipes():
     return render_template('managerecipes.html',
     recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
-    
+
+### Edit Recipe Page (via Manage Your Recipes)
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template('editrecipe.html', recipes=recipe_selected)
     
+### List of all recipes under selected Cuisine Type
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
     return render_template('recipesforcuisine.html',
     recipes = mongo.db.recipes.find({'cuisine_type' : cuisine_type}).sort('recipe_name', 1))
     
-    
+### View Recipe Page
 @app.route('/load_recipe/<recipe_name>')
 def load_recipe(recipe_name):
     return render_template('viewrecipe.html',
     recipes = mongo.db.recipes.find({'recipe_name' : recipe_name}))
 
-
+### Submission of Add a Recipe Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
@@ -126,12 +136,19 @@ def insert_recipe():
         },
         "public_visibility": request.form.get("public_visibility")
     })
-    return render_template('addrecipe.html')
+    return redirect(url_for('add_recipe'))
 
+### Index of Recipes
 @app.route('/index_of_recipes')
 def index_of_recipes():
     return render_template('indexofrecipes.html',
     recipes = mongo.db.recipes.find().sort('recipe_name', 1))
+    
+### Delete a Recipe
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('manage_recipes'))
 
 if __name__ == '__main__':
     app.run(host = os.environ.get('IP'),

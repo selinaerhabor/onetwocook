@@ -30,8 +30,8 @@
                       </span>
                       <p>{{recipe.recipe_summary}}</p>
                       <div class="col-12">
-                        <a href="{{url_for('edit_recipe', recipe_name = recipe.recipe_name)}}" class="btn halfway-fab waves-effect grey lighten-2">Edit<i class="material-icons">edit</i></a>
-                        <a href="" class="btn halfway-fab waves-effect waves-light red">Delete<i class="material-icons">delete</i></a>
+                        <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2">Edit<i class="material-icons">edit</i></a>
+                        <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect waves-light red">Delete<i class="material-icons">delete</i></a>
                       </div>
                     </div>
                   </div>
@@ -46,19 +46,21 @@
         <hr>
         <div class="row">
           <div class="col s12">
-            <h3>Saved Recipes</h3>
-            {% for recipe in recipes %}
-              <div class="card">
-                <span class="card-title">{{recipe.recipe_name}}</span>
-                <div class="card-content">
-                  <p>{{recipe.recipe_name}}</p>
+            <h3>Liked Recipes</h3>
+            {% if recipes %}
+              {% for recipe in recipes %}
+                <div class="card">
+                  <span class="card-title">{{recipe.recipe_name}}</span>
+                  <div class="card-content">
+                    <p>{{recipe.recipe_name}}</p>
+                  </div>
                 </div>
-              </div>
-              {% else %}
-                <p class="text"><b>You have no saved recipes.</b></p>
-                <p class="text">To save a recipe click on the <i class="material-icons">star_border</i> 
-                icon (at the bottom of a recipe page) and your saved recipes will appear in this section.</p>
-            {% endfor %}
+                {% else %}
+                  <p class="text"><b>You have no saved recipes.</b></p>
+                  <p class="text">To save a recipe click on <a class="btn"><i class="material-icons">thumb_up</i></a> 
+                  by the title of a recipe and the recipes you liked will appear in this section.</p>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>
