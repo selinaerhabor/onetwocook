@@ -42,19 +42,19 @@ def home(username):
     return render_template('home.html',
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1))
     
-### Add a Recipe Page
+### 'Add a Recipe' Page
 @app.route('/add_recipe')
 def add_recipe():
     cuisines = mongo.db.cuisines.find()
     return render_template('addrecipe.html', cuisines = cuisines)
 
-### Manage Your Recipes Page
+### 'Manage Your Recipes' Page
 @app.route('/manage_recipes')
 def manage_recipes():
     return render_template('managerecipes.html',
     recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
 
-### Edit Recipe Page (via Manage Your Recipes)
+### 'Edit Recipe' Page (via 'Manage Your Recipes')
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
@@ -72,7 +72,7 @@ def load_recipe(recipe_name):
     return render_template('viewrecipe.html',
     recipes = mongo.db.recipes.find({'recipe_name' : recipe_name}))
 
-### Submission of Add a Recipe Form to mLab Database
+### Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
@@ -137,12 +137,19 @@ def insert_recipe():
         "public_visibility": request.form.get("public_visibility")
     })
     return redirect(url_for('add_recipe'))
-
+    
+### Moves recipes to 'Liked Recipe' section (under 'Manage Your Recipes' page)
+@app.route('/liked_recipe/<recipe_id>')
+def like_recipe(recipe_id):
+    mongo.db.recipes.save({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('manage_recipes'))
+    
 ### Index of Recipes
 @app.route('/index_of_recipes')
 def index_of_recipes():
     return render_template('indexofrecipes.html',
     recipes = mongo.db.recipes.find().sort('recipe_name', 1))
+    
     
 ### Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')

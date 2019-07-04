@@ -21,35 +21,35 @@
                 <a href="{{url_for('login')}}" class="center">
                     <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
                 </a>
-                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul class="right hide-on-med-and-down">
-                        {% if "username" in session %}
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
-                        <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                        <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
-                        <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
-                        {% else %}
-                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
-                        {% endif %}
-                    </ul>
-                    <ul id="nav-mobile" class="side-nav">
-                        {% if "username" in session %}
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
-                        <hr>
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
-                        <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                        <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
-                        <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
-                        <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
-                        {% else %}
-                        <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
-                        <hr>
-                        <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
-                        <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
-                        <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
-                        {% endif %}
-                    </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    {% if "username" in session %}
+                    <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
+                    <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                    <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                    <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                    <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                    {% endif %}
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    {% if "username" in session %}
+                    <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
+                    <hr>
+                    <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
+                    <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                    <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                    <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                    <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
+                    <hr>
+                    <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                    <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                    <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
         <!--Navigation Bar-->
@@ -86,27 +86,58 @@
         
         <!--Materialize 0.100.2 Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--Twitter Widget Icon (Bottom of Recipe Page)-->
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!--Custom Javascript-->
         <script type="text/javascript">
             $(document).ready(function(){
+                
+                //Materialize - :
                 $('select').material_select();
+                
+                //Allows user to print a recipe page:
                 function print(){
                     window.print();
                 }
                 $("#printButton").click(function(){
                     print();
                 });
+                
+                /*Allows full access users to upload photo of their recipe on 
+                Add a Recipe page */
                 function upload(){
                     document.getElementById("uploadFile").multiple;
                 }
                 $("#uploadFile").click(function(){
                     upload();
                 });
+                
+                //Materialize - provides hint on function of feature:
                 $('.tooltipped').tooltip();
+                
+                //Materialize - Side Navigation (Smaller screen viewing only):
                 $(".button-collapse").sideNav();
-                // $(".addToFavouritesButton").click(function(){
-                    
-                // })
+                
+                /*Displays number of times a user has clicked Thumbs Up Button 
+                (liked the recipe) */
+                // document.getElementById("count").innerHTML = localStorage.clickcount;
+                // if (localStorage.clickcount == undefined) {
+                //     localStorage.clickcount == 1;
+                // }
+                // $("#thumbsUp").click(function(){
+                //     if (typeof(Storage) !== "undefined") {
+                //         if (localStorage.clickcount) {
+                //             localStorage.clickcount == Number(localStorage.clickcount)+1;
+                //         } 
+                //         else {
+                //             localStorage.clickcount = 1;
+                //         }
+                //     document.getElementById("count").innerHTML = localStorage.clickcount;
+                //     } 
+                //     else {
+                //         document.getElementById("count").innerHTML = localStorage.clickcount;
+                //     }
+                // });
             });
         </script>
     </body>

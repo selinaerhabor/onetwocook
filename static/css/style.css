@@ -92,7 +92,10 @@ p, h6 {
     border-color: #ff0000;
 }
 
-
+.more_info {
+    color: #ff0000;
+    font-size: 18px;
+}
 
 
 /*----------------------------------------------------------Home/Cuisines Page*/
@@ -205,6 +208,10 @@ p, h6 {
 .options:hover {
     color: #20b2aa;
     cursor: pointer;
+}
+
+#thumbsUp {
+    color: #000;
 }
 
 /*------------------------------------------------------------------Login Page*/
