@@ -10,28 +10,42 @@
                 <form id="recipe_form" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
                   <div class="row">
                     <h4 class="sub-title">Summary</h4>
-                    <div class="input-field col s4 m2 xl2">
-                      <select id="cuisine" name="cuisine_type">
+                    <div class="input-field col s4 m2 xl2" id="cuisine_type" name="cuisine_type">
+                      <select required>
                         <option value="" disabled selected>Cuisine</option>
                         <option value="add a cuisine" id="addACuisine">Add a Cuisine</option>
                         {% for cuisine in cuisines %}
                           <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
                         {% endfor %}
                       </select>
-                      <label>Type of Cuisine</label>
+                      <label>Type of Cuisine<span class="more_info">*</span></label>
                     </div>
                     <div class="input-field col s8 m4">
-                      <input id="recipe_name" type="text" name="recipe_name" class="validate">
-                      <label for="recipe_name">Recipe Name</label>
+                      <input id="recipe_name" placeholder="Recipe Name" type="text" name="recipe_name" class="validate" required>
+                      <label for="recipe_name">Recipe Name<span class="more_info">*</span></label>
                     </div>
                     <div class="input-field col s3">
-                      <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
-                      <label for="recipe_serves">Serves:</label>
+                      <input id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" required>
+                      <label for="recipe_serves">Serves:<span class="more_info">*</span></label>
                     </div>
-                    <div class="input-field col s3">
-                      <select multiple id="allergen" name="allergen">
-                        <option value="" disabled selected>Allergens</option>
-                        <option value="allergen not listed" id="addACuisine">Allergen not listed</option>
+                    <div class="input-field col s3" id="allergens" name="allergens">
+                      <select multiple placeholder="Allergens">
+                        <option value="" disabled>Allergens</option>
+                        <option value="celery">Celery</option>
+                        <option value="crustaceans">Crustaceans</option>
+                        <option value="eggs">Eggs</option>
+                        <option value="fish">Fish</option>
+                        <option value="gluten">Gluten</option>
+                        <option value="lupin">Lupin</option>
+                        <option value="milk">Milk</option>
+                        <option value="mustard">Mustard</option>
+                        <option value="molluscs">Molluscs</option>
+                        <option value="tree nuts">Tree Nuts</option>
+                        <option value="peanuts">Peanuts</option>
+                        <option value="sesame seeds">Sesame Seeds</option>
+                        <option value="soy beans">Soy Beans</option>
+                        <option value="sulphur dioxide">Sulphur Dioxide</option>
+                        <option value="wheat">Wheat</option>
                         {% for recipe in recipes %}
                           <option value=""></option>
                         {% endfor %}
@@ -48,11 +62,11 @@
                   <div class="row">
                     <h4 class="sub-title">Ingredients</h4>
                     <div class="input-field col s5 m4">
-                      <input id="ingredient1_name" type="text" name="ingredient1_name" class="validate">
+                      <input id="ingredient1_name" placeholder="Ingredient" type="text" name="ingredient1_name" class="validate" required>
                       <label for="ingredient1_name">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient1_quantity" type="number" name="ingredient1_quantity" min="0" class="validate">
+                      <input id="ingredient1_quantity" placeholder="Quantity" type="number" name="ingredient1_quantity" min="0" class="validate" required>
                       <label for="ingredient1_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
@@ -182,11 +196,11 @@
                       <label for="preparation_time hidden-xs">Prepare Time:</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="cook_time" type="number" name="cook_time" min="0" class="validate">
+                      <input id="cook_time" type="number" name="cook_time" min="0" class="validate" required>
                       <label for="cook_time hidden-xs">Cook Time:</label>
                     </div>
-                    <div class="input-field col s3 m2">
-                      <select name="time_units">
+                    <div class="input-field col s3 m2" name="time_units">
+                      <select required>
                         <option disabled selected>Units</option>
                         <option value="1">second(s)</option>
                         <option value="2">minute(s)</option>
@@ -212,7 +226,7 @@
                         <label>Step No.</label>
                       </div>
                       <div class="input-field col s9 m8">
-                        <input id="method1" type="text" name="method_step1" class="validate">
+                        <input id="method1" type="text" name="method_step1" class="validate" required>
                         <label for="method_step1">Method</label>
                       </div>
                     </div>
@@ -311,11 +325,11 @@
                   <div class="row">
                     <h4 class="sub-title">Author:</h4>
                     <div class="input-field col s7 m4">
-                      <input disabled value="{{ session['username'] }}" id="author_name" type="text" name="author.author_username" class="validate"/>
+                      <input disabled value="{{ session['username'] }}" id="author_name" type="text" name="author_username" class="validate">
                       <label for="author_username">Your Name</label>
                     </div>
                     <div class="input-field col s5 m3">
-                      <select name="author_region">
+                      <select name="author_region" required>
                         <option value="" disabled selected>Region</option>
                         <option value="Africa">Africa</option>
                         <option value="Asia">Asia</option>
@@ -326,7 +340,7 @@
                         <option value="Oceania">Oceania</option>
                         <option value="South America">South America</option>
                       </select>
-                      <label for="author_country">Select Your Region</label>
+                      <label for="author_country">Select Your Region<span class="more_info">*</span></label>
                     </div>
                   </div>
                   <div class="row">
@@ -335,7 +349,7 @@
                         <div class="switch">
                           <label for="public_visibility">
                             Off
-                            <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" >
+                            <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
                             <span class="lever"></span>
                             On
                           </label>
@@ -343,8 +357,13 @@
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col s12">
+                      <p>In order to submit a recipe, please ensure all fields with * have been completed</p>
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="col s7 offset-s5 m7 offset-m9">
-                      <button onclick="displayNotification();" class="btn waves-effect waves-light" type="submit">
+                      <button id="submitBtn" class="btn waves-effect waves-light" type="submit">
                         Submit
                         <i class="material-icons right">send</i>
                       </button>
@@ -366,9 +385,11 @@
     function displayNewInput(){
       newInput
     }
-    function displayNotification(){
-      M.toast({html: 'I am a toast', classes: 'rounded'});
-    }
-    
+    // function displayNotification(){
+    //   M.toast({html: 'I am a toast', classes: 'rounded'});
+    // }
+    // $('#submitBtn').click(function() {
+    //   displayNotification();
+    // });
   </script>
 {% endblock %}
