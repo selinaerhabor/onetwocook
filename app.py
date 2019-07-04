@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 app.config["MONGO_DBNAME"]  = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
@@ -46,10 +46,10 @@ def manage_recipes():
     return render_template('managerecipes.html',
     recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
     
-@app.route('/edit_recipe')
-def edit_recipe():
-    return render_template('editrecipe.html',
-    recipes = mongo.db.recipes.find({'author.author_username' : session["username"]}))
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template('editrecipe.html', recipes=recipe_selected)
     
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
@@ -65,7 +65,6 @@ def load_recipe(recipe_name):
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
-    num = []
     recipes = mongo.db.recipes
     # recipes.insert_one(request.form.to_dict())
     recipes.insert_one({
@@ -76,9 +75,7 @@ def insert_recipe():
         "recipe_serves": request.form.get("recipe_serves"),
         "preparation_time": request.form.get("preparation_time"),
         "cook_time": request.form.get("cook_time"),
-        "allergens": {
-            "allergen_1": request.form.get("allergen_1")
-        },
+        "allergens": request.form.getlist("allergens"),
         "ingredients": {
             "ingredient1_quantity": request.form.get("ingredient1_quantity"),
             "ingredient1_unit": request.form.get("ingredient1_units"),
@@ -124,12 +121,12 @@ def insert_recipe():
             "method_step10": request.form.get("method_step10")
         },
         "author": {
-            "author_username": request.form.get("author_username"),
+            "author_username": session['username'],
             "author_region": request.form.get("author_region")
         },
         "public_visibility": request.form.get("public_visibility")
     })
-    return redirect(url_for('manage_recipes'))
+    return render_template('addrecipe.html')
 
 @app.route('/index_of_recipes')
 def index_of_recipes():

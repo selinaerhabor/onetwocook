@@ -15,7 +15,7 @@
                         <option value="" disabled selected>Cuisine</option>
                         <option value="add a cuisine" id="addACuisine">Add a Cuisine</option>
                         {% for cuisine in cuisines %}
-                          <option value="{{ cuisine.cuisine_type|lower }}">{{ cuisine.cuisine_type }}</option>
+                          <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
                         {% endfor %}
                       </select>
                       <label>Type of Cuisine</label>
@@ -24,31 +24,36 @@
                       <input id="recipe_name" type="text" name="recipe_name" class="validate">
                       <label for="recipe_name">Recipe Name</label>
                     </div>
-                    <div class="input-field col s2">
+                    <div class="input-field col s3">
                       <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
                       <label for="recipe_serves">Serves:</label>
                     </div>
-                    <div class="input-field col s2">
-                      <input id="recipe_serves" type="text" name="recipe_serves" class="validate">
-                      <label for="recipe_serves">Allergen(s):</label>
+                    <div class="input-field col s3">
+                      <select multiple id="allergen" name="allergen">
+                        <option value="" disabled selected>Allergens</option>
+                        <option value="allergen not listed" id="addACuisine">Allergen not listed</option>
+                        {% for recipe in recipes %}
+                          <option value=""></option>
+                        {% endfor %}
+                      </select>
+                      <label>Allergens</label>
                     </div>
                   </div>
-                  <div class="newInput" id=""></div>
                   <div class="row">
                     <label for="input-file">File input</label>
-                      <input type="file" class="form-control" id="input-file" >
-                        <p class="help-block"><small>Please upload here any relevant documents.</small></p>
+                    <input type="file" class="form-control" id="input-file" >
+                    <p class="help-block"><small>Please upload here any relevant documents.</small></p>
                   </div>
                   <div class="divider"></div>
                   <div class="row">
                     <h4 class="sub-title">Ingredients</h4>
                     <div class="input-field col s5 m4">
-                      <input id="ingredient_name1" type="text" name="ingredient_name1" class="validate">
-                      <label for="ingredient_name1">Ingredient</label>
+                      <input id="ingredient1_name" type="text" name="ingredient1_name" class="validate">
+                      <label for="ingredient1_name">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient_quantity1" type="number" name="ingredient_quantity1" min="0" class="validate">
-                      <label for="ingredient_quantity1">Quantity</label>
+                      <input id="ingredient1_quantity" type="number" name="ingredient1_quantity" min="0" class="validate">
+                      <label for="ingredient1_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
                       <select name="ingredient1_units">
@@ -68,12 +73,12 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s5 m4">
-                      <input id="ingredient_name2" type="text" name="ingredient_name2" class="validate">
-                      <label for="ingredient_name2">Ingredient</label>
+                      <input id="ingredient2_name" type="text" name="ingredient2_name" class="validate">
+                      <label for="ingredient2_name">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient_quantity2" type="number" name="ingredient_quantity2" min="0" class="validate">
-                      <label for="ingredient_quantity2">Quantity</label>
+                      <input id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" class="validate">
+                      <label for="ingredient2_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
                       <select name="ingredient2_units">
@@ -93,12 +98,12 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s5 m4">
-                      <input id="ingredient_name3" type="text" name="ingredient_name3" class="validate">
-                      <label for="ingredient_name3">Ingredient</label>
+                      <input id="ingredient3_name" type="text" name="ingredient3_name" class="validate">
+                      <label for="ingredient3_name">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient_quantity3" type="number" name="ingredient_quantity3" min="0" class="validate">
-                      <label for="ingredient_quantity3">Quantity</label>
+                      <input id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" class="validate">
+                      <label for="ingredient3_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
                       <select name="ingredient3_units">
@@ -118,12 +123,12 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s5 m4">
-                      <input id="ingredient_name4" type="text" name="ingredient_name4" class="validate">
-                      <label for="ingredient_name4">Ingredient</label>
+                      <input id="ingredient4_name" type="text" name="ingredient4_name" class="validate">
+                      <label for="ingredient4_name">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient_quantity4" type="number" name="ingredient_quantity4" min="0" class="validate">
-                      <label for="ingredient_quantity4">Quantity</label>
+                      <input id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" class="validate">
+                      <label for="ingredient4_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
                       <select name="ingredient4_units">
@@ -143,12 +148,12 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s5 m4">
-                      <input id="ingredient_name5" type="text" name="ingredient_name5" class="validate">
+                      <input id="ingredient5_name" type="text" name="ingredient5_name" class="validate">
                       <label for="ingredient_name5">Ingredient</label>
                     </div>
                     <div class="input-field col s4 m2">
-                      <input id="ingredient_quantity5" type="number" name="ingredient_quantity5" min="0" class="validate">
-                      <label for="ingredient_quantity5">Quantity</label>
+                      <input id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" class="validate">
+                      <label for="ingredient5_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s3 m2">
                       <select name="ingredient5_units">
@@ -306,7 +311,7 @@
                   <div class="row">
                     <h4 class="sub-title">Author:</h4>
                     <div class="input-field col s7 m4">
-                      <input id="author_name" type="text" name="author_username" class="validate" required/>
+                      <input disabled value="{{ session['username'] }}" id="author_name" type="text" name="author.author_username" class="validate"/>
                       <label for="author_username">Your Name</label>
                     </div>
                     <div class="input-field col s5 m3">
@@ -339,7 +344,7 @@
                   </div>
                   <div class="row">
                     <div class="col s7 offset-s5 m7 offset-m9">
-                      <button class="btn waves-effect waves-light" type="submit">
+                      <button onclick="displayNotification();" class="btn waves-effect waves-light" type="submit">
                         Submit
                         <i class="material-icons right">send</i>
                       </button>
@@ -361,5 +366,9 @@
     function displayNewInput(){
       newInput
     }
+    function displayNotification(){
+      M.toast({html: 'I am a toast', classes: 'rounded'});
+    }
+    
   </script>
 {% endblock %}
