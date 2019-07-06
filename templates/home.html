@@ -21,7 +21,7 @@
             <div class="col s12 m10 offset-m1 l10 offset-l1">
               {% for cuisine in cuisines %}
               <div class="card hoverable" id="cuisine-card">
-                <div class="card-image waves-effect waves-block waves-light">
+                <div class="card-image waves-effect waves-block waves-light hover-content">
                   <a href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
                     {% if cuisine.cuisine_type == 'African' %}
                       <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_african.png')}}" />
@@ -41,7 +41,9 @@
                       <!--If user adds a new cuisine then coverphoto_other will appear as its image-->
                       <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
                     {% endif %}
-                    <p class="text">{{cuisine.cuisine_summary}}</p>
+                    <div class="overlay">
+                      <p class="text">{{cuisine.cuisine_summary}}</p>
+                    </div>
                   </a>
                 </div>
                 <div class="card-content">
@@ -49,22 +51,11 @@
                     <h3 class="cuisine-type">{{cuisine.cuisine_type}}</h3>
                   </a>
                 </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>
-                    <h2>{{cuisine.cuisine_type}}</h2>
-                  </span>
-                  <p>{{cuisine.cuisine_summary}}</p>
-                  <div class="col m12 center">
-                    <a class="button center" href="{{url_for('recipes_for_cuisine', cuisine_type=cuisine.cuisine_type)}}">
-                      <button class="cuisine-btn">Explore {{cuisine.cuisine_type}} Cuisine!</button>
-                    </a>
-                  </div>
-                </div>
               </div>
               {% endfor %}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 {% endblock %}

@@ -92,14 +92,17 @@ p, h6 {
     border-color: #ff0000;
 }
 
-.more_info {
+.input_required {
     color: #ff0000;
     font-size: 18px;
 }
 
+.helper-text {
+    font-size: small;
+}
+
 
 /*----------------------------------------------------------Home/Cuisines Page*/
-
 
 .card {
     margin-bottom: 100px;
@@ -142,15 +145,38 @@ p, h6 {
     background-color: #00cc00;
 }
 
-#cuisine-card .text{
-    position: relative;
-    visibility: hidden;
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #20b2aa;
 }
 
-#cuisine-card:hover .text{
-    visibility: visible;
-    color: #000;
+.hover-content:hover .overlay {
+  opacity: 0.9;
 }
+
+.text {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
 
 
 
