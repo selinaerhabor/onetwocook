@@ -101,6 +101,16 @@ p, h6 {
     font-size: small;
 }
 
+.remove-padding-top {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#addIngredients:hover {
+    cursor: pointer;
+    color: #20b2aa;
+}
+
 
 /*----------------------------------------------------------Home/Cuisines Page*/
 
@@ -159,7 +169,7 @@ p, h6 {
 }
 
 .hover-content:hover .overlay {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .text {
@@ -238,6 +248,16 @@ p, h6 {
 
 #thumbsUp {
     color: #000;
+}
+
+.score {
+    text-decoration: line-through;
+}
+
+.method-step1,.method-step2,.method-step3,.method-step4,
+.method-step5,.method-step6,.method-step7,.method-step8,
+.method-step9,.method-step10 {
+    cursor: pointer;
 }
 
 /*------------------------------------------------------------------Login Page*/

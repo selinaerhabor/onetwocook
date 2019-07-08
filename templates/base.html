@@ -83,7 +83,7 @@
         <!--/Footer-->
         
         <!--JQuery Framework-->
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!--Materialize 0.100.2 Javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <!--Twitter Widget Icon (Bottom of Recipe Page)-->
@@ -117,6 +117,38 @@
                 
                 //Materialize - Side Navigation (Smaller screen viewing only):
                 $(".button-collapse").sideNav();
+                
+                //Scores out completed methods one by one:
+                $(".method-step1").click(function(){
+                    $(".method-step1").toggleClass("score");
+                });
+                $(".method-step2").click(function(){
+                    $(".method-step2").toggleClass("score");
+                });
+                $(".method-step3").click(function(){
+                    $(".method-step3").toggleClass("score");
+                });
+                $(".method-step4").click(function(){
+                    $(".method-step4").toggleClass("score");
+                });
+                $(".method-step5").click(function(){
+                    $(".method-step5").toggleClass("score");
+                });
+                $(".method-step6").click(function(){
+                    $(".method-step6").toggleClass("score");
+                });
+                $(".method-step7").click(function(){
+                    $(".method-step7").toggleClass("score");
+                });
+                $(".method-step8").click(function(){
+                    $(".method-step8").toggleClass("score");
+                });
+                $(".method-step9").click(function(){
+                    $(".method-step9").toggleClass("score");
+                });
+                $(".method-step10").click(function(){
+                    $(".method-step10").toggleClass("score");
+                });
                 
                 /*Displays number of times a user has clicked Thumbs Up Button 
                 (liked the recipe) */
