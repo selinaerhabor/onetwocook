@@ -56,8 +56,8 @@ def add_cuisine():
 ### Submission of 'Add a Cuisine' Form to mLab Database
 @app.route('/insert_cuisine', methods=['POST'])
 def insert_cuisine():
-    cuisines = mongo.db.cuisines
-    cuisines.insert_one({
+    new_cuisines = mongo.db.cuisines
+    new_cuisines.insert_one({
         "cuisine_type": request.form.get("cuisine_type"),
         "cuisine_summary": request.form.get("cuisine_summary"),
         "author_username": session['username']
@@ -75,7 +75,7 @@ def manage_recipes():
         ### Recipe count for user
         user_recipe_count = mongo.db.recipes.find({'author.author_username' : session["username"]}).count(),
         ### Cuisine count for user
-        user_cuisine_count = mongo.db.cuisines.find({'author.author_username' : session["username"]}).count()
+        user_cuisine_count = mongo.db.cuisines.find({'author_username' : session["username"]}).count()
     )
     
 ### 'Edit Recipe' Page (via 'Manage Your Recipes')
@@ -83,6 +83,12 @@ def manage_recipes():
 def edit_recipe(recipe_id):
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template('editrecipe.html', recipes=recipe_selected)
+    
+### 'Edit Cuisine' Page (via 'Manage Your Recipes' Secondary tab - 'Manage Your Cuisines')
+@app.route('/edit_cuisine/<cuisine_id>')
+def edit_cuisine(cuisine_id):
+    cuisine_selected =  mongo.db.cuisines.find_one({'_id': ObjectId(cuisine_id)})
+    return render_template('editcuisine.html', cuisines=cuisine_selected)
     
 ### List of all recipes under selected Cuisine Type
 @app.route('/recipes_for_cuisine/<cuisine_type>')
@@ -298,7 +304,16 @@ def update_recipe(recipe_id):
         "public_visibility": request.form.get("public_visibility")
     })
     return redirect(url_for('manage_recipes'))
-    
+
+### Update recipes in mLab database
+@app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
+def update_cuisine(cuisine_id):
+    mongo.db.cuisines.update(
+        {'_id': ObjectId(cuisine_id)},
+        {"cuisine_type": request.form.get("cuisine_type"),
+        "cuisine_summary": request.form.get("cuisine_summary")}
+    )
+        
 ### Index of Recipes
 @app.route('/index_of_recipes')
 def index_of_recipes():
