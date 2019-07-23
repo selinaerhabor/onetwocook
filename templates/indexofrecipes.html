@@ -10,44 +10,24 @@
             <title>Index of Recipes | OneTwoCook</title>
             <div class="col s12 m6 l6">
               <div class="card hoverable">
-                <div class="card-image waves-effect waves-block">
-                  <a href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
-                    <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}"  alt={{recipe.recipe_name}}/>
-                  </a>
-                </div>
-                <div class="card-content">
-                  <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i>
-                    <a class="link" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}">
-                      <h5 class="truncate">{{recipe.recipe_name}}</h5>
-                    </a>
-                  </span>
-                </div>
-                <div class="card-reveal">
-                  <span class="card-title grey-text text-darken-4">
-                    <i class="material-icons right">close</i>
-                    <h4>{{recipe.recipe_name}}</h4>
-                    <hr>
-                  </span>
-                  <p>{{recipe.recipe_summary}}<p>
-                  <p>Serves: {{recipe.recipe_serves}} people</p>
-                  {% for allergens in recipe %}
-                    <p>Ingredients contain: 
-                      {{allergens.allergen_}}</p>
-                  {% endfor %}
-                  <a class="button" href="{{url_for('load_recipe', recipe_name=recipe.recipe_name)}}"><button>Go to Recipe</button></a>
-                </div>
+              <div class="card-image waves-effect waves-block hover-content">
+                <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
+                  <div class="overlay">
+                    <p class="text">
+                      {{recipe.recipe_summary}}
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div class="card-content">
+                <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                  <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                </a>
               </div>
             </div>
-            {% endfor %}
-        </div>
-        <div class="col s12 m6 l6">
-          <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>

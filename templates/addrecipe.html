@@ -11,16 +11,20 @@
                 <form id="recipe_form" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
                   <h4 class="sub-title">Summary</h4>
                   <div class="row">
-                    <div class="input-field col s4 m2 xl2" id="cuisine_type" name="cuisine_type">
-                      <select required>
+                    <div class="input-field col s4 m2 xl2" id="cuisine_type">
+                      <select name="cuisine_type" required>
                         <option value="" disabled selected>Cuisine</option>
                         {% for cuisine in cuisines %}
                           <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
                         {% endfor %}
                       </select>
                       <label>Cuisine Type<span class="input_required">*</span></label>
-                      <a href="{{url_for('add_cuisine')}}"><p>Add a new cuisine</p></a>
                     </div>
+                    <span class="input-field col s6" id="cuisine_type" name="cuisine_type">
+                      <a href="{{url_for('add_cuisine')}}" class="btn">Add a new cuisine</a>
+                    </span>
+                  </div>
+                  <div class="row">
                     <div class="input-field col s8 m6">
                       <input id="recipe_name" placeholder="Recipe Name" type="text" name="recipe_name" class="validate" required>
                       <label for="recipe_name">Recipe Name<span class="input_required">*</span></label>
@@ -37,8 +41,8 @@
                       <input id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
                       <label for="recipe_serves">Serves:<span class="input_required">*</span></label>
                     </div>
-                    <div class="input-field col s8 m5" id="allergens" name="allergens">
-                      <select multiple placeholder="Allergens" required>
+                    <div class="input-field col s8 m5" id="allergens">
+                      <select name="allergens" multiple placeholder="Allergens" required>
                         <option value="" disabled>Allergens</option>
                         <option value="no allergens">No Allergens</option>
                         <option value="celery">Celery</option>
@@ -59,21 +63,34 @@
                       <label>Allergens<span class="input_required">*</span></label>
                       <span class="helper-text" data-error="wrong" data-success="right"><a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses" target="_blank"><i class="material-icons">help</i></a></span>
                     </div>
-                  </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m6">
+                        <input type="checkbox" id="gluten-free" name="gluten-free">
+                        <label for="gluten-free">Gluten-free</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m6">
+                        <input type="checkbox" id="vegetarian" name="vegetarian">
+                        <label for="vegetarian">Suitable for Vegetarians</label>
+                      </div>
+                    </div>
                   <div class="row">
                     <div class="input-field col s12 m11">
-                      <label for="img_path">Recipe Image URL</label>
+                      <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
                       <input id="img_path" placeholder="Enter here a link to an image of outcome of your recipe" type="text" name="img_path" class="validate" required>
                       <p class="help-block"><small>Please enter here an image url for the final outcome of your meal</small></p>
                     </div>
                   </div>
                   <div class="divider"></div>
                   <h4 class="sub-title">Ingredients</h4>
+                  <p>(Maximum: 20 Ingredients)</p>
                   <section id="ingredients">
                     <div class="row" id="ingredientRow1">
                       <div class="input-field col s4 m5">
-                        <input id="ingredient1_name" placeholder="Ingredient" type="text" name="ingredient1_name" lass="validate" required>
-                        <label for="ingredient1_name">Ingredient</label>
+                        <input id="ingredient1_name" placeholder="Ingredient 1" type="text" name="ingredient1_name" lass="validate" required>
+                        <label for="ingredient1_name">Ingredient<span class="input_required">*</span></label>
                       </div>
                       <div class="input-field col s3 m3">
                         <input id="ingredient1_quantity" placeholder="Qty" type="number" name="ingredient1_quantity" min="0" max="99" class="validate" required>
@@ -98,7 +115,7 @@
                     <div class="row" id="ingredientRow2" class="ingredientRow">
                       <div class="input-field col s5 m5">
                         <input id="ingredient2_name" type="text" name="ingredient2_name" class="validate">
-                        <label for="ingredient2_name">Ingredient</label>
+                        <label for="ingredient2_name">Ingredient 2</label>
                       </div>
                       <div class="input-field col s4 m3">
                         <input id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" max="99" class="validate">
@@ -123,7 +140,7 @@
                     <div class="row" id="ingredientRow3" class="ingredientRow">
                       <div class="input-field col s5 m5">
                         <input id="ingredient3_name" type="text" name="ingredient3_name" class="validate">
-                        <label for="ingredient3_name">Ingredient</label>
+                        <label for="ingredient3_name">Ingredient 3</label>
                       </div>
                       <div class="input-field col s4 m3">
                         <input id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" max="99" class="validate">
@@ -148,7 +165,7 @@
                     <div class="row" id="ingredientRow4" class="ingredientRow">
                       <div class="input-field col s5 m5">
                         <input id="ingredient4_name" type="text" name="ingredient4_name" class="validate">
-                        <label for="ingredient4_name">Ingredient</label>
+                        <label for="ingredient4_name">Ingredient 4</label>
                       </div>
                       <div class="input-field col s4 m3">
                         <input id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" max="99" class="validate">
@@ -173,7 +190,7 @@
                     <div class="row" id="ingredientRow5" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient5_name">
                         <input id="ingredient5_name" type="text" name="ingredient5_name" class="validate">
-                        <label for="ingredient_name5">Ingredient</label>
+                        <label for="ingredient_name5">Ingredient 5</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient5_quantity">
                         <input id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" max="99" class="validate">
@@ -198,7 +215,7 @@
                     <div class="row" id="ingredientRow6" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient6_name">
                         <input id="ingredient6_name" type="text" name="ingredient6_name" class="validate">
-                        <label for="ingredient6_name">Ingredient</label>
+                        <label for="ingredient6_name">Ingredient 6</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient6_quanity">
                         <input id="ingredient6_quantity" type="number" name="ingredient6_quantity" min="0" max="99" class="validate">
@@ -223,7 +240,7 @@
                     <div class="row" id="ingredientRow7" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredients7_name">
                         <input id="ingredients7_name" type="text" name="ingredients7_name" class="validate">
-                        <label for="ingredient7_name">Ingredient</label>
+                        <label for="ingredient7_name">Ingredient 7</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient7_quantity">
                         <input type="number" name="ingredient7_quantity" min="0" max="99" class="validate">
@@ -248,7 +265,7 @@
                     <div class="row" id="ingredientRow8" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient8_name">
                         <input type="text" name="ingredient8_name" class="validate">
-                        <label for="ingredient8_name">Ingredient</label>
+                        <label for="ingredient8_name">Ingredient 8</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient8_quantity">
                         <input type="number" name="ingredient8_quantity" min="0" max="99" class="validate">
@@ -273,7 +290,7 @@
                     <div class="row" id="ingredientRow9" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient9_name">
                         <input type="text" name="ingredient9_name" class="validate">
-                        <label for="ingredient9_name">Ingredient</label>
+                        <label for="ingredient9_name">Ingredient 9</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient9_quantity">
                         <input type="number" name="ingredient9_quantity" min="0" max="99" class="validate">
@@ -298,7 +315,7 @@
                     <div class="row" id="ingredientRow10" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient10_name">
                         <input type="text" name="ingredient10_name" class="validate">
-                        <label for="ingredient10_name">Ingredient</label>
+                        <label for="ingredient10_name">Ingredient 10</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient10_quantity">
                         <input type="number" name="ingredient10_quantity" min="0" max="99" class="validate">
@@ -323,7 +340,7 @@
                     <div class="row" id="ingredientRow11" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient11_name">
                         <input type="text" name="ingredient11_name" class="validate">
-                        <label for="ingredient11_name">Ingredient</label>
+                        <label for="ingredient11_name">Ingredient 11</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient11_quantity">
                         <input type="number" name="ingredient11_quantity" min="0" max="99" class="validate">
@@ -348,7 +365,7 @@
                     <div class="row" id="ingredientRow12" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient12_name">
                         <input type="text" name="ingredient12_name" class="validate">
-                        <label for="ingredient12_name">Ingredient</label>
+                        <label for="ingredient12_name">Ingredient 12</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient12_quantity">
                         <input type="number" name="ingredient12_quantity" min="0" max="99" class="validate">
@@ -373,7 +390,7 @@
                     <div class="row" id="ingredientRow13" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient13_name">
                         <input type="text" name="ingredient13_name" class="validate">
-                        <label for="ingredient13_name">Ingredient</label>
+                        <label for="ingredient13_name">Ingredient 13</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient13_quantity">
                         <input type="number" name="ingredient13_quantity" min="0" max="99" class="validate">
@@ -398,7 +415,7 @@
                     <div class="row" id="ingredientRow14" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient14_name">
                         <input type="text" name="ingredient14_name" class="validate">
-                        <label for="ingredient14_name">Ingredient</label>
+                        <label for="ingredient14_name">Ingredient 14</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient14_quantity">
                         <input type="number" name="ingredient14_quantity" min="0" max="99" class="validate">
@@ -423,7 +440,7 @@
                     <div class="row" id="ingredientRow15" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient15_name">
                         <input type="text" name="ingredient15_name" class="validate">
-                        <label for="ingredient15_name">Ingredient</label>
+                        <label for="ingredient15_name">Ingredient 15</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient15_quantity">
                         <input type="number" name="ingredient15_quantity" min="0" max="99" class="validate">
@@ -448,7 +465,7 @@
                     <div class="row" id="ingredientRow16" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient16_name">
                         <input type="text" name="ingredient16_name" class="validate">
-                        <label for="ingredient16_name">Ingredient</label>
+                        <label for="ingredient16_name">Ingredient 16</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient16_quantity">
                         <input type="number" name="ingredient16_quantity" min="0" max="99" class="validate">
@@ -473,7 +490,7 @@
                     <div class="row" id="ingredientRow17" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient17_name">
                         <input type="text" name="ingredient17_name" class="validate">
-                        <label for="ingredient17_name">Ingredient</label>
+                        <label for="ingredient17_name">Ingredient 17</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient17_quantity">
                         <input type="number" name="ingredient17_quantity" min="0" max="99" class="validate">
@@ -498,7 +515,7 @@
                     <div class="row" id="ingredientRow18" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient18_name">
                         <input type="text" name="ingredient18_name" class="validate">
-                        <label for="ingredient18_name">Ingredient</label>
+                        <label for="ingredient18_name">Ingredient 18</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient18_quantity">
                         <input type="number" name="ingredient18_quantity" min="0" max="99" class="validate">
@@ -523,7 +540,7 @@
                     <div class="row" id="ingredientRow19" class="ingredientRow">
                       <div class="input-field col s5 m5">
                         <input type="text" name="ingredient19_name" id="ingredient19_name" class="validate">
-                        <label for="ingredient19_name">Ingredient</label>
+                        <label for="ingredient19_name">Ingredient 19</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient19_quantity">
                         <input type="number" name="ingredient19_quantity" min="0" max="99" class="validate">
@@ -548,7 +565,7 @@
                     <div class="row" id="ingredientRow20" class="ingredientRow">
                       <div class="input-field col s5 m5" id="ingredient20_name">
                         <input type="text" name="ingredient20_name" class="validate">
-                        <label for="ingredient20_name">Ingredient</label>
+                        <label for="ingredient20_name">Ingredient 20</label>
                       </div>
                       <div class="input-field col s4 m3" id="ingredient20_quantity">
                         <input type="number" name="ingredient20_quantity" min="0" max="99" class="validate">
@@ -573,31 +590,33 @@
                   </section>
                   <div class="divider"></div>
                     <h4 class="sub-title">Method</h4>
-                    
+                    <p>(Maximum: 10 Steps)</p>
                   <div class="row">
                     <div class="input-field col s7 m2">
-                      <input id="preparation_time" type="number" name="preparation_time" min="0" class="validate">
-                      <label for="preparation_time hidden-xs">Prepare Time:</label>
+                      <input id="preparation_time" placeholder="Prep Time" type="number" name="preparation_time" min="0" class="validate">
+                      <label for="preparation_time">Prep Time:</label>
                     </div>
-                    <div class="input-field col s5 m2" name="pt_units">
-                      <select required>
+                    <div class="input-field col s5 m2">
+                      <select name="pt_units" required>
                         <option disabled selected>Units</option>
                         <option value="1">second(s)</option>
                         <option value="2">minute(s)</option>
                         <option value="3">hour(s)</option>
                       </select>
+                      <label for="pt_units">Units</label>
                     </div>
                     <div class="input-field col s7 m2">
-                      <input id="cook_time" type="number" name="cook_time" min="0" class="validate" required>
-                      <label for="cook_time hidden-xs">Cook Time:</label>
+                      <input id="cook_time" placeholder="Cook Time" type="number" name="cook_time" min="0" class="validate" required>
+                      <label for="cook_time">Cook Time:<span class="input_required">*</span></label>
                     </div>
                     <div class="input-field col s5 m2" name="ct_units">
-                      <select required>
+                      <select name="ct_units" required>
                         <option disabled selected>Units</option>
                         <option value="1">second(s)</option>
                         <option value="2">minute(s)</option>
                         <option value="3">hour(s)</option>
                       </select>
+                      <label for="ct_units">Units<span class="input_required">*</span></label>
                     </div>
                   </div>
                   <section id="method">
@@ -607,7 +626,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step1" class="validate">
-                        <label for="method_step1">Method</label>
+                        <label for="method_step1">Step 1<span class="input_required">*</span></label>
                       </div>
                     </div>
                     <div class="row" id="method_step2">
@@ -616,7 +635,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step2" class="validate">
-                        <label for="method_step2">Method</label>
+                        <label for="method_step2">Step 2</label>
                       </div>
                     </div>
                     <div class="row" id="method_step3">
@@ -625,7 +644,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step3" class="validate">
-                        <label for="method_step3">Method</label>
+                        <label for="method_step3">Step 3</label>
                       </div>
                     </div>
                     <div class="row" id="method_step4">
@@ -634,7 +653,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step4" class="validate">
-                        <label for="method_step4">Method</label>
+                        <label for="method_step4">Step 4</label>
                       </div>
                     </div>
                     <div class="row" id="method_step5">
@@ -643,7 +662,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step5" class="validate">
-                        <label for="method_step5">Method</label>
+                        <label for="method_step5">Step 5</label>
                       </div>
                     </div>
                       <div class="row" id="method_step6">
@@ -652,7 +671,7 @@
                         </div>
                         <div class="input-field col s10">
                           <input type="text" name="method_step6" class="validate">
-                          <label for="method_step6">Method</label>
+                          <label for="method_step6">Step 6</label>
                         </div>
                       </div>
                     <div class="row" id="method_step7">
@@ -661,7 +680,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step7" class="validate">
-                        <label for="method_step7">Method</label>
+                        <label for="method_step7">Step 7</label>
                       </div>
                     </div>
                     <div class="row" id="method_step8">
@@ -670,7 +689,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step8" class="validate">
-                        <label for="method_step8">Method</label>
+                        <label for="method_step8">Step 8</label>
                       </div>
                     </div>
                     <div class="row" id="method_step9">
@@ -679,7 +698,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step9" class="validate">
-                        <label for="method_step9">Method</label>
+                        <label for="method_step9">Step 9</label>
                       </div>
                     </div>
                     <div class="row" id="method_step10">
@@ -688,7 +707,7 @@
                       </div>
                       <div class="input-field col s10">
                         <input type="text" name="method_step10" class="validate">
-                        <label for="method_step10">Method</label>
+                        <label for="method_step10">Step 10</label>
                       </div>
                     </div>
                   </section>
@@ -719,10 +738,10 @@
                       <p class="caption">Make Recipe Public</p>
                         <div class="switch">
                           <label for="public_visibility">
-                            Off
+                            <b>NO</b>
                             <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
                             <span class="lever"></span>
-                            On
+                            <b>YES</b>
                           </label>
                         </div>
                     </div>

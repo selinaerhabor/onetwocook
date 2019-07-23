@@ -21,8 +21,13 @@
                         <h5><b>Summary</b></h5>
                         <p>{{recipe.recipe_name}}: {{recipe.recipe_summary}}</p>
                         <p>Serves: {{recipe.recipe_serves}}</p>
-                        <p>Cook Time: {{recipe.cook_time}}</p>
-                        <p>Preparation Time: {{recipe.preparation_time}}</p>
+                        <p>Cook Time: {{recipe.cook_time}}{{ct_units}}</p>
+                        <p>Preparation Time: {{recipe.preparation_time}}{{pt_units}}</p>
+                        {% if recipe.allergens %}
+                            <p>Allergens: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                        {% else %}
+                            <p>Allergens: None listed</p>
+                        {% endif %}
                     </div>
                     <div class="col s12 m6">
                         <a href ="../../static/images/{{recipe.img_path}}" target="_blank">
@@ -62,6 +67,7 @@
                         <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
                         <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col s12">
