@@ -60,6 +60,19 @@ p, h6 {
         justify-content: center;
         margin-top: 2px;
     }
+    .text {
+      text-align: center;
+      color: white;
+      font-size: 15px;
+      position: absolute;
+      top: 25%;
+      left: 100%;
+      -moz-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
 }
 
 @media (max-width: 349px){
@@ -81,6 +94,7 @@ p, h6 {
         justify-content: center;
         margin-top: 2px;
     }
+    
 }
 
 
@@ -201,6 +215,12 @@ p, h6 {
     font-size: 40px;
 }
 
+/*---------------------------------------------------------Manage Your Recipes*/
+.manager {
+    width: 180px;
+    margin: 5px;
+    text-align: center;
+}
 
 /*------------------------------------------------------------------Navigation*/
 .logo {

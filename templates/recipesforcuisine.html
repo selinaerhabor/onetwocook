@@ -3,48 +3,45 @@
   <div class="background responsive-img">
     <div class="container">
       <div class="card-panel recipe-border">
-        <h2 class="center">Recipes</h2>
         <div class="row">
           <div class="col s12">
             <a href="{{url_for('login')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
           </div>
         </div>
+        <h2 class="center">Recipes</h2>
         <div class="row">
-          {% if recipes %}
-            {% for recipe in recipes %}
+          {% for recipe in recipes %}
             <title>{{recipe.cuisine_type}} Recipes | OneTwoCook</title>
-            <div class="col s12 m6 l6">
-              <div class="card hoverable">
-                <div class="card-image waves-effect waves-block hover-content">
-                  <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
-                    <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
-                    <div class="overlay">
-                      <p class="text">
-                        {{recipe.recipe_summary}}
-                      </p>
-                    </div>
-                  </a>
-                </div>
-                <div class="card-content">
-                  <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
-                    <h5 class="truncate">{{recipe.recipe_name}}</h5>
-                  </a>
+            {% if recipe %}
+              <div class="col s12 m6 l6">
+                <div class="card hoverable">
+                  <div class="card-image waves-effect waves-block hover-content">
+                    <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                      <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}}>
+                      <div class="overlay">
+                        <p class="text">
+                          {{recipe.recipe_summary}}
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="card-content">
+                    <a class="link" href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                      <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
             {% else %}
-            <title>{{recipe.cuisine_type}} Recipes | OneTwoCook</title>
-              <div class="row">
-                <div class="col s12 center">
-                  <i class="material-icons notifications">notifications</i>
-                </div>
-                <div class="col s6 offset-s3 m6 offset-m3">
-                  <h4 class="center">{{ session['username'] }}, no recipes have been created or made public for the cuisine you selected.</h4> 
-                  <h4 class="center"><a href="{{url_for('add_recipe')}}">Ready to create one?</a></h5>
-                </div>
+              <div class="col s12 center">
+                <i class="material-icons notifications">notifications</i>
               </div>
-            {% endfor %}
-          {% endif %}
+              <div class="col s6 offset-s3 m6 offset-m3">
+                <h4 class="center">{{ session['username'] }}, no recipes have been created or made public for the cuisine you selected.</h4> 
+                <h4 class="center"><a href="{{url_for('add_recipe')}}">Ready to create one?</a></h4>
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>

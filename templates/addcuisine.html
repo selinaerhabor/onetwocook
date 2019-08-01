@@ -4,11 +4,17 @@
     <div class="background responsive-img">
         <div class="container-fluid">
             <div class="card-panel recipe-border">
-                <div class="row">
+            
+                        <h2 class="center">Add A Cuisine</h2>
+                        <div class="row">
+                            <div class="col s12">
+                                <a href="{{url_for('add_recipe')}}"><i class="material-icons left">arrow_back</i>Back to Add A Recipe</a>
+                            </div>
+                        </div>
+                        <div class="row">
                     <div class="col s12">
-                        <h2>Add A Cuisine</h2>
-                        <p>To add a new cuisine to the online cookbook please complete the form below</p>
-                        <p>The new cuisine will then be added to the cuisine type dropdown menu on the Add a Recipe page.</p>
+                        <p class="center">To add a new cuisine to the online cookbook please complete the form below</p>
+                        <p class="center">The new cuisine will then be added to the cuisine type dropdown menu on the Add a Recipe page.</p>
                         <form id="cuisine_form" action="{{ url_for('insert_cuisine') }}" method="POST">
                             <div class="row">
                                 <div class="input-field col s6">

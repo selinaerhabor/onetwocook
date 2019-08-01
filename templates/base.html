@@ -18,10 +18,10 @@
         <!--Navigation Bar-->
         <nav>
             <div class="nav-wrapper green lighten-4">
-                <a href="{{url_for('login')}}" class="center">
+                <a href="{{url_for('login')}}">
                     <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
                 </a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if "username" in session %}
                     <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
@@ -35,6 +35,7 @@
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
                     {% if "username" in session %}
+                    <li class="center">User ID: {{ session['user_dob'] }} | User Region: {{ session['user_region'] }}</li>
                     <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
                     <hr>
                     <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
@@ -42,6 +43,7 @@
                     <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
                     <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
                     <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                    
                     {% else %}
                     <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
                     <hr>
@@ -64,13 +66,6 @@
             <div class="row">
               <div class="col l8 s12">
                 <h5 class="black-text">Looking for a Recipe? Check our index of recipes <a href="{{url_for('index_of_recipes')}}">here</a></h5>
-                <div class="row">
-                    {% for cuisine in cuisines %}
-                    <div class="col s12 m6">
-                        {{cuisine.cuisine_type}}
-                    </div>
-                    {% endfor %}
-                </div>
               </div>
             </div>
           </div>
@@ -94,7 +89,6 @@
                 
                 //Materialize - :
                 $('select').material_select();
-                $('select').formSelect();
                 
                 //Allows user to print a recipe page:
                 function print(){
@@ -241,8 +235,11 @@
                   $("#method_step10").show();
                 });
                 
-                
+                //Opening Modal - Deleting Recipe or Cuisine created by user
+                $('.modal').modal();
+      
                 $(".scrollspy").scrollSpy();
+                
                 
                 
                 /*Displays number of times a user has clicked Thumbs Up Button 

@@ -10,6 +10,7 @@
               <a href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
             </div>
           </div>
+          <div class="divider"></div>
           <div class="row">
             <div class="col s12">
               {% for recipe in recipes %}
@@ -40,7 +41,7 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s8">
-                      <input value="{{recipes.recipe_summary}}" id="recipe_summary" placeholder="Recipe Summary" type="text" name="recipe_summary" class="validate" required>
+                      <input value="{{recipes.recipe_summary}}" id="recipe_summary" placeholder="Recipe Summary" maxlength="180" type="text" name="recipe_summary" class="validate" required>
                       <label for="recipe_summary">Recipe Summary<span class="input_required">*</span></label>
                     </div>
                   </div>
@@ -655,9 +656,9 @@
                     <div class="input-field col s5 m2">
                       <select name="pt_units" required>
                         <option value="{{recipes.pt_units}}" selected>{{recipes.pt_units}}</option>
-                        <option value="1">second(s)</option>
-                        <option value="2">minute(s)</option>
-                        <option value="3">hour(s)</option>
+                        <option value="second(s)">second(s)</option>
+                        <option value="minute(s)">minute(s)</option>
+                        <option value="hour(s)">hour(s)</option>
                       </select>
                       <label for="pt_units">Units</label>
                     </div>
@@ -668,9 +669,9 @@
                     <div class="input-field col s5 m2">
                       <select name="ct_units" required>
                         <option value="{{recipes.ct_units}}" selected>{{recipes.ct_units}}</option>
-                        <option value="1">second(s)</option>
-                        <option value="2">minute(s)</option>
-                        <option value="3">hour(s)</option>
+                        <option value="second(s)">second(s)</option>
+                        <option value="minute(s)">minute(s)</option>
+                        <option value="hour(s)">hour(s)</option>
                       </select>
                       <label for="ct_units">Units<span class="input_required">*</span></label>
                     </div>
@@ -796,7 +797,11 @@
                         <div class="switch">
                           <label for="public_visibility">
                             <b>NO</b>
-                            <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
+                            {% if recipes.public_visibility == "on" %}
+                              <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
+                            {% else %}
+                              <input type="checkbox" id="public_visibility" name="public_visibility">
+                            {% endif %}
                             <span class="lever"></span>
                             <b>YES</b>
                           </label>

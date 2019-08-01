@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block document %}
+<title>Edit Cuisine: {{cuisines.cuisine_name}} | OneTwoCook</title>
+  <div class="background responsive-img">
+    <div class="container">
+      <div class="card-panel recipe-border">
+        <h2>Edit A Cuisine</h2>
+        <div class="row">
+          <div class="col s12">
+            <a href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <form id="cuisine_form" action="{{ url_for('update_cuisine', cuisine_id = cuisines._id) }}" method="POST">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input value="{{cuisines.cuisine_type}}" id="cuisine_type" placeholder="Cuisine Type" type="text" name="cuisine_type" class="validate" required>
+                    <label for="cuisine_type">Cuisine Type<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input value="{{cuisines.cuisine_summary}}" id="cuisine_summary" placeholder="Cuisine Summary" type="text" name="cuisine_summary" class="validate" required>
+                    <label for="cuisine_summary">Cuisine Summary<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col s7 offset-s5 m7 offset-m9">
+                      <button class="btn waves-effect waves-light" type="submit">
+                        Submit
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
