@@ -7,48 +7,68 @@
         <div class="row">
           <div class="col s12">
             <div class="card-content">
-              <h2 class="center">Manage Your Recipes</h2>
               <div class="row">
                 <div class="col s12">
                   <a href="{{url_for('login')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
                 </div>
               </div>
+              <h2 class="center">Manage Your Recipes</h2>
+              
+              <!--No. of recipes created by user-->
               <h5 class="center">Recipes created by you: <b>{{user_recipe_count}}</b></h5>
-              {% if recipes %}
-                {% for recipe in recipes %}
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                    <div class="card-image waves-effect waves-block">
-                        <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
-                    </div>
-                    <div class="card-content">
-                      <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                        <h5 class="truncate">{{recipe.recipe_name}}</h5>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">
-                        <i class="material-icons right">close</i>
-                        <h4>{{recipe.recipe_name}}</h4>
-                        <hr>
-                      </span>
-                      <p>{{recipe.recipe_summary}}</p>
-                      <div class="col-12">
-                        <a href="{{url_for('load_private_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
+              <div class="row">
+                <div class="col s12">
+                  {% if recipes %}
+                    {% for recipe in recipes %}
+                      <!--Modal - Delete Recipe-->
+                      <div id="deleteRecipe" class="modal">
+                        <div class="modal-content">
+                          <h4>Delete Confirmation for {{recipe.recipe_name}} recipe</h4>
+                          <p>Are you sure you wish to delete this recipe? This cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
+                          <a href="{{url_for('manage_recipes')}}" class="modal-close waves-effect red btn">NO</a>
+                        </div>
                       </div>
-                      <div class="col-12"> 
-                        <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                      
+                      <!--Recipe Card Display-->
+                      <div class="col s12 m6 l6">
+                        <div class="card">
+                          <div class="card-image waves-effect waves-block hover-content">
+                            <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
+                          </div>
+                          <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+                            <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                          </div>
+                          <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">
+                              <i class="material-icons right">close</i>
+                              <h4>{{recipe.recipe_name}}</h4>
+                              <hr>
+                            </span>
+                            <p>{{recipe.recipe_summary}}</p>
+                            <div class="col-12">
+                              <a href="{{url_for('load_private_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
+                            </div>
+                            <div class="col-12"> 
+                              <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                            </div>
+                            <div class="col-12">
+                              <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteModal">Delete<i class="material-icons right">delete</i></a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-12">
-                        <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteModal">Delete<i class="material-icons right">delete</i></a>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                {% else %}
-                  <p class="text"><b>{{ session['username'] }}, you have not yet created any recipes.</b></p>
-                  <p class="text"><a href="{{url_for('add_recipe')}}">Ready to create one?</a></p>
-                {% endfor %}
-              {% endif %}
+                    {% else %}
+                      <!--If user has not created any recipes, provide link for user if they want to create one-->
+                      <p class="center"><b>{{ session['username'] }}, you have not yet created any recipes.</b></p>
+                      <div class="center"><a href="{{url_for('add_recipe')}}" class="btn">Ready to create one?</a></div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -56,12 +76,12 @@
                 
         <!--Secondary Tabs under Manage Recipes Information-->
         <div class="row">
-          <div class="col s12">
+          <div class="col s12 m6 offset-m3">
             <div class="card-tabs">
               <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a class="active hide-on-small-only" href="#saved_recipes">Saved Recipes</a></li>
-                <li class="tab"><a class="hide-on-small-only center" href="#manage_cuisines">Manage Your Cuisines</a></li>
-                <li class="tab"><a class="show-on-small hide-on-med-and-up" href="#manage_cuisines">Your Cuisines</a></li>
+                <li class="tab"><a class="active" href="#saved_recipes">Saved Recipes</a></li>
+                <li class="tab"><a class="hide-on-small-only right" href="#manage_cuisines">Manage Your Cuisines</a></li>
+                <li class="tab"><a class="show-on-small hide-on-med-and-up right" href="#manage_cuisines">Your Cuisines</a></li>
               </ul>
             </div>
           </div>
@@ -74,13 +94,15 @@
               <h3 class="center">Saved Recipes</h3>
               {% if recipes %}
                 {% for recipe in recipes %}
+                <!--Saved Recipes Card display here-->
                   <div class="card">
                     <span class="card-title">{{recipe.recipe_name}}</span>
                     <div class="card-content">
                       <p>{{recipe.recipe_name}}</p>
                     </div>
                   </div>
-                  {% else %}
+                {% else %}
+                  <!--If user has not saved any recipes, provide link for user if they want to create one-->
                     <p class="center"><b>{{ session['username'] }}, you have no saved recipes.</b></p>
                     <p class="center">To save a recipe click on <a class="btn"><i class="material-icons">thumb_up</i></a> 
                     by the title of a recipe and the recipes you liked will appear in this section.</p>
@@ -93,12 +115,26 @@
         <!--Manage Cuisines Information-->
         <section id="manage_cuisines">
           <h3 class="center">Manage Your Cuisines</h3>
+          <!--No. of cuisines created by user-->
           <h5 class="center">Cuisines created by you: <b>{{user_cuisine_count}}</b></h5>
           <div class="row">
             <div class="col s12">
               {% if cuisines %}
                 {% for cuisine in cuisines %}
-                   <div class="col s12 m6 l6">
+                  <!--Modal - Delete Cuisine-->
+                  <div id="deleteCuisine" class="modal">
+                      <div class="modal-content">
+                        <h4>Delete Confirmation for {{cuisine.cuisine_type}} recipe</h4>
+                        <p>Are you sure you wish to delete this cuisine?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <a href="{{url_for('delete_cuisine', cuisine_id = cuisine._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
+                        <a href="#manage_cuisines" class="modal-close waves-effect red btn">NO</a>
+                      </div>
+                    </div>
+                    
+                  <!--Cuisine Card Display-->
+                  <div class="col s12 m6 l6">
                     <div class="card">
                       <div class="card-image waves-effect waves-block">
                           <img class="responsive-img" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" alt={{cuisine.cuisine_type}}>
@@ -114,19 +150,22 @@
                           <hr>
                         </span>
                         <p>{{cuisine.cuisine_summary}}</p>
-                        <div class="col-12">
-                          <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id)}}" class="btn halfway-fab waves-effect grey lighten-2">Edit<i class="material-icons">edit</i></a>
+                         <div class="col-12"> 
+                          <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                         </div>
                         <div class="col-12">
-                          <a href="{{url_for('delete_cuisine', cuisine_id = cuisine._id)}}" class="btn halfway-fab waves-effect waves-light red">Delete<i class="material-icons">delete</i></a>
+                          <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteCuisine">Delete<i class="material-icons right">delete</i></a>
                         </div>
                       </div>
                     </div>
                   </div>
+                  
                   {% else %}
-                    <p class="center"><b>{{ session['username'] }}, you have not created any cuisines.</b></p>
-                    <p class="center">To create a new cuisine click on </p><div class="center"><a href="{{url_for('add_cuisine')}}" class="btn">Add a new cuisine</a></div>
-                    <p class="center">under the Add a Recipe tab.</p>
+                  
+                  <!--If user has not created any cuisines, provide link for user if they want to create one-->
+                  <p class="center"><b>{{ session['username'] }}, you have not created any cuisines.</b></p>
+                  <p class="center">To create a new cuisine click on </p><div class="center"><a class="btn">Add Cuisine</a></div>
+                  <p class="center">on the <a href="{{url_for('add_recipe')}}">Add a Recipe</a> page.</p>
                 {% endfor %}
               {% endif %}
             </div>
@@ -135,22 +174,11 @@
       </div>
     </div>
   </div>
-  <!--Modal Structure-->
-  <div id="deleteModal" class="modal">
-    <div class="modal-content">
-      <h4>Are you sure you wish to delete this recipe?</h4>
-      <p>This cannot be undone</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">YES</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">NO</a>
-    </div>
-  </div>
+  
+  
+  <!--Scripts-->
   <script type="text/javascript">
     $(document).ready(function(){
-      
-      //Deleting Recipe or Cuisine created by user
-      $('.modal').modal('show');
       $('#deleteModal').modal('open');
     });
   </script>

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block document %}
+    <div class="background responsive-img">
+        <div class="container">
+            <div class="card-panel recipe-border">
+                <div class="row">
+                    <div class="col s12">
+                        {% for recipe in recipes %}
+                            <title>{{recipe.recipe_name}} | OneTwoCook</title>
+                            <h4 class="center">{{recipe.cuisine_type}} Recipe</h4>
+                            <a href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        {% if "username" in session %}
+                            <h3>{{recipe.recipe_name}}<a class="btn right" id="thumbsUp"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
+                        {% else %}
+                            <h3>{{recipe.recipe_name}}<a class="btn right" href="{{url_for('login')}}"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
+                        {% endif %}
+                        <h5><b>Summary</b></h5>
+                        <p>{{recipe.recipe_name}}: {{recipe.recipe_summary}}</p>
+                        <p>Serves: {{recipe.recipe_serves}} people</p>
+                        <p>Cook Time: {{recipe.cook_time}} {{recipe.ct_units}}</p>
+                        <p>Preparation Time: {{recipe.preparation_time}} {{recipe.pt_units}}</p>
+                        {% if recipe.allergens %}
+                            <p>Allergens: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                        {% else %}
+                            <p>Allergens: None listed</p>
+                        {% endif %}
+                    </div>
+                    <div class="col s12 m6">
+                        <a href ="../../static/images/{{recipe.img_path}}" target="_blank">
+                            <img class="responsive-img right" width="350" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <h5><b>Ingredients</b></h5>
+                    </div>
+                    <div class="col s3">
+                        <p>{{recipe.ingredients.ingredient1_quantity}} {{recipe.ingredients.ingredient1_units}}  {{recipe.ingredients.ingredient1_name}}</p>
+                        <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_units}}  {{recipe.ingredients.ingredient2_name}}</p>
+                        <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_units}}  {{recipe.ingredients.ingredient3_name}}</p>
+                        <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_units}}  {{recipe.ingredients.ingredient4_name}}</p>
+                        <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_units}}  {{recipe.ingredients.ingredient5_name}}</p>
+                    </div>
+                    <div class="col s3">
+                        <p>{{recipe.ingredients.ingredient6_quantity}} {{recipe.ingredients.ingredient6_units}}  {{recipe.ingredients.ingredient6_name}}</p>
+                        <p>{{recipe.ingredients.ingredient7_quantity}} {{recipe.ingredients.ingredient7_units}}  {{recipe.ingredients.ingredient7_name}}</p>
+                        <p>{{recipe.ingredients.ingredient8_quantity}} {{recipe.ingredients.ingredient8_units}}  {{recipe.ingredients.ingredient8_name}}</p>
+                        <p>{{recipe.ingredients.ingredient9_quantity}} {{recipe.ingredients.ingredient9_units}}  {{recipe.ingredients.ingredient9_name}}</p>
+                        <p>{{recipe.ingredients.ingredient10_quantity}} {{recipe.ingredients.ingredient10_units}} {{recipe.ingredients.ingredient10_name}}</p>
+                    </div>
+                    <div class="col s3">
+                        <p>{{recipe.ingredients.ingredient11_quantity}} {{recipe.ingredients.ingredient11_units}} {{recipe.ingredients.ingredient11_name}}</p>
+                        <p>{{recipe.ingredients.ingredient12_quantity}} {{recipe.ingredients.ingredient12_units}} {{recipe.ingredients.ingredient12_name}}</p>
+                        <p>{{recipe.ingredients.ingredient13_quantity}} {{recipe.ingredients.ingredient13_units}} {{recipe.ingredients.ingredient13_name}}</p>
+                        <p>{{recipe.ingredients.ingredient14_quantity}} {{recipe.ingredients.ingredient14_units}} {{recipe.ingredients.ingredient14_name}}</p>
+                        <p>{{recipe.ingredients.ingredient15_quantity}} {{recipe.ingredients.ingredient15_units}} {{recipe.ingredients.ingredient15_name}}</p>
+                    </div>
+                    <div class="col s3">
+                        <p>{{recipe.ingredients.ingredient16_quantity}} {{recipe.ingredients.ingredient16_units}} {{recipe.ingredients.ingredient16_name}}</p>
+                        <p>{{recipe.ingredients.ingredient17_quantity}} {{recipe.ingredients.ingredient17_units}} {{recipe.ingredients.ingredient17_name}}</p>
+                        <p>{{recipe.ingredients.ingredient18_quantity}} {{recipe.ingredients.ingredient18_units}} {{recipe.ingredients.ingredient18_name}}</p>
+                        <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
+                        <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <h5><b>Method</b></h5>
+                        <p class="method-step1">1. {{recipe.method.method_step1}}</p>
+                        {% if recipe.method.method_step2 %}
+                            <p class="method-step2">2. {{recipe.method.method_step2}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step3 %}
+                            <p class="method-step3">3. {{recipe.method.method_step3}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step4 %}
+                            <p class="method-step4">4. {{recipe.method.method_step4}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step5 %}
+                            <p class="method-step5">5. {{recipe.method.method_step5}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step6 %}
+                            <p class="method-step6">6. {{recipe.method.method_step6}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step7 %}
+                            <p class="method-step7">7. {{recipe.method.method_step7}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step8 %}
+                            <p class="method-step8">8. {{recipe.method.method_step8}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step9 %}
+                            <p class="method-step9">9. {{recipe.method.method_step9}}</p>
+                        {% endif %}
+                        {% if recipe.method.method_step10 %}
+                            <p class="method-step10">10. {{recipe.method.method_step10}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 m3">
+                        <h5><b>Author</b></h5>
+                        <p><span>{{recipe.author.author_username}}</p></span>
+                        <p>Region: {{recipe.author.author_region}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <i class="material-icons options" id="printButton">print</i>
+                    </div>
+                    <div class="col s12">
+                        <a href="https://twitter.com/intent/tweet?button_hashtag=OneTwoCook&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #OneTwoCook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
