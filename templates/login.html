@@ -6,16 +6,37 @@
             <div class="card-panel home-border">
                 <div class="row">
                     <div class="col s12">
-                        <h2 class="center">Enter your name</h2>
+                        <h2 class="center">Login</h2>
                         <form method="POST" id="login">
                             <div class="col s12">
                                 <p class="row center">
-                                    For free full access to create and manage recipes, please type in your name:
+                                    For free full access to create and manage recipes, please complete the form below:
                                 </p>
                                 <div class="row center">
                                     <div class="col s12 m6 offset-m3">
                                         <input type="text" placeholder="Your name" id="username" name="username" maxlength="20" required/>
-                                        <button class="btn tooltipped center" data-position="bottom" data-tooltip="Submit your username to get full access">
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m6 offset-m3">
+                                        <input type="date" placeholder="Your date of birth (dd/mm/yyyy)" id="user_dob" name="user_dob" required/>
+                                    </div>
+                                </div>
+                                <div class="row center">
+                                    <div class="col s12 m6 offset-m3">
+                                          <select name="user_region" required>
+                                            <option value="" disabled selected>Region</option>
+                                            <option value="Africa">Africa</option>
+                                            <option value="Asia">Asia</option>
+                                            <option value="Caribbean">Caribbean</option>
+                                            <option value="Central America">Central America</option>
+                                            <option value="Europe">Europe</option>
+                                            <option value="North America">North America</option>
+                                            <option value="Oceania">Oceania</option>
+                                            <option value="South America">South America</option>
+                                          </select>
+                                          <label for="author_country">Your Region<span class="input_required">*</span></label>
+                                        <button class="btn tooltipped center" data-position="bottom" data-tooltip="Complete form to get full access">
                                             Submit
                                         </button>
                                     </div>

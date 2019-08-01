@@ -20,6 +20,8 @@ mongo = PyMongo(app)
 def login():
     if request.method == "POST":
         session["username"] = request.form["username"]
+        session["user_dob"] = request.form["user_dob"]
+        session["user_region"] = request.form["user_region"]
     if "username" in session:
         return redirect(session["username"])
     return render_template('login.html')
@@ -60,7 +62,9 @@ def insert_cuisine():
     new_cuisines.insert_one({
         "cuisine_type": request.form.get("cuisine_type"),
         "cuisine_summary": request.form.get("cuisine_summary"),
-        "author_username": session['username']
+        "author_username": session['username'],
+        "author_dob": session['user_dob'],
+        "author_region": session['user_region'],
     })
     return render_template('addrecipe.html', cuisines = new_cuisines)
     
@@ -68,13 +72,13 @@ def insert_cuisine():
 @app.route('/manage_recipes')
 def manage_recipes():
     ### 'Manage Your Recipes' Section
-    user_recipes = mongo.db.recipes.find({'author.author_username' : session["username"]})
+    user_recipes = mongo.db.recipes.find({'author.author_username' : session["username"], 'author.author_region' : session["user_region"], 'author.author_dob' : session["user_dob"]})
     ### 'Manage Your Cuisines' Section
-    user_cuisines = mongo.db.cuisines.find({'author_username' : session["username"]})
+    user_cuisines = mongo.db.cuisines.find({'author_username' : session["username"], 'author.author_region' : session["user_region"], 'author.author_dob' : session["user_dob"]})
     ### Recipe count for user
-    user_recipe_count = mongo.db.recipes.find({'author.author_username' : session["username"]}).count()
+    user_recipe_count = mongo.db.recipes.find({'author.author_username' : session["username"], 'author.author_region' : session["user_region"], 'author.author_dob' : session["user_dob"]}).count()
     ### Cuisine count for user
-    user_cuisine_count = mongo.db.cuisines.find({'author_username' : session["username"]}).count()
+    user_cuisine_count = mongo.db.cuisines.find({'author_username' : session["username"], 'author.author_region' : session["user_region"], 'author.author_dob' : session["user_dob"]}).count()
     return render_template('managerecipes.html', recipes=user_recipes, cuisines=user_cuisines, user_recipe_count=user_recipe_count, user_cuisine_count=user_cuisine_count)
     
 ### 'Edit Recipe' Page (via 'Manage Your Recipes')
@@ -93,14 +97,21 @@ def edit_cuisine(cuisine_id):
 ### List of all recipes under selected Cuisine Type
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
+    cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
     public_recipes = mongo.db.recipes.find({"cuisine_type" : cuisine_type, "public_visibility" : "on"}).sort('recipe_name', 1)
-    return render_template('recipesforcuisine.html', recipes = public_recipes)
+    return render_template('recipesforcuisine.html', recipes = public_recipes, cuisines = cuisines)
     
-### View Recipe Page
+### View Recipe Page (Recipes where public_visibility = "on")
 @app.route('/load_recipe/<recipe_name>/<recipe_id>')
 def load_recipe(recipe_name, recipe_id):
     view_recipe = mongo.db.recipes.find({"_id": ObjectId(recipe_id), "recipe_name": recipe_name})
-    return render_template('viewrecipe.html', recipes = view_recipe)
+    return render_template('publicviewrecipe.html', recipes = view_recipe)
+    
+### View Recipe Page (via Manage Your Recipes)
+@app.route('/load_private_recipe/<recipe_name>/<recipe_id>')
+def load_private_recipe(recipe_name, recipe_id):
+    view_private_recipe = mongo.db.recipes.find({"_id": ObjectId(recipe_id), "recipe_name": recipe_name})
+    return render_template('privateviewrecipe.html', recipes = view_private_recipe)
 
 ### Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
@@ -194,7 +205,8 @@ def insert_recipe():
         },
         "author": {
             "author_username": session['username'],
-            "author_region": request.form.get("author_region")
+            "author_dob": session['user_dob'],
+            "author_region": session['user_region']
         },
         "public_visibility": request.form.get("public_visibility")
     })
@@ -300,27 +312,32 @@ def update_recipe(recipe_id):
         },
         "author": {
             "author_username": session['username'],
-            "author_region": request.form.get("author_region")
+            "author_dob": session['user_dob'],
+            "author_region": session['user_region']
         },
         "public_visibility": request.form.get("public_visibility")
     })
     return redirect(url_for('manage_recipes'))
 
-### Update recipes in mLab database
+### Update cuisines in mLab database
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
 def update_cuisine(cuisine_id):
     mongo.db.cuisines.update(
         {'_id': ObjectId(cuisine_id)},
         {"cuisine_type": request.form.get("cuisine_type"),
-        "cuisine_summary": request.form.get("cuisine_summary")}
+        "cuisine_summary": request.form.get("cuisine_summary"),
+        "author_username": session['username'],
+        "author_dob": session['user_dob'],
+        "author_region": session['user_region']
+        }
     )
     return redirect(url_for('manage_recipes'))
         
 ### Index of Recipes
 @app.route('/index_of_recipes')
 def index_of_recipes():
-    all_recipes = mongo.db.recipes.find().sort('recipe_name', 1)
-    return render_template('indexofrecipes.html', recipes = all_recipes)
+    all_public_recipes = mongo.db.recipes.find({"public_visibility" : "on"}).sort('recipe_name', 1)
+    return render_template('indexofrecipes.html', recipes = all_public_recipes)
 
 ### Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>', methods=['POST'])
