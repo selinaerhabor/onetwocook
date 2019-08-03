@@ -33,7 +33,7 @@
                       </div>
                       
                       <!--Recipe Card Display-->
-                      <div class="col s12 m6 l6">
+                      <div class="col s12 m4 l4">
                         <div class="card">
                           <div class="card-image waves-effect waves-block hover-content">
                             <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
@@ -48,7 +48,7 @@
                               <h4>{{recipe.recipe_name}}</h4>
                               <hr>
                             </span>
-                            <p>{{recipe.recipe_summary}}</p>
+                            <p>Public Visibility: {{recipe.public_visibility}}</p>
                             <div class="col-12">
                               <a href="{{url_for('load_private_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
                             </div>
@@ -56,7 +56,7 @@
                               <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                             </div>
                             <div class="col-12">
-                              <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteModal">Delete<i class="material-icons right">delete</i></a>
+                              <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteRecipe">Delete<i class="material-icons right">delete</i></a>
                             </div>
                           </div>
                         </div>
@@ -134,7 +134,7 @@
                     </div>
                     
                   <!--Cuisine Card Display-->
-                  <div class="col s12 m6 l6">
+                  <div class="col s12 m4 l4">
                     <div class="card">
                       <div class="card-image waves-effect waves-block">
                           <img class="responsive-img" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" alt={{cuisine.cuisine_type}}>
@@ -151,7 +151,7 @@
                         </span>
                         <p>{{cuisine.cuisine_summary}}</p>
                          <div class="col-12"> 
-                          <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                          <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                         </div>
                         <div class="col-12">
                           <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteCuisine">Delete<i class="material-icons right">delete</i></a>
@@ -164,8 +164,7 @@
                   
                   <!--If user has not created any cuisines, provide link for user if they want to create one-->
                   <p class="center"><b>{{ session['username'] }}, you have not created any cuisines.</b></p>
-                  <p class="center">To create a new cuisine click on </p><div class="center"><a class="btn">Add Cuisine</a></div>
-                  <p class="center">on the <a href="{{url_for('add_recipe')}}">Add a Recipe</a> page.</p>
+                  <p class="center">To create a new cuisine click on the Add Cuisine button on the <a href="{{url_for('add_recipe')}}">Add a Recipe</a> page.</p>
                 {% endfor %}
               {% endif %}
             </div>
