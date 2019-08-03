@@ -13,11 +13,11 @@
           <div class="row">
             {% for recipe in recipes %}
             <title>Index of Recipes | OneTwoCook</title>
-            <div class="col s12 m6 l6">
+            <div class="col s12 m4 l4">
               <div class="card hoverable">
               <div class="card-image waves-effect waves-block hover-content">
                 <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
-                  <img class="responsive-img" src="../../static/images/{{recipe.img_path | default('placeholder_image.png')}}" alt={{recipe.recipe_name}} >
+                  <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
                   <div class="overlay">
                     <p class="text">
                       {{recipe.recipe_summary}}

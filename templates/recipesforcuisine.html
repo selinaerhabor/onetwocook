@@ -13,7 +13,7 @@
           {% for recipe in recipes %}
             <title>{{recipe.cuisine_type}} Recipes | OneTwoCook</title>
             {% if recipe %}
-              <div class="col s12 m6 l6">
+              <div class="col s12 m4 l4">
                 <div class="card hoverable">
                   <div class="card-image waves-effect waves-block hover-content">
                     <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
