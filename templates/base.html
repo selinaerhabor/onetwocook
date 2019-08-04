@@ -1,268 +1,264 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--Website Icon-->
-        <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
-        <!--Material Icons-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!--Materialize 0.100.2 CSS Framework-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <!--Custom CSS-->
-        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!--Website Icon-->
+      <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
+      <!--Material Icons-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!--Materialize 0.100.2 CSS Framework-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!--Custom CSS-->
+      <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-    crossorigin="anonymous"></script>
-        <!--Navigation Bar-->
-        <nav>
-            <div class="nav-wrapper green lighten-4">
-                <a href="{{url_for('login')}}">
-                    <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
-                </a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    {% if "username" in session %}
-                    <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
-                    <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                    <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
-                    <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
-                    {% else %}
-                    <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
-                    <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
-                    {% endif %}
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    {% if "username" in session %}
-                    <li class="center">User ID: {{ session['user_dob'] }} | User Region: {{ session['user_region'] }}</li>
-                    <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
-                    <hr>
-                    <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
-                    <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                    <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
-                    <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
-                    <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
-                    
-                    {% else %}
-                    <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
-                    <hr>
-                    <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
-                    <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
-                    <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-        <!--Navigation Bar-->
-        
-        <!--Main Body-->
-        {% block document %}{% endblock %}
-        <!--/Main Body-->
-        
-        <!--Footer-->
-        <footer class="page-footer green lighten-4">
-          <div class="container">
-            <div class="row">
-              <div class="col l8 s12">
-                <h5 class="black-text">Looking for a Recipe? Check our index of recipes <a href="{{url_for('index_of_recipes')}}">here</a></h5>
-              </div>
-            </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+  crossorigin="anonymous"></script>
+      <!--Navigation Bar-->
+      <nav>
+          <div class="nav-wrapper green lighten-4">
+              <a href="{{url_for('login')}}">
+                  <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
+              </a>
+              <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                  {% if "username" in session %}
+                  <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
+                  <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                  <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                  {% else %}
+                  <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                  <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                  {% endif %}
+              </ul>
+              <ul id="nav-mobile" class="side-nav">
+                  {% if "username" in session %}
+                  <li class="center">User ID: {{ session['user_dob'] }} | User Region: {{ session['user_region'] }}</li>
+                  <li class="nav-tab"><a href="{{url_for('login')}}">Account Type: Full Access User</a></li>
+                  <hr>
+                  <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
+                  <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
+                  <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
+                  
+                  {% else %}
+                  <li class="nav-tab"><a href="{{url_for('guest')}}">Account Type: Guest User</a></li>
+                  <hr>
+                  <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
+                  <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('login')}}">Login</a></li>
+                  {% endif %}
+              </ul>
           </div>
-          <div class="footer-copyright center">
-            <div class="container">
-                OneTwoCook by Selina Erhabor
-            </div>
-          </div>
-        </footer>
-        <!--/Footer-->
-        
-        <!--JQuery Framework-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!--Materialize 0.100.2 Javascript-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <!--Twitter Widget Icon (Bottom of Recipe Page)-->
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <!--Custom Javascript-->
-        <script type="text/javascript">
-            $(document).ready(function(){
-                
-                //Materialize - :
-                $('select').material_select();
-                
-                //Allows user to print a recipe page:
-                function print(){
-                    window.print();
-                }
-                $("#printButton").click(function(){
-                    print();
-                });
-                
-                /*Allows full access users to upload photo of their recipe on 
-                Add a Recipe page */
-                function upload(){
-                    document.getElementById("uploadFile").multiple;
-                }
-                $("#uploadFile").click(function(){
-                    upload();
-                });
-                
-                //Materialize - provides hint on function of feature:
-                $('.tooltipped').tooltip();
-                
-                //Materialize - Side Navigation (Smaller screen viewing only):
-                $(".button-collapse").sideNav();
-                
-                //Scores out completed methods one by one:
-                $(".method-step1").click(function(){
-                    $(".method-step1").toggleClass("score");
-                });
-                $(".method-step2").click(function(){
-                    $(".method-step2").toggleClass("score");
-                });
-                $(".method-step3").click(function(){
-                    $(".method-step3").toggleClass("score");
-                });
-                $(".method-step4").click(function(){
-                    $(".method-step4").toggleClass("score");
-                });
-                $(".method-step5").click(function(){
-                    $(".method-step5").toggleClass("score");
-                });
-                $(".method-step6").click(function(){
-                    $(".method-step6").toggleClass("score");
-                });
-                $(".method-step7").click(function(){
-                    $(".method-step7").toggleClass("score");
-                });
-                $(".method-step8").click(function(){
-                    $(".method-step8").toggleClass("score");
-                });
-                $(".method-step9").click(function(){
-                    $(".method-step9").toggleClass("score");
-                });
-                $(".method-step10").click(function(){
-                    $(".method-step10").toggleClass("score");
-                });
-                
-                //Activator for Extra Ingredients Input Rows:
-                $("#ingredientRow2, #ingredientRow3, #ingredientRow4, #ingredientRow5, #ingredientRow6, #ingredientRow7, #ingredientRow8, #ingredientRow9, #ingredientRow10, #ingredientRow11, #ingredientRow12, #ingredientRow13, #ingredientRow14, #ingredientRow15, #ingredientRow16, #ingredientRow17, #ingredientRow18, #ingredientRow19, #ingredientRow20").hide();
-                $("#ingredient1_name").keyup(function(){
-                  $("#ingredientRow2").show();
-                });
-                $("#ingredient2_name").keyup(function(){
-                  $("#ingredientRow3").show();
-                });
-                $("#ingredient3_name").keyup(function(){
-                  $("#ingredientRow4").show();
-                });
-                $("#ingredient4_name").keyup(function(){
-                  $("#ingredientRow5").show();
-                });
-                $("#ingredient5_name").keyup(function(){
-                  $("#ingredientRow6").show();
-                });
-                $("#ingredient6_name").keyup(function(){
-                  $("#ingredientRow7").show();
-                });
-                $("#ingredient7_name").keyup(function(){
-                  $("#ingredientRow8").show();
-                });
-                $("#ingredient8_name").keyup(function(){
-                  $("#ingredientRow9").show();
-                });
-                $("#ingredient9_name").keyup(function(){
-                  $("#ingredientRow10").show();
-                });
-                $("#ingredient10_name").keyup(function(){
-                  $("#ingredientRow11").show();
-                });
-                $("#ingredient11_name").keyup(function(){
-                  $("#ingredientRow12").show();
-                });
-                $("#ingredient12_name").keyup(function(){
-                  $("#ingredientRow13").show();
-                });
-                $("#ingredient13_name").keyup(function(){
-                  $("#ingredientRow14").show();
-                });
-                $("#ingredient14_name").keyup(function(){
-                  $("#ingredientRow15").show();
-                });
-                $("#ingredient15_name").keyup(function(){
-                  $("#ingredientRow16").show();
-                });
-                $("#ingredient16_name").keyup(function(){
-                  $("#ingredientRow17").show();
-                });
-                $("#ingredient17_name").keyup(function(){
-                  $("#ingredientRow18").show();
-                });
-                $("#ingredient18_name").keyup(function(){
-                  $("#ingredientRow19").show();
-                });
-                $("#ingredient19_name").keyup(function(){
-                  $("#ingredientRow20").show();
-                });
-                
-                //Activator for Extra Method Steps Input Rows:
-                $("#method_step2, #method_step3, #method_step4, #method_step5, #method_step6, #method_step7, #method_step8, #method_step9, #method_step10").hide();
-                $("#method_step1").keyup(function(){
-                  $("#method_step2").show();
-                });
-                $("#method_step2").keyup(function(){
-                  $("#method_step3").show();
-                });
-                $("#method_step3").keyup(function(){
-                  $("#method_step4").show();
-                });
-                $("#method_step4").keyup(function(){
-                  $("#method_step5").show();
-                });
-                $("#method_step5").keyup(function(){
-                  $("#method_step6").show();
-                });
-                $("#method_step6").keyup(function(){
-                  $("#method_step7").show();
-                });
-                $("#method_step7").keyup(function(){
-                  $("#method_step8").show();
-                });
-                $("#method_step8").keyup(function(){
-                  $("#method_step9").show();
-                });
-                $("#method_step9").keyup(function(){
-                  $("#method_step10").show();
-                });
-                
-                //Opening Modal - Deleting Recipe or Cuisine created by user
-                $('.modal').modal();
+      </nav>
+      <!--Navigation Bar-->
       
-                $(".scrollspy").scrollSpy();
-                
-                
-                
-                /*Displays number of times a user has clicked Thumbs Up Button 
-                (liked the recipe) */
-                // document.getElementById("count").innerHTML = localStorage.clickcount;
-                // if (localStorage.clickcount == undefined) {
-                //     localStorage.clickcount == 1;
-                // }
-                // $("#thumbsUp").click(function(){
-                //     if (typeof(Storage) !== "undefined") {
-                //         if (localStorage.clickcount) {
-                //             localStorage.clickcount == Number(localStorage.clickcount)+1;
-                //         } 
-                //         else {
-                //             localStorage.clickcount = 1;
-                //         }
-                //     document.getElementById("count").innerHTML = localStorage.clickcount;
-                //     } 
-                //     else {
-                //         document.getElementById("count").innerHTML = localStorage.clickcount;
-                //     }
-                // });
-            });
-        </script>
-    </body>
+      <!--Main Body-->
+      {% block document %}{% endblock %}
+      <!--/Main Body-->
+      
+      <!--Footer-->
+      <footer class="page-footer green lighten-4">
+        <div class="container">
+          <div class="row">
+            <div class="col l8 s12">
+              <h5 class="black-text">Looking for a Recipe? Check our index of recipes <a href="{{url_for('index_of_recipes')}}">here</a></h5>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright center">
+          <div class="container">
+              OneTwoCook by Selina Erhabor
+          </div>
+        </div>
+      </footer>
+      <!--/Footer-->
+      
+      <!--JQuery Framework-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!--Materialize 0.100.2 Javascript-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <!--Twitter Widget Icon (Bottom of Recipe Page)-->
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <!--Custom Javascript-->
+      <script type="text/javascript">
+        $(document).ready(function(){
+          //Materialize - :
+          $('select').material_select();
+          
+          //Allows user to print a recipe page:
+          function print(){
+              window.print();
+          }
+          $("#printButton").click(function(){
+              print();
+          });
+          
+          /*Allows full access users to upload photo of their recipe on 
+          Add a Recipe page */
+          function upload(){
+              document.getElementById("uploadFile").multiple;
+          }
+          $("#uploadFile").click(function(){
+              upload();
+          });
+          
+          //Materialize - provides hint on function of feature:
+          $('.tooltipped').tooltip();
+          
+          //Materialize - Side Navigation (Smaller screen viewing only):
+          $(".button-collapse").sideNav();
+          
+          //Scores out completed methods one by one:
+          $(".method-step1").click(function(){
+              $(".method-step1").toggleClass("score");
+          });
+          $(".method-step2").click(function(){
+              $(".method-step2").toggleClass("score");
+          });
+          $(".method-step3").click(function(){
+              $(".method-step3").toggleClass("score");
+          });
+          $(".method-step4").click(function(){
+              $(".method-step4").toggleClass("score");
+          });
+          $(".method-step5").click(function(){
+              $(".method-step5").toggleClass("score");
+          });
+          $(".method-step6").click(function(){
+              $(".method-step6").toggleClass("score");
+          });
+          $(".method-step7").click(function(){
+              $(".method-step7").toggleClass("score");
+          });
+          $(".method-step8").click(function(){
+              $(".method-step8").toggleClass("score");
+          });
+          $(".method-step9").click(function(){
+              $(".method-step9").toggleClass("score");
+          });
+          $(".method-step10").click(function(){
+              $(".method-step10").toggleClass("score");
+          });
+          
+          //Activator for Extra Ingredients Input Rows:
+          $("#ingredientRow2, #ingredientRow3, #ingredientRow4, #ingredientRow5, #ingredientRow6, #ingredientRow7, #ingredientRow8, #ingredientRow9, #ingredientRow10, #ingredientRow11, #ingredientRow12, #ingredientRow13, #ingredientRow14, #ingredientRow15, #ingredientRow16, #ingredientRow17, #ingredientRow18, #ingredientRow19, #ingredientRow20").hide();
+          $("#ingredient1_name").keyup(function(){
+            $("#ingredientRow2").show();
+          });
+          $("#ingredient2_name").keyup(function(){
+            $("#ingredientRow3").show();
+          });
+          $("#ingredient3_name").keyup(function(){
+            $("#ingredientRow4").show();
+          });
+          $("#ingredient4_name").keyup(function(){
+            $("#ingredientRow5").show();
+          });
+          $("#ingredient5_name").keyup(function(){
+            $("#ingredientRow6").show();
+          });
+          $("#ingredient6_name").keyup(function(){
+            $("#ingredientRow7").show();
+          });
+          $("#ingredient7_name").keyup(function(){
+            $("#ingredientRow8").show();
+          });
+          $("#ingredient8_name").keyup(function(){
+            $("#ingredientRow9").show();
+          });
+          $("#ingredient9_name").keyup(function(){
+            $("#ingredientRow10").show();
+          });
+          $("#ingredient10_name").keyup(function(){
+            $("#ingredientRow11").show();
+          });
+          $("#ingredient11_name").keyup(function(){
+            $("#ingredientRow12").show();
+          });
+          $("#ingredient12_name").keyup(function(){
+            $("#ingredientRow13").show();
+          });
+          $("#ingredient13_name").keyup(function(){
+            $("#ingredientRow14").show();
+          });
+          $("#ingredient14_name").keyup(function(){
+            $("#ingredientRow15").show();
+          });
+          $("#ingredient15_name").keyup(function(){
+            $("#ingredientRow16").show();
+          });
+          $("#ingredient16_name").keyup(function(){
+            $("#ingredientRow17").show();
+          });
+          $("#ingredient17_name").keyup(function(){
+            $("#ingredientRow18").show();
+          });
+          $("#ingredient18_name").keyup(function(){
+            $("#ingredientRow19").show();
+          });
+          $("#ingredient19_name").keyup(function(){
+            $("#ingredientRow20").show();
+          });
+          
+          //Activator for Extra Method Steps Input Rows:
+          $("#method_step2, #method_step3, #method_step4, #method_step5, #method_step6, #method_step7, #method_step8, #method_step9, #method_step10").hide();
+          $("#method_step1").keyup(function(){
+            $("#method_step2").show();
+          });
+          $("#method_step2").keyup(function(){
+            $("#method_step3").show();
+          });
+          $("#method_step3").keyup(function(){
+            $("#method_step4").show();
+          });
+          $("#method_step4").keyup(function(){
+            $("#method_step5").show();
+          });
+          $("#method_step5").keyup(function(){
+            $("#method_step6").show();
+          });
+          $("#method_step6").keyup(function(){
+            $("#method_step7").show();
+          });
+          $("#method_step7").keyup(function(){
+            $("#method_step8").show();
+          });
+          $("#method_step8").keyup(function(){
+            $("#method_step9").show();
+          });
+          $("#method_step9").keyup(function(){
+            $("#method_step10").show();
+          });
+          
+          //Opening Modal - Deleting Recipe or Cuisine created by user
+          $('.modal').modal();
+  
+          $(".scrollspy").scrollSpy();
+  
+            /*Displays number of times a user has clicked Thumbs Up Button 
+            (liked the recipe) */
+            // document.getElementById("count").innerHTML = localStorage.clickcount;
+            // if (localStorage.clickcount == undefined) {
+            //     localStorage.clickcount == 1;
+            // }
+            // $("#thumbsUp").click(function(){
+            //     if (typeof(Storage) !== "undefined") {
+            //         if (localStorage.clickcount) {
+            //             localStorage.clickcount == Number(localStorage.clickcount)+1;
+            //         } 
+            //         else {
+            //             localStorage.clickcount = 1;
+            //         }
+            //     document.getElementById("count").innerHTML = localStorage.clickcount;
+            //     } 
+            //     else {
+            //         document.getElementById("count").innerHTML = localStorage.clickcount;
+            //     }
+            // });
+          });
+    </script>
+  </body>
 </html>
