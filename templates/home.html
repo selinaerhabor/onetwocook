@@ -25,6 +25,8 @@
                     <a href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
                       {% if cuisine.cuisine_type == 'African' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_african.png')}}" />
+                      {% elif cuisine.cuisine_type == 'British' %}
+                        <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_british.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'Caribbean' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_caribbean.png')}}" />
                       {% elif cuisine.cuisine_type == 'Chinese' %}

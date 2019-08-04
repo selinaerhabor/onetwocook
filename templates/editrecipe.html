@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block document %}
-  <title>Edit a Recipe | OneTwoCook</title>
+  <title>Edit Recipe: {{recipes.recipe_name}} | OneTwoCook</title>
     <div class="background responsive-img">
       <div class="container">
         <div class="card-panel recipe-border">
@@ -13,9 +13,6 @@
           <div class="divider"></div>
           <div class="row">
             <div class="col s12">
-              {% for recipe in recipes %}
-                <title>Edit Recipe: {{recipes.recipe_name}} | OneTwoCook</title>
-              {% endfor %}
               <div class="divider"></div>
                 <form id="recipe_form" action="{{url_for('update_recipe', recipe_id = recipes._id)}}" method="POST" class="col s12">
                   <h4 class="sub-title">Summary</h4>

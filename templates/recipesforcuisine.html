@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block document %}
+<title>{{heading}} | OneTwoCook</title>
   <div class="background responsive-img">
     <div class="container">
       <div class="card-panel recipe-border">
@@ -8,10 +9,9 @@
             <a href="{{url_for('login')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
           </div>
         </div>
-        <h2 class="center">Recipes</h2>
+        <h2 class="center">{{heading}}</h2>
         <div class="row">
           {% for recipe in recipes %}
-            <title>{{recipe.cuisine_type}} Recipes | OneTwoCook</title>
             {% if recipe %}
               <div class="col s12 m4 l4">
                 <div class="card hoverable">

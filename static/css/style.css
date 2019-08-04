@@ -30,21 +30,12 @@ p, h6 {
 /*--------------------------------------------------------------Media Queries*/
 
 @media(min-width: 993px) and (max-width: 1124px){
-    div.card-image {
-        height: 250px;
-    }
 }
 
 @media(min-width: 600px) and (max-width: 970px){
-    div.card-image {
-        height: 175px;
-    }
 }
 
 @media(min-width: 350px) and (max-width: 435px){
-    div.card-image {
-        height: 200px;
-    }
     .background {
         background-image: url("../../static/images/cookbook_background.jpg");
         width: 100%;
@@ -76,9 +67,6 @@ p, h6 {
 }
 
 @media (max-width: 349px){
-    div.card-image {
-        height: 150px;
-    }
     .background {
         background-image: url("../../static/images/cookbook_background.jpg");
         width: 100%;
@@ -96,7 +84,6 @@ p, h6 {
     }
     
 }
-
 
 
 
@@ -147,7 +134,7 @@ p, h6 {
 }
 
 .card-image {
-    height: 250px;
+    height: 150px;
 }
 
 .home-border {
@@ -196,14 +183,7 @@ p, h6 {
   text-align: center;
   color: white;
   font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin: 10px;
 }
 
 .tab {
@@ -290,6 +270,12 @@ p, h6 {
 .method-step5,.method-step6,.method-step7,.method-step8,
 .method-step9,.method-step10 {
     cursor: pointer;
+}
+
+/*---------------------------------------------------------------Add A Cuisine*/
+
+.padding {
+    padding: 25px;
 }
 
 /*------------------------------------------------------------------Login Page*/
