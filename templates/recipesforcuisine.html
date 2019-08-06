@@ -42,11 +42,11 @@
               </div>
               <div class="col s6 offset-s3 m6 offset-m3">
                 <h4 class="center">No recipes have been created yet or made public for this cuisine. 
-                You can return back to the home page to choose another cuisine.</h4> 
+                You can return back to the home page to choose another cuisine or create a recipe.</h4> 
                 {% if "username" in session %}
                 <h4 class="center"><a href="{{url_for('add_recipe')}}" class="btn">Create a Recipe</a></h4>
                 {% else %}
-                <h4 class="center"><a href="{{url_for('guest')}}" class="btn">Return to Home</a></h4>
+                <h4 class="center"><a href="{{url_for('login')}}" class="btn">Create a Recipe</a></h4>
                 {% endif %}
               </div>
             
