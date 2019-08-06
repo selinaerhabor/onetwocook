@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col s12">
             {% if "username" in session %}
-            <a href="{{url_for('home')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
+            <a href="{{url_for('home', username = username)}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
             {% else %}
             <a href="{{url_for('guest')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
             {% endif %}
