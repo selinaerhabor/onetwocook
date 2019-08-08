@@ -108,7 +108,7 @@ def load_recipe(recipe_name, recipe_id):
     heading = recipe_name
     previous_url = 'recipes_for_cuisine'
     previous_page = 'Recipes'
-    return render_template('publicviewrecipe.html', recipes = view_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
+    return render_template('viewrecipe.html', recipes = view_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
     
 ### View Your Recipe Page (via Manage Your Recipes)
 @app.route('/load_your_recipe/<recipe_name>/<recipe_id>')
@@ -117,7 +117,7 @@ def load_your_recipe(recipe_name, recipe_id):
     view_your_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = url_for('manage_recipes')
     previous_page = 'Manage Your Recipes'
-    return render_template('publicviewrecipe.html', recipes = view_your_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
+    return render_template('viewrecipe.html', recipes = view_your_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
 
 ### Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])

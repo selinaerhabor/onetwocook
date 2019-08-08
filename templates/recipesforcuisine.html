@@ -17,7 +17,7 @@
         <div class="row">
           {% for recipe in recipes %}
             
-              <div class="col s12 m4 l4">
+              <div class="col s12 m6 l4 xl4">
                 <div class="card hoverable">
                   <div class="card-image waves-effect waves-block hover-content">
                     <a href="{{url_for('load_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
@@ -40,13 +40,13 @@
               <div class="col s12 center">
                 <i class="material-icons notifications">notifications</i>
               </div>
-              <div class="col s6 offset-s3 m6 offset-m3">
-                <h4 class="center">No recipes have been created yet or made public for this cuisine. 
+              <div class="col s6 offset-s3 m6 offset-m3 center">
+                <h4>No recipes have been created yet or made public for this cuisine. 
                 You can return back to the home page to choose another cuisine or create a recipe.</h4> 
                 {% if "username" in session %}
-                <h4 class="center"><a href="{{url_for('add_recipe')}}" class="btn">Create a Recipe</a></h4>
+                <a href="{{url_for('add_recipe')}}" class="btn">Create a Recipe</a>
                 {% else %}
-                <h4 class="center"><a href="{{url_for('login')}}" class="btn">Create a Recipe</a></h4>
+                <a href="{{url_for('login')}}" class="btn">Create a Recipe</a>
                 {% endif %}
               </div>
             
