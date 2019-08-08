@@ -8,7 +8,11 @@
                     <div class="col s12">
                         {% for recipe in recipes %}
                             <h4 class="center">{{recipe.cuisine_type}} Recipe</h4>
-                            <a class="left" href="{{url_for('recipes_for_cuisine', cuisine_type = recipe.cuisine_type)}}"><i class="material-icons left">arrow_back</i>Back to Recipes</a>
+                        {% if previous_url == 'recipes_for_cuisine' %}
+                            <a class="left" href="{{url_for('recipes_for_cuisine', cuisine_type = recipe.cuisine_type)}}"><i class="material-icons left">arrow_back</i>Back to {{previous_page}}</a>
+                        {% else %}
+                            <a class="left" href="{{previous_url}}"><i class="material-icons left">arrow_back</i>Back to {{previous_page}}</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">

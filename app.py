@@ -1,4 +1,5 @@
 import os
+import env
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -101,17 +102,22 @@ def recipes_for_cuisine(cuisine_type):
     return render_template('recipesforcuisine.html', recipes = public_recipes, cuisines = cuisines, heading = heading)
     
 ### View Recipe Page (Recipes where public_visibility = 'on')
-@app.route('/load_recipe/<recipe_name>/<recipe_id>')
+@app.route('/load_recipe/<recipe_name>/<recipe_id>/')
 def load_recipe(recipe_name, recipe_id):
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     heading = recipe_name
-    return render_template('publicviewrecipe.html', recipes = view_recipe, heading = heading)
+    previous_url = 'recipes_for_cuisine'
+    previous_page = 'Recipes'
+    return render_template('publicviewrecipe.html', recipes = view_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
     
-### View Recipe Page (via Manage Your Recipes)
-@app.route('/load_private_recipe/<recipe_name>/<recipe_id>')
-def load_private_recipe(recipe_name, recipe_id):
-    view_private_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
-    return render_template('privateviewrecipe.html', recipes = view_private_recipe)
+### View Your Recipe Page (via Manage Your Recipes)
+@app.route('/load_your_recipe/<recipe_name>/<recipe_id>')
+def load_your_recipe(recipe_name, recipe_id):
+    heading = recipe_name
+    view_your_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
+    previous_url = url_for('manage_recipes')
+    previous_page = 'Manage Your Recipes'
+    return render_template('publicviewrecipe.html', recipes = view_your_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
 
 ### Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
