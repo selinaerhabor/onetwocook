@@ -28,10 +28,9 @@
                   <div class="input-field col s6 m3 xl2" id="cuisine_type">
                     <select name="cuisine_type" required>
                       <option value="" disabled selected>Cuisine</option>
-                        <option value="{{ selected_cuisine_type }}">{{ selected_cuisine_type }}</option>
-                        {% for cuisine in cuisines %}
-                          <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
-                        {% endfor %}
+                      {% for cuisine in cuisines %}
+                        <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
+                      {% endfor %}
                     </select>
                     <label>Cuisine Type<span class="input_required">*</span></label>
                   </div>
