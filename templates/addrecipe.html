@@ -28,9 +28,10 @@
                   <div class="input-field col s6 m3 xl2" id="cuisine_type">
                     <select name="cuisine_type" required>
                       <option value="" disabled selected>Cuisine</option>
-                      {% for cuisine in cuisines %}
-                        <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
-                      {% endfor %}
+                        <option value="{{ selected_cuisine_type }}">{{ selected_cuisine_type }}</option>
+                        {% for cuisine in cuisines %}
+                          <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
+                        {% endfor %}
                     </select>
                     <label>Cuisine Type<span class="input_required">*</span></label>
                   </div>
@@ -127,15 +128,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow2" class="ingredientRow">
-                    <div class="input-field col s5 m5">
+                    <div class="input-field col s4 m5">
                       <input id="ingredient2_name" type="text" name="ingredient2_name" class="validate">
                       <label for="ingredient2_name">Ingredient 2</label>
                     </div>
-                    <div class="input-field col s4 m3">
+                    <div class="input-field col s3 m3">
                       <input id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" max="99" class="validate">
                       <label for="ingredient2_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3">
+                    <div class="input-field col s4 m3">
                       <select name="ingredient2_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -152,15 +153,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow3" class="ingredientRow">
-                    <div class="input-field col s5 m5">
+                    <div class="input-field col s4 m5">
                       <input id="ingredient3_name" type="text" name="ingredient3_name" class="validate">
                       <label for="ingredient3_name">Ingredient 3</label>
                     </div>
-                    <div class="input-field col s4 m3">
+                    <div class="input-field col s3 m3">
                       <input id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" max="99" class="validate">
                       <label for="ingredient3_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3">
+                    <div class="input-field col s4 m3">
                       <select name="ingredient3_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -177,15 +178,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow4" class="ingredientRow">
-                    <div class="input-field col s5 m5">
+                    <div class="input-field col s4 m5">
                       <input id="ingredient4_name" type="text" name="ingredient4_name" class="validate">
                       <label for="ingredient4_name">Ingredient 4</label>
                     </div>
-                    <div class="input-field col s4 m3">
+                    <div class="input-field col s3 m3">
                       <input id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" max="99" class="validate">
                       <label for="ingredient4_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3">
+                    <div class="input-field col s4 m3">
                       <select name="ingredient4_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -202,15 +203,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow5" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient5_name">
+                    <div class="input-field col s4 m5" id="ingredient5_name">
                       <input id="ingredient5_name" type="text" name="ingredient5_name" class="validate">
                       <label for="ingredient_name5">Ingredient 5</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient5_quantity">
+                    <div class="input-field col s3 m3" id="ingredient5_quantity">
                       <input id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" max="99" class="validate">
                       <label for="ingredient5_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient5_units">
+                    <div class="input-field col s4 m3" id="ingredient5_units">
                       <select name="ingredient5_units" id="ingredient5_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -227,15 +228,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow6" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient6_name">
+                    <div class="input-field col s4 m5" id="ingredient6_name">
                       <input id="ingredient6_name" type="text" name="ingredient6_name" class="validate">
                       <label for="ingredient6_name">Ingredient 6</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient6_quanity">
+                    <div class="input-field col s3 m3" id="ingredient6_quanity">
                       <input id="ingredient6_quantity" type="number" name="ingredient6_quantity" min="0" max="99" class="validate">
                       <label for="ingredient6_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient6_units">
+                    <div class="input-field col s4 m3" id="ingredient6_units">
                       <select name="ingredient6_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -252,15 +253,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow7" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredients7_name">
+                    <div class="input-field col s4 m5" id="ingredients7_name">
                       <input id="ingredients7_name" type="text" name="ingredients7_name" class="validate">
                       <label for="ingredient7_name">Ingredient 7</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient7_quantity">
+                    <div class="input-field col s3 m3" id="ingredient7_quantity">
                       <input type="number" name="ingredient7_quantity" min="0" max="99" class="validate">
                       <label for="ingredient7_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="newIngredientUnits">
+                    <div class="input-field col s4 m3" id="newIngredientUnits">
                       <select name="ingredient7_units" id="ingredient7_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -277,15 +278,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow8" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient8_name">
+                    <div class="input-field col s4 m5" id="ingredient8_name">
                       <input type="text" name="ingredient8_name" class="validate">
                       <label for="ingredient8_name">Ingredient 8</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient8_quantity">
+                    <div class="input-field col s3 m3" id="ingredient8_quantity">
                       <input type="number" name="ingredient8_quantity" min="0" max="99" class="validate">
                       <label for="ingredient8_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient8_units">
+                    <div class="input-field col s4 m3" id="ingredient8_units">
                       <select name="ingredient8_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -302,15 +303,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow9" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient9_name">
+                    <div class="input-field col s4 m5" id="ingredient9_name">
                       <input type="text" name="ingredient9_name" class="validate">
                       <label for="ingredient9_name">Ingredient 9</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient9_quantity">
+                    <div class="input-field col s3 m3" id="ingredient9_quantity">
                       <input type="number" name="ingredient9_quantity" min="0" max="99" class="validate">
                       <label for="ingredient9_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient9_units">
+                    <div class="input-field col s4 m3" id="ingredient9_units">
                       <select name="ingredient9_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -327,15 +328,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow10" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient10_name">
+                    <div class="input-field col s4 m5" id="ingredient10_name">
                       <input type="text" name="ingredient10_name" class="validate">
                       <label for="ingredient10_name">Ingredient 10</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient10_quantity">
+                    <div class="input-field col s3 m3" id="ingredient10_quantity">
                       <input type="number" name="ingredient10_quantity" min="0" max="99" class="validate">
                       <label for="ingredient10_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient10_units">
+                    <div class="input-field col s4 m3" id="ingredient10_units">
                       <select name="ingredient10_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -352,15 +353,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow11" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient11_name">
+                    <div class="input-field col s4 m5" id="ingredient11_name">
                       <input type="text" name="ingredient11_name" class="validate">
                       <label for="ingredient11_name">Ingredient 11</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient11_quantity">
+                    <div class="input-field col s3 m3" id="ingredient11_quantity">
                       <input type="number" name="ingredient11_quantity" min="0" max="99" class="validate">
                       <label for="ingredient11_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient11_units">
+                    <div class="input-field col s4 m3" id="ingredient11_units">
                       <select name="ingredient11_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -377,15 +378,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow12" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient12_name">
+                    <div class="input-field col s4 m5" id="ingredient12_name">
                       <input type="text" name="ingredient12_name" class="validate">
                       <label for="ingredient12_name">Ingredient 12</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient12_quantity">
+                    <div class="input-field col s3 m3" id="ingredient12_quantity">
                       <input type="number" name="ingredient12_quantity" min="0" max="99" class="validate">
                       <label for="ingredient12_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient12_units">
+                    <div class="input-field col s4 m3" id="ingredient12_units">
                       <select name="ingredient12_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -402,15 +403,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow13" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient13_name">
+                    <div class="input-field col s4 m5" id="ingredient13_name">
                       <input type="text" name="ingredient13_name" class="validate">
                       <label for="ingredient13_name">Ingredient 13</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient13_quantity">
+                    <div class="input-field col s3 m3" id="ingredient13_quantity">
                       <input type="number" name="ingredient13_quantity" min="0" max="99" class="validate">
                       <label for="ingredient13_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient13_units">
+                    <div class="input-field col s4 m3" id="ingredient13_units">
                       <select name="ingredient13_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -427,15 +428,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow14" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient14_name">
+                    <div class="input-field col s4 m5" id="ingredient14_name">
                       <input type="text" name="ingredient14_name" class="validate">
                       <label for="ingredient14_name">Ingredient 14</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient14_quantity">
+                    <div class="input-field col s3 m3" id="ingredient14_quantity">
                       <input type="number" name="ingredient14_quantity" min="0" max="99" class="validate">
                       <label for="ingredient14_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient14_units">
+                    <div class="input-field col s4 m3" id="ingredient14_units">
                       <select name="ingredient14_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -452,15 +453,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow15" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient15_name">
+                    <div class="input-field col s4 m5" id="ingredient15_name">
                       <input type="text" name="ingredient15_name" class="validate">
                       <label for="ingredient15_name">Ingredient 15</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient15_quantity">
+                    <div class="input-field col s3 m3" id="ingredient15_quantity">
                       <input type="number" name="ingredient15_quantity" min="0" max="99" class="validate">
                       <label for="ingredient15_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient15_units">
+                    <div class="input-field col s4 m3" id="ingredient15_units">
                       <select name="ingredient15_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -477,15 +478,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow16" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient16_name">
+                    <div class="input-field col s4 m5" id="ingredient16_name">
                       <input type="text" name="ingredient16_name" class="validate">
                       <label for="ingredient16_name">Ingredient 16</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient16_quantity">
+                    <div class="input-field col s3 m3" id="ingredient16_quantity">
                       <input type="number" name="ingredient16_quantity" min="0" max="99" class="validate">
                       <label for="ingredient16_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient16_units">
+                    <div class="input-field col s4 m3" id="ingredient16_units">
                       <select name="ingredient16_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -502,15 +503,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow17" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient17_name">
+                    <div class="input-field col s4 m5" id="ingredient17_name">
                       <input type="text" name="ingredient17_name" class="validate">
                       <label for="ingredient17_name">Ingredient 17</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient17_quantity">
+                    <div class="input-field col s3 m3" id="ingredient17_quantity">
                       <input type="number" name="ingredient17_quantity" min="0" max="99" class="validate">
                       <label for="ingredient17_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient17_units">
+                    <div class="input-field col s4 m3" id="ingredient17_units">
                       <select name="ingredient17_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -527,15 +528,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow18" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient18_name">
+                    <div class="input-field col s4 m5" id="ingredient18_name">
                       <input type="text" name="ingredient18_name" class="validate">
                       <label for="ingredient18_name">Ingredient 18</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient18_quantity">
+                    <div class="input-field col s3 m3" id="ingredient18_quantity">
                       <input type="number" name="ingredient18_quantity" min="0" max="99" class="validate">
                       <label for="ingredient18_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient18_units">
+                    <div class="input-field col s4 m3" id="ingredient18_units">
                       <select name="ingredient18_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -552,15 +553,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow19" class="ingredientRow">
-                    <div class="input-field col s5 m5">
+                    <div class="input-field col s4 m5">
                       <input type="text" name="ingredient19_name" id="ingredient19_name" class="validate">
                       <label for="ingredient19_name">Ingredient 19</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient19_quantity">
+                    <div class="input-field col s3 m3" id="ingredient19_quantity">
                       <input type="number" name="ingredient19_quantity" min="0" max="99" class="validate">
                       <label for="ingredient19_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient19_units">
+                    <div class="input-field col s4 m3" id="ingredient19_units">
                       <select name="ingredient19_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -577,15 +578,15 @@
                     </div>
                   </div>
                   <div class="row" id="ingredientRow20" class="ingredientRow">
-                    <div class="input-field col s5 m5" id="ingredient20_name">
+                    <div class="input-field col s4 m5" id="ingredient20_name">
                       <input type="text" name="ingredient20_name" class="validate">
                       <label for="ingredient20_name">Ingredient 20</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient20_quantity">
+                    <div class="input-field col s3 m3" id="ingredient20_quantity">
                       <input type="number" name="ingredient20_quantity" min="0" max="99" class="validate">
                       <label for="ingredient20_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s3 m3" id="ingredient9_units">
+                    <div class="input-field col s4 m3" id="ingredient9_units">
                       <select name="ingredient20_units">
                         <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>

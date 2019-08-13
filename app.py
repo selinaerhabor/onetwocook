@@ -221,14 +221,8 @@ def insert_recipe():
 # Selected cuisine_type of 'Add a Recipe' Form to mLab Database
 @app.route('/create_recipe_for_this/<cuisine_type>')
 def create_recipe_for_this(cuisine_type):
-    cuisines = mongo.db.cuisines.find(cuisine_type).limit(1)
-    if 'username' in session:
-        cuisines = mongo.db.recipes.find()
-        selected_cuisine_type = cuisine_type
-        return render_template('addrecipe.html', selected_cuisine_type = selected_cuisine_type, cuisines = cuisines)
-    else:
-        return redirect(url_for('login'))
-    return render_template('addrecipe.html')
+    selected_cuisine_type = cuisine_type
+    return render_template('addrecipe.html', selected_cuisine_type = selected_cuisine_type)
 
 # Update cuisines in mLab database
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
