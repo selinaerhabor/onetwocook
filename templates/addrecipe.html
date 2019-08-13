@@ -30,6 +30,9 @@
                       <option value="" disabled selected>Cuisine</option>
                       {% for cuisine in cuisines %}
                         <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
+                        {% else %}
+                        
+                      <option value="{{selected_cuisine_type}}" selected>{{selected_cuisine_type}}</option>
                       {% endfor %}
                     </select>
                     <label>Cuisine Type<span class="input_required">*</span></label>
