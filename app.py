@@ -104,11 +104,11 @@ def recipes_for_cuisine(cuisine_type):
 # View Recipe Page (Recipes where public_visibility = 'on')
 @app.route('/load_recipe/<recipe_name>/<recipe_id>/')
 def load_recipe(recipe_name, recipe_id):
+    cuisines = mongo.db.cuisines.find()
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     heading = recipe_name
     previous_url = 'recipes_for_cuisine'
-    previous_page = 'Recipes'
-    return render_template('viewrecipe.html', recipes = view_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
+    return render_template('viewrecipe.html', recipes = view_recipe, cuisines = cuisines, heading = heading, previous_url = previous_url)
     
 # View Your Recipe Page (via Manage Your Recipes)
 @app.route('/load_your_recipe/<recipe_name>/<recipe_id>')
@@ -217,12 +217,7 @@ def insert_recipe():
         'public_visibility': request.form.get('public_visibility')
     })
     return redirect(url_for('manage_recipes'))
-    
-# Selected cuisine_type of 'Add a Recipe' Form to mLab Database
-@app.route('/create_recipe_for_this/<cuisine_type>')
-def create_recipe_for_this(cuisine_type):
-    selected_cuisine_type = cuisine_type
-    return render_template('addrecipe.html', selected_cuisine_type = selected_cuisine_type)
+
 
 # Update cuisines in mLab database
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
@@ -254,16 +249,23 @@ def recipe_from_index(recipe_id, recipe_name):
     return render_template('viewrecipe.html', recipes = view_recipe, previous_url = previous_url, previous_page = previous_page)
 
 # Delete created Cuisine Type
-@app.route('/delete_cuisine/<cuisine_id>')
-def delete_cuisine(cuisine_id):
-    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
-    return redirect(url_for('manage_recipes'))
+@app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
+def delete_cuisine(cuisine_id, cuisine_type):
+    recipe = mongo.db.recipes.distinct('cuisine_type')
+    selected_cuisine = mongo.db.cuisines.find_one({'_id': ObjectId(cuisine_id), 'cuisine_type': cuisine_type})
+    if selected_cuisine['cuisine_type'] in recipe:
+        delete_cuisine = False
+        return render_template('managerecipes.html', selected_cuisine=selected_cuisine, 
+                recipe=recipe)
+    else:
+        delete_cuisine = mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
+    return redirect('managerecipes.html', delete_cuisine = delete_cuisine)
     
 # Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('manage_recipes'))
+    return render_template(url_for('manage_recipes'))
 
 if __name__ == '__main__':
     app.run(host = os.environ.get('IP'),
