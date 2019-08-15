@@ -13,7 +13,7 @@
             {% endif %}
           </div>
         </div>
-        <h2 class="center">{{heading}}</h2>
+        <h2 class="center">{{heading|capitalize }}</h2>
         <div class="row">
           {% for recipe in recipes %}
             <div class="col s12 m6 l4 xl4">
@@ -44,14 +44,10 @@
               <h4>No recipes have been created yet or made public for this cuisine. 
               You can return back to the home page to choose another cuisine or create a recipe.</h4> 
             {% if "username" in session %}
-            {% for cuisine in cuisines %}
-              <a href="{{url_for('create_recipe_for_this', cuisine_type = cuisine.cuisine_type )}}" class="btn" id="createRecipeBtn">Create a Recipe</a>
-            {% endfor %}
+              <a href="{{url_for('add_recipe')}}" class="btn">Create a Recipe</a>
             {% else %}
               <a href="{{url_for('login')}}" class="btn">Create a Recipe</a>
             {% endif %}
-            
-          
           </div>
           {% endfor %}
         </div>

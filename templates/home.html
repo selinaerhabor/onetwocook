@@ -9,7 +9,7 @@
               <h2 class="center">
                 <!-- Personalised greeting for users who submitted their name-->
                 {% if "username" in session %}
-                  Welcome {{ session['username'] }} !
+                  Welcome {{ session['username']}} !
                 {% else %}
                   Welcome Guest 
                 {% endif %}
@@ -44,13 +44,13 @@
                         <img class="activator" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" />
                       {% endif %}
                       <div class="overlay">
-                        <p class="text">{{cuisine.cuisine_summary}}</p>
+                        <p class="text">{{cuisine.cuisine_summary |capitalize }}</p>
                       </div>
                     </a>
                   </div>
                   <div class="card-content">
                     <a class="link" href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
-                      <h3 class="cuisine-type">{{cuisine.cuisine_type}}</h3>
+                      <h3 class="cuisine-type">{{cuisine.cuisine_type |capitalize }}</h3>
                     </a>
                   </div>
                 </div>
