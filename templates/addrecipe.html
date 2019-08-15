@@ -108,8 +108,8 @@
                       <input id="ingredient1_name" placeholder="Ingredient 1" type="text" name="ingredient1_name" lass="validate" required>
                       <label for="ingredient1_name">Ingredient<span class="input_required">*</span></label>
                     </div>
-                    <div class="input-field col s3 m3">
-                      <input id="ingredient1_quantity" placeholder="Qty" type="number" name="ingredient1_quantity" min="0" max="99" class="validate" required>
+                    <div class="input-field col s3 m3" id="ingredient1_quantity">
+                      <input placeholder="Qty" type="number" name="ingredient1_quantity" min="0" max="9999" step=".01" class="validate" required>
                       <label for="ingredient1_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s4 m3">
@@ -136,8 +136,8 @@
                       <input id="ingredient2_name" type="text" name="ingredient2_name" class="validate">
                       <label for="ingredient2_name">Ingredient 2</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                      <input id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" max="99" class="validate">
+                    <div class="input-field col s3 m3" id="ingredient2_quantity">
+                      <input type="number" name="ingredient2_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient2_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
@@ -164,8 +164,8 @@
                       <input id="ingredient3_name" type="text" name="ingredient3_name" class="validate">
                       <label for="ingredient3_name">Ingredient 3</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                      <input id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" max="99" class="validate">
+                    <div class="input-field col s3 m3" id="ingredient3_quantity">
+                      <input type="number" name="ingredient3_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient3_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
@@ -192,8 +192,8 @@
                       <input id="ingredient4_name" type="text" name="ingredient4_name" class="validate">
                       <label for="ingredient4_name">Ingredient 4</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                      <input id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" max="99" class="validate">
+                    <div class="input-field col s3 m3" id="ingredient4_quantity" >
+                      <input type="number" name="ingredient4_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient4_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
@@ -221,7 +221,7 @@
                       <label for="ingredient_name5">Ingredient 5</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient5_quantity">
-                      <input id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient5_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient5_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient5_units">
@@ -249,7 +249,7 @@
                       <label for="ingredient6_name">Ingredient 6</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient6_quanity">
-                      <input id="ingredient6_quantity" type="number" name="ingredient6_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient6_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient6_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient6_units">
@@ -277,7 +277,7 @@
                       <label for="ingredient7_name">Ingredient 7</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient7_quantity">
-                      <input type="number" name="ingredient7_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient7_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient7_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient7_units">
@@ -305,7 +305,7 @@
                       <label for="ingredient8_name">Ingredient 8</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient8_quantity">
-                      <input type="number" name="ingredient8_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient8_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient8_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient8_units">
@@ -333,7 +333,7 @@
                       <label for="ingredient9_name">Ingredient 9</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient9_quantity">
-                      <input type="number" name="ingredient9_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient9_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient9_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient9_units">
@@ -361,7 +361,7 @@
                       <label for="ingredient10_name">Ingredient 10</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient10_quantity">
-                      <input type="number" name="ingredient10_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient10_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient10_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient10_units">
@@ -389,7 +389,7 @@
                       <label for="ingredient11_name">Ingredient 11</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient11_quantity">
-                      <input type="number" name="ingredient11_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient11_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient11_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient11_units">
@@ -417,7 +417,7 @@
                       <label for="ingredient12_name">Ingredient 12</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient12_quantity">
-                      <input type="number" name="ingredient12_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient12_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient12_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient12_units">
@@ -445,7 +445,7 @@
                       <label for="ingredient13_name">Ingredient 13</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient13_quantity">
-                      <input type="number" name="ingredient13_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient13_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient13_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient13_units">
@@ -473,7 +473,7 @@
                       <label for="ingredient14_name">Ingredient 14</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient14_quantity">
-                      <input type="number" name="ingredient14_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient14_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient14_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient14_units">
@@ -501,7 +501,7 @@
                       <label for="ingredient15_name">Ingredient 15</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient15_quantity">
-                      <input type="number" name="ingredient15_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient15_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient15_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient15_units">
@@ -529,7 +529,7 @@
                       <label for="ingredient16_name">Ingredient 16</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient16_quantity">
-                      <input type="number" name="ingredient16_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient16_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient16_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient16_units">
@@ -557,7 +557,7 @@
                       <label for="ingredient17_name">Ingredient 17</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient17_quantity">
-                      <input type="number" name="ingredient17_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient17_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient17_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient17_units">
@@ -585,7 +585,7 @@
                       <label for="ingredient18_name">Ingredient 18</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient18_quantity">
-                      <input type="number" name="ingredient18_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient18_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient18_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient18_units">
@@ -613,7 +613,7 @@
                       <label for="ingredient19_name">Ingredient 19</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient19_quantity">
-                      <input type="number" name="ingredient19_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient19_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient19_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient19_units">
@@ -641,7 +641,7 @@
                       <label for="ingredient20_name">Ingredient 20</label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient20_quantity">
-                      <input type="number" name="ingredient20_quantity" min="0" max="99" class="validate">
+                      <input type="number" name="ingredient20_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient20_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3" id="ingredient9_units">
@@ -670,7 +670,7 @@
                 <!--Preparation & Cook Times-->
                 <div class="row">
                   <div class="input-field col s7 m2">
-                    <input id="preparation_time" placeholder="Prep Time" type="time" name="preparation_time" min="0" class="validate">
+                    <input id="preparation_time" placeholder="Prep Time" type="number" step=".01" name="preparation_time" min="0" class="validate">
                     <label for="preparation_time">Prep Time:</label>
                   </div>
                   <div class="input-field col s5 m2">
@@ -683,7 +683,7 @@
                     <label for="pt_units">Units</label>
                   </div>
                   <div class="input-field col s7 m2">
-                    <input id="cook_time" type="time" name="cook_time" min="0" class="validate" required>
+                    <input id="cook_time" type="number" placeholder="Cook Time" name="cook_time" min="0" step=".01" class="validate" required>
                     <label for="cook_time">Cook Time:<span class="input_required">*</span></label>
                   </div>
                   <div class="input-field col s5 m2" name="ct_units">
