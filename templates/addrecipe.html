@@ -4,15 +4,21 @@
     <div class="background responsive-img">
       <div class="container">
         <div class="card-panel addrecipe-border">
+          
+          <!--Back to previous page link-->
           <div class="row">
             <div class="col s12">
               <a href="{{url_for('login')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
             </div>
           </div>
+          
           <div class="row">
             <div class="col s12">
               <h2>Add A Recipe</h2>
+              
+              <!--Page Divider-->
               <div class="divider"></div>
+              
               <!--Modal - More Info. Add a Recipe Form-->
               <div id="moreInfo" class="modal">
                 <div class="modal-content">
@@ -22,17 +28,21 @@
                   to the <a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses">UK Food Standards Agency.</a></p>
                 </div>
               </div>
+              
               <form id="recipe_form" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
+                
+                <!--RECIPE SUMMARY SECTION-->
                 <h4 class="sub-title">Summary</h4>
+                
+                <!--Cuisine Type-->
                 <div class="row">
                   <div class="input-field col s6 m3 xl2" id="cuisine_type">
                     <select name="cuisine_type" required>
                       <option value="" disabled selected>Cuisine</option>
                       {% for cuisine in cuisines %}
                         <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
-                        {% else %}
-                        
-                      <option value="{{selected_cuisine_type}}" selected>{{selected_cuisine_type}}</option>
+                      {% else %}
+                        <option value="{{selected_cuisine_type}}" selected>{{selected_cuisine_type}}</option>
                       {% endfor %}
                     </select>
                     <label>Cuisine Type<span class="input_required">*</span></label>
@@ -41,18 +51,24 @@
                     <a href="{{url_for('add_cuisine')}}" class="btn">Add Cuisine</a>
                   </span>
                 </div>
+                
+                <!--Recipe Name-->
                 <div class="row">
                   <div class="input-field col s12 m8">
                     <input id="recipe_name" placeholder="Recipe Name" type="text" name="recipe_name" class="validate" required>
                     <label for="recipe_name">Recipe Name<span class="input_required">*</span></label>
                   </div>
                 </div>
+                
+                <!--Recipe Summary-->
                 <div class="row">
                   <div class="input-field col s12 m8">
                     <input id="recipe_summary" placeholder="Recipe Summary" type="text" name="recipe_summary" maxlength="95" class="validate" required>
                     <label for="recipe_summary">Recipe Summary<span class="input_required">*</span></label>
                   </div>
                 </div>
+                
+                <!--Recipe Serves-->
                 <div class="row">
                   <div class="input-field col s4 m3">
                     <input id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
@@ -80,18 +96,24 @@
                     <label>Allergens<span class="input_required">*</span></label>
                   </div>
                   </div>
+                  
+                <!--Gluten Free Checkbox-->
                 <div class="row">
                     <div class="col s12">
                       <input type="checkbox" id="gluten-free" name="gluten-free">
                       <label for="gluten-free">Gluten-free</label>
                     </div>
                   </div>
+                  
+                <!--Suitable for Vegetarian Checkbox-->
                 <div class="row">
                     <div class="col s12">
                       <input type="checkbox" id="vegetarian" name="vegetarian">
                       <label for="vegetarian">Suitable for Vegetarians</label>
                     </div>
                   </div>
+                  
+                <!--Need Help For Form Completion Modal-->
                 <div class="row">
                   <div class="input-field col s12 m11">
                     <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
@@ -99,7 +121,13 @@
                     <a href="#moreInfo" class="btn modal-trigger">Need help?</a>
                   </div>
                 </div>
+                
+                <!--/RECIPE SUMMARY SECTION-->
+                
+                <!--Page Divider-->
                 <div class="divider"></div>
+                
+                <!--INGREDIENTS SECTION-->
                 <h4 class="sub-title">Ingredients</h4>
                 <p>(Maximum: 20 Ingredients)</p>
                 <section id="ingredients">
@@ -149,12 +177,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient2_units">Units</label>
                     </div>
@@ -177,12 +205,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient3_units">Units</label>
                     </div>
@@ -205,12 +233,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient4_units">Units</label>
                     </div>
@@ -233,12 +261,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient5_units">Units</label>
                     </div>
@@ -261,12 +289,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient6_units">Units</label>
                     </div>
@@ -289,12 +317,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient7_units">Units</label>
                     </div>
@@ -317,12 +345,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient8_units">Units</label>
                     </div>
@@ -345,12 +373,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient9_units">Units</label>
                     </div>
@@ -373,12 +401,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient10_units">Units</label>
                     </div>
@@ -401,12 +429,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient11_units">Units</label>
                     </div>
@@ -429,12 +457,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient12_units">Units</label>
                     </div>
@@ -457,12 +485,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient13_units">Units</label>
                     </div>
@@ -485,12 +513,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient14_units">Units</label>
                     </div>
@@ -513,12 +541,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient15_units">Units</label>
                     </div>
@@ -541,12 +569,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient16_units">Units</label>
                     </div>
@@ -569,12 +597,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient17_units">Units</label>
                     </div>
@@ -597,12 +625,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient18_units">Units</label>
                     </div>
@@ -625,12 +653,12 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient19_units">Units</label>
                     </div>
@@ -644,7 +672,7 @@
                       <input type="number" name="ingredient20_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient20_quantity">Qty</label>
                     </div>
-                    <div class="input-field col s4 m3" id="ingredient9_units">
+                    <div class="input-field col s4 m3" id="ingredient20_units">
                       <select name="ingredient20_units">
                         <option value="" selected>Units</option>
                         <option value="can(s)">can(s)</option>
@@ -653,20 +681,27 @@
                         <option value="tablespoon(s)">tablespoon(s)</option>
                         <option value="cup(s)">cup(s)</option>
                         <option value="millimetres(mm)">millimetres(mm)</option>
-                          <option value="centimetres(cm)">centimetres(cm)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                          <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
                       <label for="ingredient20_units">Units</label>
                     </div>
                   </div>
                 </section>
+                <!--/INGREDIENTS SECTION-->
+                
+                <!--Page Divider-->
                 <div class="divider"></div>
+                
+                <!--METHOD SECTION-->
+                
                 <h4 class="sub-title">Method</h4>
                 <p>(Maximum: 10 Steps)</p>
+                
                 <!--Preparation & Cook Times-->
                 <div class="row">
                   <div class="input-field col s7 m2">
@@ -696,6 +731,7 @@
                     <label for="ct_units">Units<span class="input_required">*</span></label>
                   </div>
                 </div>
+                
                 <!--Method Steps-->
                 <section id="method">
                   <div class="row" id="method_step1">
@@ -789,7 +825,13 @@
                     </div>
                   </div>
                 </section>
+                
+                <!--/METHOD SECTION-->
+                
+                <!--Page Divider-->
                 <div class="divider"></div>
+                
+                <!--Author Details-->
                 <h4 class="sub-title">Author:</h4>
                 <div class="row">
                   <div class="input-field col s12 m4">
@@ -805,6 +847,8 @@
                     <label for="author_region">Your Region</label>
                   </div>
                 </div>
+                
+                <!--Public Visibility Setting-->
                 <div class="row">
                   <div class="col s12">
                     <p class="caption">Make Recipe Public</p>
@@ -818,12 +862,15 @@
                       </div>
                   </div>
                 </div>
+                
                 <!--Add a Recipe Requirements Message-->
                 <div class="row">
                   <div class="col s12">
                     <p>In order to submit a recipe, please ensure all fields with <span class="input_required">*</span> have been completed</p>
                   </div>
                 </div>
+                
+                <!--Submit Button-->
                 <div class="row">
                   <div class="col s12">
                     <button class="btn waves-effect waves-light" type="submit">
@@ -832,6 +879,7 @@
                     </button>
                   </div>
                 </div>
+                
               </form>
             </div>
           </div>
