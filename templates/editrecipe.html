@@ -4,816 +4,981 @@
     <div class="background responsive-img">
       <div class="container">
         <div class="card-panel recipe-border">
-          <h2>Edit A Recipe</h2>
+          
+          <!--Back to Previous Page Link-->
           <div class="row">
             <div class="col s12">
               <a href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
             </div>
           </div>
+          
+          <h2>Edit A Recipe</h2>
+          
+          <!--Page Divider-->
           <div class="divider"></div>
+          
           <div class="row">
             <div class="col s12">
+              
+              <!--Page Divider-->
               <div class="divider"></div>
-                <form id="recipe_form" action="{{url_for('update_recipe', recipe_id = recipes._id)}}" method="POST" class="col s12">
-                  <h4 class="sub-title">Summary</h4>
-                  <div class="row">
-                    <div class="input-field col s4 m2 xl2" id="cuisine_type">
-                      <select name="cuisine_type" required>
-                          <option value="{{recipes.cuisine_type}}" selected>{{recipes.cuisine_type}}</option>
-                          {% for cuisine in cuisines %}
-                            <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
-                          {% endfor %}
-                      </select>
-                      <label>Cuisine Type<span class="input_required">*</span></label>
-                    </div>
-                    <span class="input-field col s6" id="cuisine_type" name="cuisine_type">
-                      <a href="{{url_for('add_cuisine')}}" class="btn">Add a new cuisine</a>
-                    </span>
+              
+              <!--Modal - Need help in completing Add a Recipe Form-->
+              <div id="needHelp" class="modal">
+                <div class="modal-content">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                  <h4>Completing the Add a Recipe Form</h4>
+                  <div class="divider"></div>
+                  <ol>
+                    <li>Summary Section</li>
+                    <div class="uppercase">Cuisine type</div>
+                    You can choose to select from the dropdown list a cuisine type or you could add a new cuisine by clicking on the Add Cuisine button 
+                    besides it. This will redirect you to a simple form where you will be required to type in the cuisine type you wish to create and a summary 
+                    of the cuisine.
+                    <div class="uppercase">Recipe Name</div>
+                    This is the name you would like to call the recipe you are creating. If your recipe has been set to make recipe public, then this is 
+                    the name that everyone will see on the site.
+                    <div class="uppercase">Recipe Summary</div>
+                    This is a summary for the recipe you are creating to give users an idea of what your recipe is about and why they should have a go
+                    to try it. Should be a maximum of 95 characters.
+                    <div class="uppercase">Serves</div>
+                    Serves refers to the number of people the recipe will cater for regarding the size of the food to be cooked. For example a serves of 5 means
+                    the recipe ingredients are enough to feed up to 5 people.
+                    <div class="uppercase">Not sure what Allergens your recipe may have?</div>
+                    The allergens listed on the dropdown list of this Add a Recipe form have been taken from the main 14 allergens in ingredients according
+                    to the <a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses">UK Food Standards Agency.</a>
+                    <div class="uppercase">Gluten Free Checkbox</div>
+                    A gluten-free diet is a diet that excludes the protein gluten. Gluten is found in grains such as wheat, barley, rye, and a cross 
+                    between wheat and rye called triticale. If your recipe is gluten free, tick this box before submitting.
+                    <div class="uppercase">Suitable for Vegetarians Checkbox</div>
+                    A Vegetarian is someone who does not eat meat or fish, and sometimes other animal products, especially for moral, religious, or health 
+                    reasons. If your recipe is suitable for vegetarians, tick this box before submitting.
+                    <div class="uppercase">Recipe Image URL</div>
+                    In order to add an appropriate recipe image URL, we advise using google images to find your image. First, make a search for a
+                    suitable image on google, then click on the image to be redirected to the website it is from. Next, drag the image from the
+                    website into the current tab window and you should be redirected to a page which just displays the image.
+                    Copy the link that appears on that page, it should end with .jpg/.jpeg/.png. Paste this link into the Recipe Image URL field.
+                    <li>Ingredients Section</li>
+                    <div class="uppercase">Ingredient Name</div>
+                    This is the name of one item of ingredient for your recipe. Once you begin typing in your ingredient name, more input fields for 
+                    ingredients will appear below. Maximum number of ingredients is 20.
+                    <div class="uppercase">Ingredient Quantity</div>
+                    This is the quantity of the item of ingredient for your recipe that you mentioned on the left. 
+                    <div class="uppercase">Ingredient Units</div>
+                    This is the quantity units of the item of ingredient for your recipe that you mentioned on the left. If no units are required 
+                    for an ingredient, do not select any of the units in the dropdown.
+                    <li>Method Section</li>
+                    <div class="uppercase">Prep Time</div>
+                    Prep Time is short for Preparation Time. This is the time you advise users to prepare things before you actually begin cooking, it
+                    could include for example slicing onions and washing vegetables. A couple of minutes will be an ideal prep time.
+                    <div class="uppercase">Cook Time</div>
+                    This is the time you advise users that completing the recipe will take, this includes the completion of all the method steps
+                    listed. A recipe cook time shouldn't be too long as this is likely to make it unpopular, recipe cook times must be realistic and 
+                    appropriate.
+                    <div class="uppercase">Method Steps</div>
+                    Maximum number of steps is 10. Place each method step in chronological order, with the first step on 1. These should be clear
+                    instructions for a user to follow to successfully cook the meal.
+                    <li>What happens if I make my recipe public?</li>
+                    If you make your recipe public, everyone who visits the site will see your recipe among the other recipes made public on OneTwoCook.
+                    On our website, we display your recipe along with your name and region at the bottom of your recipe's page. We do not display date 
+                    of births, as this information is used for user identification purposes only and will not be shared with third parties.
+                  </ol>
+                </div>
+              </div>
+              
+              <!--Add a Recipe Form-->
+              <form id="recipe_form" action="{{url_for('update_recipe', recipe_id = recipes._id)}}" method="POST" class="col s12">
+                
+                <!--RECIPE SUMMARY SECTION-->
+                <h4 class="sub-title">Summary</h4>
+                
+                <!--Cuisine Type-->
+                <div class="row">
+                  <div class="input-field col s6 m3 xl2" id="cuisine_type">
+                    <select name="cuisine_type" required>
+                      <option value="{{recipes.cuisine_type}}" selected>{{recipes.cuisine_type}}</option>
+                      {% for cuisine in cuisines %}
+                        <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
+                      {% endfor %}
+                    </select>
+                    <label>Cuisine Type<span class="input_required">*</span></label>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s8 m6">
-                      <input value="{{recipes.recipe_name}}" id="recipe_name" placeholder="Recipe Name" type="text" name="recipe_name" class="validate" required>
-                      <label for="recipe_name">Recipe Name<span class="input_required">*</span></label>
+                  <span class="input-field col s6" id="cuisine_type" name="cuisine_type">
+                    <a href="{{url_for('add_cuisine')}}" class="btn">Add Cuisine</a>
+                  </span>
+                </div>
+                
+                <!--Recipe Name-->
+                <div class="row">
+                  <div class="input-field col s12 m8">
+                    <input value="{{recipes.recipe_name}}" id="recipe_name" placeholder="Recipe Name" type="text" name="recipe_name" class="validate" required>
+                    <label for="recipe_name">Recipe Name<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                
+                <!--Recipe Summary-->
+                <div class="row">
+                  <div class="input-field col s12 m8">
+                    <input value="{{recipes.recipe_summary}}" id="recipe_summary" placeholder="Recipe Summary" maxlength="180" type="text" name="recipe_summary" class="validate" required>
+                    <label for="recipe_summary">Recipe Summary<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  
+                  <!--Recipe Serves-->
+                  <div class="input-field col s4 m3">
+                    <input value="{{recipes.recipe_serves}}" id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
+                    <label for="recipe_serves">Serves:<span class="input_required">*</span></label>
+                  </div>
+                  
+                  <!--Allergens-->
+                  <div class="input-field col s8 m5" id="allergens">
+                    <select name="allergens" multiple placeholder="Allergens" class="select-options" required>
+                      <option value="{{recipes.allergens}}" disabled selected>{{recipes.allergens}}</option>
+                      <option value="no allergens">No Allergens</option>
+                      <option value="celery">Celery</option>
+                      <option value="crustaceans">Crustaceans</option>
+                      <option value="eggs">Eggs</option>
+                      <option value="fish">Fish</option>
+                      <option value="gluten">Gluten</option>
+                      <option value="lupin">Lupin</option>
+                      <option value="milk">Milk</option>
+                      <option value="molluscs">Molluscs</option>
+                      <option value="mustard">Mustard</option>
+                      <option value="peanuts">Peanuts</option>
+                      <option value="sesame seeds">Sesame Seeds</option>
+                      <option value="soy beans">Soy Beans</option>
+                      <option value="sulphur dioxide">Sulphur Dioxide</option>
+                      <option value="tree nuts">Tree Nuts</option>
+                    </select>
+                    <label>Allergens<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                  
+                <!--Gluten Free Checkbox-->
+                <div class="row">
+                  <div class="col s12">
+                    <p class="caption">Gluten-free</p>
+                    <div class="switch">
+                      <label for="gluten_free">
+                        <b>NO</b>
+                        <!--{% if recipes.gluten_free == "on" %}-->
+                        <!--  <input type="checkbox" class="filled-in" checked="checked" id="gluten_free" name="gluten_free">-->
+                        <!--{% else %}-->
+                        <!--  <input type="checkbox" id="gluten_free" name="gluten_free">-->
+                        <!--{% endif %}-->
+                        <span class="lever"></span>
+                        <b>YES</b>
+                      </label>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s8">
-                      <input value="{{recipes.recipe_summary}}" id="recipe_summary" placeholder="Recipe Summary" maxlength="180" type="text" name="recipe_summary" class="validate" required>
-                      <label for="recipe_summary">Recipe Summary<span class="input_required">*</span></label>
+                </div>
+                  
+                <!--Suitable for Vegetarian Checkbox-->
+                <div class="row">
+                  <div class="col s12">
+                    <p class="caption">Suitable for Vegetarians</p>
+                    <div class="switch">
+                      <label for="vegetarian">
+                      <b>NO</b>
+                      {% if recipes.vegetarian == "on" %}
+                        <input type="checkbox" class="filled-in" checked="checked" id="vegetarian" name="vegetarian">
+                      {% else %}
+                        <input type="checkbox" id="vegetarian" name="vegetarian">
+                      {% endif %}
+                      <span class="lever"></span>
+                      <b>YES</b>
+                      </label>
                     </div>
                   </div>
+                </div>
+                
+                <!--Recipe Image URL & Need Help For Form Completion Modal-->
+                <div class="row">
+                  <div class="input-field col s12 m11">
+                    <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
+                    <input value="{{recipes.img_path}}" id="img_path" placeholder="Enter here a link to an image of outcome of your recipe" type="text" name="img_path" class="validate" required>
+                    <a href="#needHelp" class="btn modal-trigger">Need help?</a>
+                  </div>
+                </div>
+                <!--/RECIPE SUMMARY SECTION-->
+                
+                <!--Page Divider-->
+                <div class="divider"></div>
+                
+                <!--INGREDIENTS SECTION-->
+                <h4 class="sub-title">Ingredients</h4>
+                <p>(Maximum: 20 Ingredients)</p>
+                
+                <section id="ingredients">
                   <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient1_name}}" id="ingredient1_name" placeholder="Ingredient 1" type="text" name="ingredient1_name" lass="validate" required>
+                      <label for="ingredient1_name">Ingredient<span class="input_required">*</span></label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient1_quantity}}" id="ingredient1_quantity" placeholder="Qty" type="number" name="ingredient1_quantity" min="0" max="9999" step=".01" class="validate" required>
+                      <label for="ingredient1_quantity">Quantity</label>
+                    </div>
                     <div class="input-field col s4 m3">
-                      <input value="{{recipes.recipe_serves}}" id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
-                      <label for="recipe_serves">Serves:<span class="input_required">*</span></label>
-                    </div>
-                    <div class="input-field col s8 m5" id="allergens">
-                      <select name="allergens" multiple placeholder="Allergens" required>
-                        <option value="{{recipes.allergens}}" selected>{{recipes.allergens}}</option>
-                        <option value="no allergens">No Allergens</option>
-                        <option value="celery">Celery</option>
-                        <option value="crustaceans">Crustaceans (e.g. prawns & lobsters)</option>
-                        <option value="eggs">Eggs</option>
-                        <option value="fish">Fish</option>
-                        <option value="gluten">Gluten (incl. wheat, barley & oats)</option>
-                        <option value="lupin">Lupin</option>
-                        <option value="milk">Milk</option>
-                        <option value="molluscs">Molluscs (e.g. mussels & oysters)</option>
-                        <option value="mustard">Mustard</option>
-                        <option value="peanuts">Peanuts</option>
-                        <option value="sesame seeds">Sesame Seeds</option>
-                        <option value="soy beans">Soy Beans</option>
-                        <option value="sulphur dioxide">Sulphur Dioxide</option>
-                        <option value="tree nuts">Tree Nuts (incl. almonds & cashews)</option>
+                      <select name="ingredient1_units">
+                        <option value="{{recipes.ingredients.ingredient1_units}}" selected>{{recipes.ingredients.ingredient1_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
-                      <label>Allergens<span class="input_required">*</span></label>
-                      <span class="helper-text" data-error="wrong" data-success="right"><a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses" target="_blank"><i class="material-icons">help</i></a></span>
+                      <label for="ingredient1_units">Units</label>
                     </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s6 m6">
-                            <p class="caption">Gluten-free</p>
-                            <div class="switch">
-                                <label for="gluten-free">
-                                    <b>NO</b>
-                                    <input type="checkbox" class="filled-in" checked="checked" id="gluten-free" name="gluten-free">
-                                    <span class="lever"></span>
-                                    <b>YES</b>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s6 m6">
-                            <p class="caption">Suitable for Vegetarians</p>
-                            <div class="switch">
-                                <label for="vegetarian">
-                                    <b>NO</b>
-                                    <input type="checkbox" class="filled-in" checked="checked" id="vegetarian" name="vegetarian">
-                                    <span class="lever"></span>
-                                    <b>YES</b>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12 m11">
-                            <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
-                            <input value="{{recipes.img_path}}" id="img_path" placeholder="Enter here a link to an image of outcome of your recipe" type="text" name="img_path" class="validate" required>
-                            <p class="help-block"><small>Please enter here an image url for the final outcome of your meal</small></p>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <h4 class="sub-title">Ingredients</h4>
-                    <p>(Maximum: 20 Ingredients)</p>
-                    <section id="ingredients">
-                        <div class="row">
-                            <div class="input-field col s4 m5">
-                                <input value="{{recipes.ingredients.ingredient1_name}}" placeholder="Ingredient 1" type="text" name="ingredient1_name" lass="validate" required>
-                                <label for="ingredient1_name">Ingredient<span class="input_required">*</span></label>
-                            </div>
-                      <div class="input-field col s3 m3">
-                        <input value="{{recipes.ingredients.ingredient1_quantity}}" id="ingredient1_quantity" placeholder="Qty" type="number" name="ingredient1_quantity" min="0" max="99" class="validate" required>
-                        <label for="ingredient1_quantity">Quantity</label>
-                      </div>
-                      <div class="input-field col s4 m3">
-                        <select name="ingredient1_units">
-                          <option value="{{recipes.ingredients.ingredient1_units}}" selected>{{recipes.ingredients.ingredient1_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient1_units">Units</label>
-                      </div>
-                    </div>
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient2_name}}" type="text" name="ingredient2_name" class="validate">
-                        <label for="ingredient2_name">Ingredient 2</label>
-                      </div>
-                      <div class="input-field col s4 m3">
-                        <input value="{{recipes.ingredients.ingredient2_quantity}}" id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient2_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3">
-                        <select name="ingredient2_units">
-                          <option value="{{recipes.ingredients.ingredient2_units}}" selected>{{recipes.ingredients.ingredient2_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient2_units">Units</label>
-                      </div>
-                    </div>
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient3_name}}" type="text" name="ingredient3_name" class="validate">
-                        <label for="ingredient3_name">Ingredient 3</label>
-                      </div>
-                      <div class="input-field col s4 m3">
-                        <input value="{{recipes.ingredients.ingredient3_quantity}}" id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient3_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3">
-                        <select name="ingredient3_units">
-                          <option value="{{recipes.ingredients.ingredient3_units}}" selected>{{recipes.ingredients.ingredient3_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient3_units">Units</label>
-                      </div>
-                    </div>
-                    {% if recipes.ingredients.ingredient4_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient4_name}}" type="text" name="ingredient4_name" class="validate">
-                        <label for="ingredient4_name">Ingredient 4</label>
-                      </div>
-                      <div class="input-field col s4 m3">
-                        <input value="{{recipes.ingredients.ingredient4_quantity}}" id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient4_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3">
-                        <select name="ingredient4_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient4_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient5_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient5_name}}" id="ingredient5_name" type="text" name="ingredient5_name" class="validate">
-                        <label for="ingredient_name5">Ingredient 5</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient5_quantity">
-                        <input value="{{recipes.ingredients.ingredient5_quantity}}" id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient5_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient5_units">
-                        <select name="ingredient5_units" id="ingredient5_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient5_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient6_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient6_name}}" id="ingredient6_name" type="text" name="ingredient6_name" class="validate">
-                        <label for="ingredient6_name">Ingredient 6</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient6_quanity">
-                        <input value="{{recipes.ingredients.ingredient6_quantity}}" id="ingredient6_quantity" type="number" name="ingredient6_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient6_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient6_units">
-                        <select name="ingredient6_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient6_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient7_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient7_name}}" id="ingredients7_name" type="text" name="ingredients7_name" class="validate">
-                        <label for="ingredient7_name">Ingredient 7</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient7_quantity">
-                        <input value="{{recipes.ingredients.ingredient7_quantity}}" type="number" name="ingredient7_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient7_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="newIngredientUnits">
-                        <select name="ingredient7_units" id="ingredient7_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient7_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient8_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient8_name}}" type="text" name="ingredient8_name" class="validate">
-                        <label for="ingredient8_name">Ingredient 8</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient8_quantity">
-                        <input value="{{recipes.ingredients.ingredient8_quantity}}" type="number" name="ingredient8_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient8_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient8_units">
-                        <select name="ingredient8_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient8_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient9_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient9_name}}" type="text" name="ingredient9_name" class="validate">
-                        <label for="ingredient9_name">Ingredient 9</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient9_quantity">
-                        <input value="{{recipes.ingredients.ingredient9_quantity}}" type="number" name="ingredient9_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient9_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient9_units">
-                        <select name="ingredient9_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient9_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient10_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient10_name}}" type="text" name="ingredient10_name" class="validate">
-                        <label for="ingredient10_name">Ingredient 10</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient10_quantity">
-                        <input value="{{recipes.ingredients.ingredient10_quantity}}" type="number" name="ingredient10_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient10_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient10_units">
-                        <select name="ingredient10_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient10_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient11_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient11_name}}" type="text" name="ingredient11_name" class="validate">
-                        <label for="ingredient11_name">Ingredient 11</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient11_quantity">
-                        <input value="{{recipes.ingredients.ingredient11_quantity}}" type="number" name="ingredient11_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient11_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient11_units">
-                        <select name="ingredient11_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient11_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient12_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient12_name}}" type="text" name="ingredient12_name" class="validate">
-                        <label for="ingredient12_name">Ingredient 12</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient12_quantity">
-                        <input value="{{recipes.ingredients.ingredient12_quantity}}" type="number" name="ingredient12_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient12_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient12_units">
-                        <select name="ingredient12_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient12_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient13_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient13_name}}" type="text" name="ingredient13_name" class="validate">
-                        <label for="ingredient13_name">Ingredient 13</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient13_quantity">
-                        <input value="{{recipes.ingredients.ingredient13_quantity}}" type="number" name="ingredient13_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient13_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient13_units">
-                        <select name="ingredient13_units">
-                          <option value="" disabled selected>Units</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient13_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient14_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient14_name}}" type="text" name="ingredient14_name" class="validate">
-                        <label for="ingredient14_name">Ingredient 14</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient14_quantity">
-                        <input value="{{recipes.ingredients.ingredient14_quantity}}" type="number" name="ingredient14_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient14_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient14_units">
-                        <select name="ingredient14_units">
-                          <option value="{{recipes.ingredients.ingredient14_units}}" selected>{{recipes.ingredients.ingredient14_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient14_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient15_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient15_name}}" type="text" name="ingredient15_name" class="validate">
-                        <label for="ingredient15_name">Ingredient 15</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient15_quantity">
-                        <input value="{{recipes.ingredients.ingredient15_quantity}}" type="number" name="ingredient15_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient15_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient15_units">
-                        <select name="ingredient15_units">
-                          <option value="{{recipes.ingredients.ingredient15_units}}" selected>{{recipes.ingredients.ingredient15_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient15_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient16_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient16_name}}" type="text" name="ingredient16_name" class="validate">
-                        <label for="ingredient16_name">Ingredient 16</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient16_quantity">
-                        <input value="{{recipes.ingredients.ingredient16_quantity}}" type="number" name="ingredient16_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient16_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient16_units">
-                        <select name="ingredient16_units">
-                          <option value="{{recipes.ingredients.ingredient16_units}}" selected>{{recipes.ingredients.ingredient16_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient16_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient17_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient17_name}}" type="text" name="ingredient17_name" class="validate">
-                        <label for="ingredient17_name">Ingredient 17</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient17_quantity">
-                        <input value="{{recipes.ingredients.ingredient17_quantity}}" type="number" name="ingredient17_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient17_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient17_units">
-                        <select name="ingredient17_units">
-                          <option value="{{recipes.ingredients.ingredient17_units}}" selected>{{recipes.ingredients.ingredient17_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient17_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient18_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient18_name}}" type="text" name="ingredient18_name" class="validate">
-                        <label for="ingredient18_name">Ingredient 18</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient18_quantity">
-                        <input value="{{recipes.ingredients.ingredient18_quantity}}" type="number" name="ingredient18_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient18_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient18_units">
-                        <select name="ingredient18_units">
-                          <option value="{{recipes.ingredients.ingredient18_units}}" selected>{{recipes.ingredients.ingredient18_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient18_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient19_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient19_name}}" type="text" name="ingredient19_name" class="validate">
-                        <label for="ingredient19_name">Ingredient 19</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient19_quantity">
-                        <input value="{{recipes.ingredients.ingredient19_quantity}}" type="number" name="ingredient19_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient19_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient19_units">
-                        <select name="ingredient19_units">
-                          <option value="{{recipes.ingredients.ingredient19_units}}" selected>{{recipes.ingredients.ingredient19_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient19_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.ingredients.ingredient20_name %}
-                    <div class="row" class="ingredientRow">
-                      <div class="input-field col s5 m5">
-                        <input value="{{recipes.ingredients.ingredient20_units}}" type="text" name="ingredient20_name" class="validate">
-                        <label for="ingredient20_name">Ingredient 20</label>
-                      </div>
-                      <div class="input-field col s4 m3" id="ingredient20_quantity">
-                        <input value="{{recipes.ingredients.ingredient20_units}}" type="number" name="ingredient20_quantity" min="0" max="99" class="validate">
-                        <label for="ingredient20_quantity">Qty</label>
-                      </div>
-                      <div class="input-field col s3 m3" id="ingredient20_units">
-                        <select name="ingredient20_units">
-                          <option value="{{recipes.ingredients.ingredient20_units}}" selected>{{recipes.ingredients.ingredient20_units}}</option>
-                          <option value="can(s)">can(s)</option>
-                          <option value="pinch(es)">pinch(es)</option>
-                          <option value="teaspoon(s)">teaspoon(s)</option>
-                          <option value="tablespoon(s)">tablespoon(s)</option>
-                          <option value="cup(s)">cup(s)</option>
-                          <option value="millilitres(ml)">millilitres(ml)</option>
-                          <option value="milligrams(mg)">milligrams(mg)</option>
-                          <option value="litres(l)">litres(l)</option>
-                          <option value="grams(g)">grams(g)</option>
-                        </select>
-                        <label for="ingredient20_units">Units</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                  </section>
-                  <div class="divider"></div>
-                    <h4 class="sub-title">Method</h4>
-                    <p>(Maximum: 10 Steps)</p>
+                  </div>
                   <div class="row">
-                    <div class="input-field col s7 m2">
-                      <input value="{{recipes.preparation_time}}" id="preparation_time" placeholder="Prep Time" type="number" name="preparation_time" min="0" class="validate">
-                      <label for="preparation_time">Prep Time:</label>
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient2_name}}" id="ingredient2_name" type="text" name="ingredient2_name" class="validate">
+                      <label for="ingredient2_name">Ingredient 2</label>
                     </div>
-                    <div class="input-field col s5 m2">
-                      <select name="pt_units" required>
-                        <option value="{{recipes.pt_units}}" selected>{{recipes.pt_units}}</option>
-                        <option value="second(s)">second(s)</option>
-                        <option value="minute(s)">minute(s)</option>
-                        <option value="hour(s)">hour(s)</option>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient2_quantity}}" id="ingredient2_quantity" type="number" name="ingredient2_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient2_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient2_units">
+                        <option value="{{recipes.ingredients.ingredient2_units}}" selected>{{recipes.ingredients.ingredient2_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
-                      <label for="pt_units">Units</label>
+                      <label for="ingredient2_units">Units</label>
                     </div>
-                    <div class="input-field col s7 m2">
-                      <input value="{{recipes.cook_time}}" id="cook_time" placeholder="Cook Time" type="number" name="cook_time" min="0" class="validate" required>
-                      <label for="cook_time">Cook Time: <span class="input_required">*</span></label>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient3_name}}" id="ingredient3_name" type="text" name="ingredient3_name" class="validate">
+                      <label for="ingredient3_name">Ingredient 3</label>
                     </div>
-                    <div class="input-field col s5 m2">
-                      <select name="ct_units" required>
-                        <option value="{{recipes.ct_units}}" selected>{{recipes.ct_units}}</option>
-                        <option value="second(s)">second(s)</option>
-                        <option value="minute(s)">minute(s)</option>
-                        <option value="hour(s)">hour(s)</option>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient3_quantity}}" id="ingredient3_quantity" type="number" name="ingredient3_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient3_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient3_units">
+                        <option value="{{recipes.ingredients.ingredient3_units}}" selected>{{recipes.ingredients.ingredient3_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
                       </select>
-                      <label for="ct_units">Units<span class="input_required">*</span></label>
-                    </div>
-                  </div>
-                  <section id="method">
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>1.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step1}}" type="text" name="method_step1" class="validate">
-                        <label for="method_step1">Step 1<span class="input_required">*</span></label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>2.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step2}}" type="text" name="method_step2" class="validate">
-                        <label for="method_step2">Step 2</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>3.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step3}}" type="text" name="method_step3" class="validate">
-                        <label for="method_step3">Step 3</label>
-                      </div>
-                    </div>
-                    {% if recipes.method.method_step4 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>4.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step4}}" type="text" name="method_step4" class="validate">
-                        <label for="method_step4">Step 4</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.method.method_step5 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>5.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step5}}" type="text" name="method_step5" class="validate">
-                        <label for="method_step5">Step 5</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.method.method_step6 %}
-                      <div class="row">
-                        <div class="input-field col s1">
-                          <p>6.</p>
-                        </div>
-                        <div class="input-field col s10">
-                          <input value="{{recipes.method.method_step6}}" type="text" name="method_step6" class="validate">
-                          <label for="method_step6">Step 6</label>
-                        </div>
-                      </div>
-                    {% endif %}
-                    {% if recipes.method.method_step7 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>7.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step7}}" type="text" name="method_step7" class="validate">
-                        <label for="method_step7">Step 7</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.method.method_step8 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>8.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step8}}" type="text" name="method_step8" class="validate">
-                        <label for="method_step8">Step 8</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.method.method_step9 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>9.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step9}}" type="text" name="method_step9" class="validate">
-                        <label for="method_step9">Step 9</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if recipes.method.method_step10 %}
-                    <div class="row">
-                      <div class="input-field col s1">
-                        <p>10.</p>
-                      </div>
-                      <div class="input-field col s10">
-                        <input value="{{recipes.method.method_step10}}" type="text" name="method_step10" class="validate">
-                        <label for="method_step10">Step 10</label>
-                      </div>
-                    </div>
-                    {% endif %}
-                  </section>
-                  <div class="divider"></div>
-                  <h4 class="sub-title">Author:</h4>
-                  <div class="row">
-                    <div class="col s6 m3">
-                        <input name="author_username" disabled value="{{recipes.author.author_username}}"/>
-                        <label for="Author Region">Your Region</label>
-                        <input name="author_region" disabled value="{{recipes.author.author_region}}"/>
+                      <label for="ingredient3_units">Units</label>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col s7 m3">
-                      <p class="caption">Make Recipe Public</p>
-                        <div class="switch">
-                          <label for="public_visibility">
-                            <b>NO</b>
-                            {% if recipes.public_visibility == "on" %}
-                              <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
-                            {% else %}
-                              <input type="checkbox" id="public_visibility" name="public_visibility">
-                            {% endif %}
-                            <span class="lever"></span>
-                            <b>YES</b>
-                          </label>
-                        </div>
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient4_name}}" id="ingredient4_name" type="text" name="ingredient4_name" class="validate">
+                      <label for="ingredient4_name">Ingredient 4</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient4_quantity}}" id="ingredient4_quantity" type="number" name="ingredient4_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient4_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient4_units" id="ingredient4_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient4_units">Units</label>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col s7 offset-s5 m7 offset-m9">
-                      <button class="btn waves-effect waves-light" type="submit">
-                        Submit
-                        <i class="material-icons right">send</i>
-                      </button>
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient5_name}}" id="ingredient5_name" type="text" name="ingredient5_name" class="validate">
+                      <label for="ingredient_name5">Ingredient 5</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient5_quantity}}" id="ingredient5_quantity" type="number" name="ingredient5_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient5_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient5_units" id="ingredient5_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient5_units">Units</label>
                     </div>
                   </div>
-            </form>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient6_name}}" id="ingredient6_name" type="text" name="ingredient6_name" class="validate">
+                      <label for="ingredient6_name">Ingredient 6</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient6_quantity}}" id="ingredient6_quantity" type="number" name="ingredient6_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient6_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient6_units" id="ingredient6_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient6_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient7_name}}" id="ingredient7_name" type="text" name="ingredient7_name"  step=".01" class="validate">
+                      <label for="ingredient7_name">Ingredient 7</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient7_quantity}}" id="ingredient7_quantity" type="number" name="ingredient7_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient7_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient7_units" id="ingredient7_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient7_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient8_name}}" id="ingredient8_name" type="text" name="ingredient8_name" class="validate">
+                      <label for="ingredient8_name">Ingredient 8</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient8_quantity}}" type="number" name="ingredient8_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient8_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient8_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient8_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient9_name}}" id="ingredient9_name" type="text" name="ingredient9_name" class="validate">
+                      <label for="ingredient9_name">Ingredient 9</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient9_quantity}}" id="ingredient9_quantity" type="number" name="ingredient9_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient9_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient9_units" id="ingredient9_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient9_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient10_name}}" id="ingredient10_name" type="text" name="ingredient10_name" class="validate">
+                      <label for="ingredient10_name">Ingredient 10</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient10_quantity}}" id="ingredient10_quantity" type="number" name="ingredient10_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient10_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient10_units" id="ingredient10_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient10_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient11_name}}" id="ingredient11_name" type="text" name="ingredient11_name" class="validate">
+                      <label for="ingredient11_name">Ingredient 11</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient11_quantity}}" id="ingredient11_quantity" type="number" name="ingredient11_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient11_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient11_units" id="ingredient11_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient11_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient12_name}}" id="ingredient12_name" type="text" name="ingredient12_name" class="validate">
+                      <label for="ingredient12_name">Ingredient 12</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient12_quantity}}" id="ingredient12_quantity" type="number" name="ingredient12_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient12_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient12_units" id="ingredient12_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient12_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient13_name}}" id="ingredient13_name" type="text" name="ingredient13_name" class="validate">
+                      <label for="ingredient13_name">Ingredient 13</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient13_quantity}}" id="ingredient13_quantity" type="number" name="ingredient13_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient13_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient13_units" id="ingredient13_units">
+                        <option value="" disabled selected>Units</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient13_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient14_name}}" id="ingredient14_name" type="text" name="ingredient14_name" class="validate">
+                      <label for="ingredient14_name">Ingredient 14</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient14_quantity}}" id="ingredient14_quantity" type="number" name="ingredient14_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient14_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient14_units" id="ingredient14_units">
+                        <option value="{{recipes.ingredients.ingredient14_units}}" selected>{{recipes.ingredients.ingredient14_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient14_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient15_name}}" id="ingredient15_name" type="text" name="ingredient15_name" class="validate">
+                      <label for="ingredient15_name">Ingredient 15</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient15_quantity}}" id="ingredient15_quantity" type="number" name="ingredient15_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient15_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient15_units" id="ingredient15_units">
+                        <option value="{{recipes.ingredients.ingredient15_units}}" selected>{{recipes.ingredients.ingredient15_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient15_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient16_name}}" id="ingredient16_name" type="text" name="ingredient16_name" class="validate">
+                      <label for="ingredient16_name">Ingredient 16</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient16_quantity}}" id="ingredient16_quantity" type="number" name="ingredient16_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient16_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient16_units" id="ingredient16_units">
+                        <option value="{{recipes.ingredients.ingredient16_units}}" selected>{{recipes.ingredients.ingredient16_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient16_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient17_name}}" id="ingredient17_name" type="text" name="ingredient17_name" class="validate">
+                      <label for="ingredient17_name">Ingredient 17</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient17_quantity}}" id="ingredient17_quantity" type="number" name="ingredient17_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient17_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient17_units" id="ingredient17_units">
+                        <option value="{{recipes.ingredients.ingredient17_units}}" selected>{{recipes.ingredients.ingredient17_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient17_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient18_name}}" id="ingredient18_name" type="text" name="ingredient18_name" class="validate">
+                      <label for="ingredient18_name">Ingredient 18</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient18_quantity}}" id="ingredient18_quantity" type="number" name="ingredient18_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient18_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient18_units" id="ingredient18_units">
+                        <option value="{{recipes.ingredients.ingredient18_units}}" selected>{{recipes.ingredients.ingredient18_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient18_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient19_name}}" id="ingredient19_name" type="text" name="ingredient19_name" class="validate">
+                      <label for="ingredient19_name">Ingredient 19</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient19_quantity}}" id="ingredient19_quantity" type="number" name="ingredient19_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient19_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient19_units" id="ingredient19_units">
+                        <option value="{{recipes.ingredients.ingredient19_units}}" selected>{{recipes.ingredients.ingredient19_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient19_units">Units</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4 m5">
+                      <input value="{{recipes.ingredients.ingredient20_name}}" id="ingredient20_name" type="text" name="ingredient20_name" class="validate">
+                      <label for="ingredient20_name">Ingredient 20</label>
+                    </div>
+                    <div class="input-field col s3 m3">
+                      <input value="{{recipes.ingredients.ingredient20_units}}" id="ingredient20_quantity" type="number" name="ingredient20_quantity" min="0" max="9999" step=".01" class="validate">
+                      <label for="ingredient20_quantity">Qty</label>
+                    </div>
+                    <div class="input-field col s4 m3">
+                      <select name="ingredient20_units" id="ingredient20_units">
+                        <option value="{{recipes.ingredients.ingredient20_units}}" selected>{{recipes.ingredients.ingredient20_units}}</option>
+                        <option value="can(s)">can(s)</option>
+                        <option value="pinch(es)">pinch(es)</option>
+                        <option value="teaspoon(s)">teaspoon(s)</option>
+                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="cup(s)">cup(s)</option>
+                        <option value="millimetres(mm)">millimetres(mm)</option>
+                        <option value="centimetres(cm)">centimetres(cm)</option>
+                        <option value="millilitres(ml)">millilitres(ml)</option>
+                        <option value="milligrams(mg)">milligrams(mg)</option>
+                        <option value="litres(l)">litres(l)</option>
+                        <option value="grams(g)">grams(g)</option>
+                        <option value="kilograms(kg)">kilograms(kg)</option>
+                      </select>
+                      <label for="ingredient20_units">Units</label>
+                    </div>
+                  </div>
+                </section>
+                <!--/INGREDIENTS SECTION-->
+              
+                <!--Page Divider-->
+                <div class="divider"></div>
+                
+                <!--METHOD SECTION-->
+                <h4 class="sub-title">Method</h4>
+                <p>(Maximum: 10 Steps)</p>
+              
+                <!--Preparation & Cook Time-->
+                <div class="row">
+                  <div class="input-field col s7 m2">
+                    <input value="{{recipes.preparation_time}}" id="preparation_time" placeholder="Prep Time" type="number" name="preparation_time" min="0"  step=".01" class="validate">
+                    <label for="preparation_time">Prep Time:</label>
+                  </div>
+                  <div class="input-field col s5 m2">
+                    <select name="pt_units" required>
+                      <option value="{{recipes.pt_units}}" disabled selected>{{recipes.pt_units}}</option>
+                      <option value="second(s)">second(s)</option>
+                      <option value="minute(s)">minute(s)</option>
+                      <option value="hour(s)">hour(s)</option>
+                    </select>
+                    <label for="pt_units">Units</label>
+                  </div>
+                  <div class="input-field col s7 m2">
+                    <input value="{{recipes.cook_time}}" id="cook_time" placeholder="Cook Time" type="number" name="cook_time" min="0" step=".01" class="validate" required>
+                    <label for="cook_time">Cook Time: <span class="input_required">*</span></label>
+                  </div>
+                  <div class="input-field col s5 m2">
+                    <select name="ct_units" required>
+                      <option value="{{recipes.ct_units}}" disabled selected>{{recipes.ct_units}}</option>
+                      <option value="second(s)">second(s)</option>
+                      <option value="minute(s)">minute(s)</option>
+                      <option value="hour(s)">hour(s)</option>
+                    </select>
+                    <label for="ct_units">Units<span class="input_required">*</span></label>
+                  </div>
+                </div>
+                
+                <!--Method Steps-->
+                <section id="method">
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>1.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step1}}" type="text" name="method_step1" class="validate">
+                      <label for="method_step1">Step 1<span class="input_required">*</span></label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>2.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step2}}" type="text" name="method_step2" class="validate">
+                      <label for="method_step2">Step 2</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>3.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step3}}" type="text" name="method_step3" class="validate">
+                      <label for="method_step3">Step 3</label>
+                    </div>
+                  </div>
+                  {% if recipes.method.method_step4 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>4.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step4}}" type="text" name="method_step4" class="validate">
+                      <label for="method_step4">Step 4</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if recipes.method.method_step5 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>5.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step5}}" type="text" name="method_step5" class="validate">
+                      <label for="method_step5">Step 5</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if recipes.method.method_step6 %}
+                    <div class="row">
+                      <div class="input-field col s1">
+                        <p>6.</p>
+                      </div>
+                      <div class="input-field col s10">
+                        <input value="{{recipes.method.method_step6}}" type="text" name="method_step6" class="validate">
+                        <label for="method_step6">Step 6</label>
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if recipes.method.method_step7 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>7.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step7}}" type="text" name="method_step7" class="validate">
+                      <label for="method_step7">Step 7</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if recipes.method.method_step8 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>8.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step8}}" type="text" name="method_step8" class="validate">
+                      <label for="method_step8">Step 8</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if recipes.method.method_step9 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>9.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step9}}" type="text" name="method_step9" class="validate">
+                      <label for="method_step9">Step 9</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if recipes.method.method_step10 %}
+                  <div class="row">
+                    <div class="input-field col s1">
+                      <p>10.</p>
+                    </div>
+                    <div class="input-field col s10">
+                      <input value="{{recipes.method.method_step10}}" type="text" name="method_step10" class="validate">
+                      <label for="method_step10">Step 10</label>
+                    </div>
+                  </div>
+                  {% endif %}
+                </section>
+                <!--/METHOD SECTION-->
+                
+                <!--Page Divider-->
+                <div class="divider"></div>
+                
+                <!--Author Details-->
+                <h4 class="sub-title">Author:</h4>
+                <div class="row">
+                  <div class="input-field col s12 m4">
+                    <input disabled value="{{ session['username'] }}" id="author_name" type="text" name="author_username" class="validate">
+                    <label for="author_username">Your Name</label>
+                  </div>
+                  <div class="input-field col s12 m5">
+                    <input disabled value="{{ session['user_dob'] }}" type="text" id="user_dob" name="author_dob">
+                    <label for="author_dob">User ID (Hidden from public)</label>
+                  </div>
+                  <div class="input-field col s12 m3">
+                    <input disabled value="{{ session['user_region'] }}" type="text" id="user_region" name="author_region">
+                    <label for="author_region">Your Region</label>
+                  </div>
+                </div>
+                
+                <!--Public Visibility Status-->
+                <div class="row">
+                  <div class="col s7 m3">
+                    <p class="caption">Make Recipe Public</p>
+                      <div class="switch">
+                        <label for="public_visibility">
+                          <b>NO</b>
+                          {% if recipes.public_visibility == "on" %}
+                            <input type="checkbox" class="filled-in" checked="checked" id="public_visibility" name="public_visibility">
+                          {% else %}
+                            <input type="checkbox" id="public_visibility" name="public_visibility">
+                          {% endif %}
+                          <span class="lever"></span>
+                          <b>YES</b>
+                        </label>
+                      </div>
+                  </div>
+                </div>
+                
+                <!--Requirements Message-->
+                <div class="row">
+                  <div class="col s12">
+                    <p>In order to submit a recipe, please ensure all fields with <span class="input_required">*</span> have been completed</p>
+                  </div>
+                </div>
+                
+                <!--Submit Button-->
+                <div class="row">
+                  <div class="col s12">
+                    <button class="btn waves-effect waves-light" type="submit">
+                      Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+                    
+              </form>
+              
             </div>
           </div>
         </div>

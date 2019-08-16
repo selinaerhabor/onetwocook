@@ -20,12 +20,13 @@
               <div class="divider"></div>
               
               <!--Modal - Need help in completing Add a Recipe Form-->
-              <div id="needHelp" class="modal modal-close">
+              <div id="needHelp" class="modal">
                 <div class="modal-content">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
                   <h4>Completing the Add a Recipe Form</h4>
                   <div class="divider"></div>
                   <ol>
-                    <li>Completing Summary Section</li>
+                    <li>Summary Section</li>
                     <div class="uppercase">Cuisine type</div>
                     You can choose to select from the dropdown list a cuisine type or you could add a new cuisine by clicking on the Add Cuisine button 
                     besides it. This will redirect you to a simple form where you will be required to type in the cuisine type you wish to create and a summary 
@@ -53,7 +54,7 @@
                     suitable image on google, then click on the image to be redirected to the website it is from. Next, drag the image from the
                     website into the current tab window and you should be redirected to a page which just displays the image.
                     Copy the link that appears on that page, it should end with .jpg/.jpeg/.png. Paste this link into the Recipe Image URL field.
-                    <li>Completing Ingredients Section</li>
+                    <li>Ingredients Section</li>
                     <div class="uppercase">Ingredient Name</div>
                     This is the name of one item of ingredient for your recipe. Once you begin typing in your ingredient name, more input fields for 
                     ingredients will appear below. Maximum number of ingredients is 20.
@@ -62,7 +63,7 @@
                     <div class="uppercase">Ingredient Units</div>
                     This is the quantity units of the item of ingredient for your recipe that you mentioned on the left. If no units are required 
                     for an ingredient, do not select any of the units in the dropdown.
-                    <li>Completing Method Section</li>
+                    <li>Method Section</li>
                     <div class="uppercase">Prep Time</div>
                     Prep Time is short for Preparation Time. This is the time you advise users to prepare things before you actually begin cooking, it
                     could include for example slicing onions and washing vegetables. A couple of minutes will be an ideal prep time.
@@ -81,6 +82,7 @@
                 </div>
               </div>
               
+              <!--Add a Recipe form-->
               <form id="recipe_form" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
                 
                 <!--RECIPE SUMMARY SECTION-->
@@ -93,8 +95,6 @@
                       <option value="" disabled selected>Cuisine</option>
                       {% for cuisine in cuisines %}
                         <option value="{{ cuisine.cuisine_type|capitalize }}">{{ cuisine.cuisine_type }}</option>
-                      {% else %}
-                        <option value="{{selected_cuisine_type}}" selected>{{selected_cuisine_type}}</option>
                       {% endfor %}
                     </select>
                     <label>Cuisine Type<span class="input_required">*</span></label>
@@ -120,52 +120,53 @@
                   </div>
                 </div>
                 
-                <!--Recipe Serves-->
                 <div class="row">
+                  <!--Recipe Serves-->
                   <div class="input-field col s4 m3">
                     <input id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
                     <label for="recipe_serves">Serves:<span class="input_required">*</span></label>
                   </div>
+                  <!--Allergens-->
                   <div class="input-field col s8 m5" id="allergens">
                     <select name="allergens" multiple placeholder="Allergens" required>
-                      <option value="" disabled>Allergens</option>
+                      <option value="" disabled selected>Allergens</option>
                       <option value="no allergens">No Allergens</option>
                       <option value="celery">Celery</option>
-                      <option value="crustaceans">Crustaceans (e.g. prawns & lobsters)</option>
+                      <option value="crustaceans">Crustaceans</option>
                       <option value="eggs">Eggs</option>
                       <option value="fish">Fish</option>
-                      <option value="gluten">Gluten (incl. wheat, barley & oats)</option>
+                      <option value="gluten">Gluten</option>
                       <option value="lupin">Lupin</option>
                       <option value="milk">Milk</option>
-                      <option value="molluscs">Molluscs (e.g. mussels & oysters)</option>
+                      <option value="molluscs">Molluscs</option>
                       <option value="mustard">Mustard</option>
                       <option value="peanuts">Peanuts</option>
                       <option value="sesame seeds">Sesame Seeds</option>
                       <option value="soy beans">Soy Beans</option>
                       <option value="sulphur dioxide">Sulphur Dioxide</option>
-                      <option value="tree nuts">Tree Nuts (incl. almonds & cashews)</option>
+                      <option value="tree nuts">Tree Nuts</option>
                     </select>
                     <label>Allergens<span class="input_required">*</span></label>
                   </div>
-                  </div>
+                </div>
                   
                 <!--Gluten Free Checkbox-->
                 <div class="row">
-                    <div class="col s12">
-                      <input type="checkbox" id="gluten-free" name="gluten-free">
-                      <label for="gluten-free">Gluten-free</label>
-                    </div>
+                  <div class="col s12">
+                    <input type="checkbox" id="gluten_free" name="gluten_free">
+                    <label for="gluten_free">Gluten-free</label>
                   </div>
+                </div>
                   
                 <!--Suitable for Vegetarian Checkbox-->
                 <div class="row">
-                    <div class="col s12">
-                      <input type="checkbox" id="vegetarian" name="vegetarian">
-                      <label for="vegetarian">Suitable for Vegetarians</label>
-                    </div>
+                  <div class="col s12">
+                    <input type="checkbox" id="vegetarian" name="vegetarian">
+                    <label for="vegetarian">Suitable for Vegetarians</label>
                   </div>
+                </div>
                   
-                <!--Need Help For Form Completion Modal-->
+                <!--Recipe Image URL & Need Help For Form Completion Modal-->
                 <div class="row">
                   <div class="input-field col s12 m11">
                     <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
@@ -173,7 +174,6 @@
                     <a href="#needHelp" class="btn modal-trigger">Need help?</a>
                   </div>
                 </div>
-                
                 <!--/RECIPE SUMMARY SECTION-->
                 
                 <!--Page Divider-->
@@ -185,7 +185,7 @@
                 <section id="ingredients">
                   <div class="row" id="ingredientRow1">
                     <div class="input-field col s4 m5">
-                      <input id="ingredient1_name" placeholder="Ingredient 1" type="text" name="ingredient1_name" lass="validate" required>
+                      <input id="ingredient1_name" placeholder="Ingredient 1" type="text" name="ingredient1_name" class="validate" required>
                       <label for="ingredient1_name">Ingredient<span class="input_required">*</span></label>
                     </div>
                     <div class="input-field col s3 m3" id="ingredient1_quantity">
@@ -750,11 +750,10 @@
                 <div class="divider"></div>
                 
                 <!--METHOD SECTION-->
-                
                 <h4 class="sub-title">Method</h4>
                 <p>(Maximum: 10 Steps)</p>
                 
-                <!--Preparation & Cook Times-->
+                <!--Preparation & Cook Time-->
                 <div class="row">
                   <div class="input-field col s7 m2">
                     <input id="preparation_time" placeholder="Prep Time" type="number" step=".01" name="preparation_time" min="0" class="validate">
@@ -764,8 +763,8 @@
                     <select name="pt_units" required>
                       <option selected>Units</option>
                       <option value="second(s)">second(s)</option>
-                      <option value="minute(s)/seconds(s)">minute(s)/second(s)</option>
-                      <option value="hour(s)/minute(s)">hour(s)/minute(s)</option>
+                      <option value="minute(s)">minute(s)</option>
+                      <option value="hour(s)">hour(s)</option>
                     </select>
                     <label for="pt_units">Units</label>
                   </div>
@@ -777,8 +776,8 @@
                     <select name="ct_units" required>
                       <option selected>Units</option>
                       <option value="second(s)">second(s)</option>
-                      <option value="minute(s)/seconds(s)">minute(s)/seconds(s)</option>
-                      <option value="hour(s)/minute(s)">hour(s)/minute(s)</option>
+                      <option value="minute(s)">minute(s)</option>
+                      <option value="hour(s)">hour(s)</option>
                     </select>
                     <label for="ct_units">Units<span class="input_required">*</span></label>
                   </div>
@@ -877,7 +876,6 @@
                     </div>
                   </div>
                 </section>
-                
                 <!--/METHOD SECTION-->
                 
                 <!--Page Divider-->

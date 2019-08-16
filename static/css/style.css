@@ -267,6 +267,20 @@ p, h6 {
     cursor: pointer;
 }
 
+/*----------------------------------------------------------------Add A Recipe*/
+
+li{
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+    padding-top: 5px;
+}
+
+
+
 /*---------------------------------------------------------------Add A Cuisine*/
 
 .padding {
