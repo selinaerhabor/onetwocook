@@ -54,16 +54,10 @@ p, h6 {
     .text {
       text-align: center;
       color: white;
-      font-size: 15px;
-      position: absolute;
-      top: 25%;
-      left: 100%;
-      -moz-transform: translate(-50%, -50%);
-      -o-transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+      font-size: 12px;
+      margin: 5px;
     }
+
 }
 
 @media (max-width: 349px){
@@ -269,7 +263,7 @@ p, h6 {
 
 /*----------------------------------------------------------------Add A Recipe*/
 
-li{
+ol li{
     font-weight: bold;
     padding-top: 5px;
 }
@@ -279,12 +273,17 @@ li{
     padding-top: 5px;
 }
 
-
-
 /*---------------------------------------------------------------Add A Cuisine*/
 
 .padding {
     padding: 25px;
+}
+
+/*---------------------------------------------------------------Edit A Recipe*/
+
+.select-options {
+    font-size: 10px;
+    padding: 5px;
 }
 
 /*------------------------------------------------------------------Login Page*/

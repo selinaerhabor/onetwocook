@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col s12">
                         {% for recipe in recipes %}
-                            <h4 class="center">{{recipe.cuisine_type}} Recipe</h4>
+                            <h4 class="center">{{recipe.cuisine_type}}</h4>
                         {% if previous_url == 'recipes_for_cuisine' %}
                             <a class="left" href="{{url_for('recipes_for_cuisine', cuisine_type = recipe.cuisine_type)}}"><i class="material-icons left">arrow_back</i>Back to {{recipe.cuisine_type}} Recipes</a>
                         {% else %}
@@ -28,7 +28,7 @@
                         <p>Cook Time: {{recipe.cook_time}} {{recipe.ct_units}}</p>
                         <p>Preparation Time: {{recipe.preparation_time}} {{recipe.pt_units}}</p>
                         {% if recipe.allergens %}
-                            <p>Allergens: {{recipe.allergens.allergen_1}} {{recipe.allergens.allergen_2}} {{recipe.allergens.allergen_3}} {{recipe.allergens.allergen_4}} {{recipe.allergens.allergen_5}}</p>
+                            <p>Allergens: {{recipe.allergens|capitalize}}</p>
                         {% else %}
                             <p>Allergens: None listed</p>
                         {% endif %}
@@ -45,31 +45,77 @@
                     </div>
                     <div class="col s3">
                         <p>{{recipe.ingredients.ingredient1_quantity}} {{recipe.ingredients.ingredient1_units}}  {{recipe.ingredients.ingredient1_name}}</p>
-                        <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_units}}  {{recipe.ingredients.ingredient2_name}}</p>
-                        <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_units}}  {{recipe.ingredients.ingredient3_name}}</p>
-                        <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_units}}  {{recipe.ingredients.ingredient4_name}}</p>
-                        <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_units}}  {{recipe.ingredients.ingredient5_name}}</p>
+                        {% if recipe.ingredients.ingredient2_name and recipe.ingredients.ingredient2_units != "None" %}
+                            <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_units}}  {{recipe.ingredients.ingredient2_name}}</p>
+                        {% else %}
+                            <p>{{recipe.ingredients.ingredient2_quantity}} {{recipe.ingredients.ingredient2_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient3_name and recipe.ingredients.ingredient3_units != "None" %}
+                            <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_units}}  {{recipe.ingredients.ingredient3_name}}</p>
+                        {% else %}
+                            <p>{{recipe.ingredients.ingredient3_quantity}} {{recipe.ingredients.ingredient3_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient4_name and recipe.ingredients.ingredient4_units != "None" %}
+                            <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_units}}  {{recipe.ingredients.ingredient4_name}}</p>
+                        {% else %}
+                            <p>{{recipe.ingredients.ingredient4_quantity}} {{recipe.ingredients.ingredient4_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient5_name and recipe.ingredients.ingredient5_units != "None" %}
+                            <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_units}}  {{recipe.ingredients.ingredient5_name}}</p>
+                        {% else %}
+                            <p>{{recipe.ingredients.ingredient5_quantity}} {{recipe.ingredients.ingredient5_name}}</p>
+                        {% endif %}
                     </div>
                     <div class="col s3">
-                        <p>{{recipe.ingredients.ingredient6_quantity}} {{recipe.ingredients.ingredient6_units}}  {{recipe.ingredients.ingredient6_name}}</p>
-                        <p>{{recipe.ingredients.ingredient7_quantity}} {{recipe.ingredients.ingredient7_units}}  {{recipe.ingredients.ingredient7_name}}</p>
-                        <p>{{recipe.ingredients.ingredient8_quantity}} {{recipe.ingredients.ingredient8_units}}  {{recipe.ingredients.ingredient8_name}}</p>
-                        <p>{{recipe.ingredients.ingredient9_quantity}} {{recipe.ingredients.ingredient9_units}}  {{recipe.ingredients.ingredient9_name}}</p>
-                        <p>{{recipe.ingredients.ingredient10_quantity}} {{recipe.ingredients.ingredient10_units}} {{recipe.ingredients.ingredient10_name}}</p>
+                        {% if recipe.ingredients.ingredient6_name %}
+                            <p>{{recipe.ingredients.ingredient6_quantity}} {{recipe.ingredients.ingredient6_units}}  {{recipe.ingredients.ingredient6_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient7_name %}
+                            <p>{{recipe.ingredients.ingredient7_quantity}} {{recipe.ingredients.ingredient7_units}}  {{recipe.ingredients.ingredient7_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient8_name %}
+                            <p>{{recipe.ingredients.ingredient8_quantity}} {{recipe.ingredients.ingredient8_units}}  {{recipe.ingredients.ingredient8_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient9_name %}
+                            <p>{{recipe.ingredients.ingredient9_quantity}} {{recipe.ingredients.ingredient9_units}}  {{recipe.ingredients.ingredient9_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient10_name %}
+                            <p>{{recipe.ingredients.ingredient10_quantity}} {{recipe.ingredients.ingredient10_units}} {{recipe.ingredients.ingredient10_name}}</p>
+                        {% endif %}
                     </div>
                     <div class="col s3">
-                        <p>{{recipe.ingredients.ingredient11_quantity}} {{recipe.ingredients.ingredient11_units}} {{recipe.ingredients.ingredient11_name}}</p>
-                        <p>{{recipe.ingredients.ingredient12_quantity}} {{recipe.ingredients.ingredient12_units}} {{recipe.ingredients.ingredient12_name}}</p>
-                        <p>{{recipe.ingredients.ingredient13_quantity}} {{recipe.ingredients.ingredient13_units}} {{recipe.ingredients.ingredient13_name}}</p>
-                        <p>{{recipe.ingredients.ingredient14_quantity}} {{recipe.ingredients.ingredient14_units}} {{recipe.ingredients.ingredient14_name}}</p>
-                        <p>{{recipe.ingredients.ingredient15_quantity}} {{recipe.ingredients.ingredient15_units}} {{recipe.ingredients.ingredient15_name}}</p>
+                        {% if recipe.ingredients.ingredient11_name %}
+                            <p>{{recipe.ingredients.ingredient11_quantity}} {{recipe.ingredients.ingredient11_units}} {{recipe.ingredients.ingredient11_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient12_name %}
+                            <p>{{recipe.ingredients.ingredient12_quantity}} {{recipe.ingredients.ingredient12_units}} {{recipe.ingredients.ingredient12_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient13_name %}
+                            <p>{{recipe.ingredients.ingredient13_quantity}} {{recipe.ingredients.ingredient13_units}} {{recipe.ingredients.ingredient13_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient14_name %}
+                            <p>{{recipe.ingredients.ingredient14_quantity}} {{recipe.ingredients.ingredient14_units}} {{recipe.ingredients.ingredient14_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient15_name %}
+                            <p>{{recipe.ingredients.ingredient15_quantity}} {{recipe.ingredients.ingredient15_units}} {{recipe.ingredients.ingredient15_name}}</p>
+                        {% endif %}
                     </div>
                     <div class="col s3">
-                        <p>{{recipe.ingredients.ingredient16_quantity}} {{recipe.ingredients.ingredient16_units}} {{recipe.ingredients.ingredient16_name}}</p>
-                        <p>{{recipe.ingredients.ingredient17_quantity}} {{recipe.ingredients.ingredient17_units}} {{recipe.ingredients.ingredient17_name}}</p>
-                        <p>{{recipe.ingredients.ingredient18_quantity}} {{recipe.ingredients.ingredient18_units}} {{recipe.ingredients.ingredient18_name}}</p>
-                        <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
-                        <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
+                        {% if recipe.ingredients.ingredient16_name %}
+                            <p>{{recipe.ingredients.ingredient16_quantity}} {{recipe.ingredients.ingredient16_units}} {{recipe.ingredients.ingredient16_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient17_name %}
+                            <p>{{recipe.ingredients.ingredient17_quantity}} {{recipe.ingredients.ingredient17_units}} {{recipe.ingredients.ingredient17_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient18_name %}
+                            <p>{{recipe.ingredients.ingredient18_quantity}} {{recipe.ingredients.ingredient18_units}} {{recipe.ingredients.ingredient18_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient19_name %}
+                            <p>{{recipe.ingredients.ingredient19_quantity}} {{recipe.ingredients.ingredient19_units}} {{recipe.ingredients.ingredient19_name}}</p>
+                        {% endif %}
+                        {% if recipe.ingredients.ingredient20_name %}
+                            <p>{{recipe.ingredients.ingredient20_quantity}} {{recipe.ingredients.ingredient20_units}} {{recipe.ingredients.ingredient20_name}}</p>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">

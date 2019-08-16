@@ -18,20 +18,20 @@
               <h5 class="center">Recipes created by you: <b>{{user_recipe_count}}</b></h5>
               <div class="row">
                 <div class="col s12">
-                  
-                    {% for recipe in recipes %}
-                      <!--Modal - Delete Recipe-->
-                      <div id="deleteRecipe" class="modal">
-                        <div class="modal-content">
-                          <h4>Delete Confirmation for {{recipe.recipe_name}} recipe</h4>
-                          <p>Are you sure you wish to delete this recipe? This cannot be undone.</p>
-                        </div>
-                        <div class="modal-footer">
-                          <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
-                          <a href="{{url_for('manage_recipes')}}" class="modal-close waves-effect red btn">NO</a>
-                        </div>
+                    
+                  {% for recipe in recipes %}
+                    <!--Modal - Delete Recipe-->
+                    <div id="delete{{recipe.recipe_name}}" class="modal">
+                      <div class="modal-content">
+                        <h4>Delete confirmation for {{recipe.recipe_name}} recipe</h4>
+                        <p>Are you sure you wish to delete this recipe? This cannot be undone.</p>
                       </div>
-                      
+                      <div class="modal-footer">
+                        <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
+                        <a href="{{url_for('manage_recipes')}}" class="modal-close waves-effect red btn">NO</a>
+                      </div>
+                    </div>  
+                    
                       <!--Recipe Card Display-->
                       <div class="col s12 m6 l4 xl4">
                         <div class="card">
@@ -40,12 +40,12 @@
                           </div>
                           <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                            <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                            <h5 class="truncate">{{recipe.recipe_name|capitalize }}</h5>
                           </div>
                           <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4">
                               <i class="material-icons right">close</i>
-                              <h4>{{recipe.recipe_name}}</h4>
+                              <h4>{{recipe.recipe_name|capitalize }}</h4>
                               <hr>
                             </span>
                             <p>Public Visibility: {{recipe.public_visibility}}</p>
@@ -56,7 +56,7 @@
                               <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                             </div>
                             <div class="col-12">
-                              <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteRecipe">Delete<i class="material-icons right">delete</i></a>
+                              <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{recipe.recipe_name}}">Delete<i class="material-icons right">delete</i></a>
                             </div>
                           </div>
                         </div>
@@ -124,17 +124,17 @@
               
                 {% for cuisine in cuisines %}
                   <!--Modal - Delete Cuisine-->
-                  <div id="deleteCuisine" class="modal">
-                      <div class="modal-content">
-                        <h4>Delete Confirmation for {{cuisine.cuisine_type}} recipe</h4>
-                        <p>Are you sure you wish to delete this cuisine?</p>
-                      </div>
-                      <div class="modal-footer">
-                        <a href="{{url_for('delete_cuisine', cuisine_id = cuisine._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
-                        <a href="#manage_cuisines" class="modal-close waves-effect red btn">NO</a>
-                      </div>
+                  <div id="delete{{cuisine.cuisine_type}}" class="modal">
+                    <div class="modal-content">
+                      <h4>Confirmation to delete {{cuisine.cuisine_type|capitalize }} cuisine</h4>
+                      <p>Are you sure you wish to delete this cuisine?</p>
                     </div>
-                    
+                    <div class="modal-footer">
+                      <a href="{{url_for('delete_cuisine', cuisine_id = cuisine._id, cuisine_type = cuisine.cuisine_type)}}" class="modal-close waves-effect waves-green btn">YES</a>
+                      <a href="#manage_cuisines" class="modal-close waves-effect red btn">NO</a>
+                    </div>
+                  </div>
+                  
                   <!--Cuisine Card Display-->
                   <div class="col s12 m6 l4 xl4">
                     <div class="card">
@@ -143,12 +143,12 @@
                       </div>
                       <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-                          <h5 class="truncate">{{cuisine.cuisine_type}}</h5>
+                          <h5 class="truncate">{{cuisine.cuisine_type|capitalize }}</h5>
                       </div>
                       <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">
                           <i class="material-icons right">close</i>
-                          <h4>{{cuisine.cuisine_type}}</h4>
+                          <h4>{{cuisine.cuisine_type|capitalize }}</h4>
                           <hr>
                         </span>
                         <p>{{cuisine.cuisine_summary}}</p>
@@ -156,7 +156,7 @@
                           <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                         </div>
                         <div class="col-12">
-                          <a class="waves-effect waves-light red btn modal-trigger manager" href="#deleteCuisine">Delete<i class="material-icons right">delete</i></a>
+                          <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{cuisine.cuisine_type}}">Delete<i class="material-icons right">delete</i></a>
                         </div>
                       </div>
                     </div>

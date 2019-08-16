@@ -121,14 +121,16 @@
                 </div>
                 
                 <div class="row">
+                  
                   <!--Recipe Serves-->
                   <div class="input-field col s4 m3">
                     <input id="recipe_serves" placeholder="Serves" type="text" name="recipe_serves" class="validate" min="1" max="99" required/>
                     <label for="recipe_serves">Serves:<span class="input_required">*</span></label>
                   </div>
+                  
                   <!--Allergens-->
                   <div class="input-field col s8 m5" id="allergens">
-                    <select name="allergens" multiple placeholder="Allergens" required>
+                    <select multiple name="allergens" placeholder="Allergens" required>
                       <option value="" disabled selected>Allergens</option>
                       <option value="no allergens">No Allergens</option>
                       <option value="celery">Celery</option>
