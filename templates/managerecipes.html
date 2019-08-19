@@ -50,7 +50,7 @@
                             </span>
                             <p>Public Visibility: {{recipe.public_visibility}}</p>
                             <div class="col-12">
-                              <a href="{{url_for('load_your_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
+                              <a href="{{url_for('view_your_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
                             </div>
                             <div class="col-12"> 
                               <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
@@ -79,9 +79,9 @@
           <div class="col s12 m11 offset-m1">
             <div class="card-tabs">
               <ul class="tabs tabs-fixed-width">
-                <li class="tab"><a class="active" href="#saved_recipes">Saved Recipes</a></li>
-                <li class="tab"><a class="hide-on-small-only right" href="#manage_cuisines">Manage Your Cuisines</a></li>
-                <li class="tab"><a class="show-on-small hide-on-med-and-up right" href="#manage_cuisines">Your Cuisines</a></li>
+                <li class="tab fade-feature"><a class="" href="#saved_recipes">Saved Recipes</a></li>
+                <li class="tab"><a class="hide-on-small-only right active" href="#manage_cuisines">Manage Your Cuisines</a></li>
+                <li class="tab"><a class="show-on-small hide-on-med-and-up right active" href="#manage_cuisines">Your Cuisines</a></li>
               </ul>
             </div>
           </div>
@@ -89,7 +89,7 @@
             
         <!--Saved Recipes Information-->
         <section id="saved_recipes">
-          <div class="row">
+          <div class="row fade-feature">
             <div class="col s12">
               <h3 class="center">Saved Recipes</h3>
               
@@ -106,8 +106,10 @@
                 {% else %}
                   <!--If user has not saved any recipes, provide link for user if they want to create one-->
                     <p class="center"><b>{{ session['username'] }}, you have no saved recipes.</b></p>
-                    <p class="center">To save a recipe click on <a class="btn"><i class="material-icons">thumb_up</i></a> 
+                    <p class="center">To save a recipe click on <a class="btn tooltipped" data-position="bottom" data-tooltip="Coming Soon!"><i class="material-icons">thumb_up</i></a> 
                     by the title of a recipe and the recipes you liked will appear in this section.</p>
+                    <h1 class="center">Coming Soon!</h1>
+                    
                 {% endfor %}
               
             </div>
