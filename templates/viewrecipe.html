@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col s12 m6">
                         {% if "username" in session %}
-                            <h3>{{recipe.recipe_name}}<a class="btn right" id="thumbsUp"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
+                            <h3>{{recipe.recipe_name}}<a class="btn right fade-feature tooltipped" data-position="bottom" data-tooltip="Coming Soon!" id="thumbsUp"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
                         {% else %}
                             <h3>{{recipe.recipe_name}}<a class="btn right" href="{{url_for('login')}}"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
                         {% endif %}
@@ -27,7 +27,7 @@
                         <p>Serves: {{recipe.recipe_serves}} people</p>
                         <p>Cook Time: {{recipe.cook_time}} {{recipe.ct_units}}</p>
                         <p>Preparation Time: {{recipe.preparation_time}} {{recipe.pt_units}}</p>
-                        {% if recipe.allergens %}
+                        {% if recipe.allergens != "" %}
                             <p>Allergens: {{recipe.allergens|capitalize}}</p>
                         {% else %}
                             <p>Allergens: None listed</p>
