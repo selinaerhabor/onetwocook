@@ -1,5 +1,5 @@
 import os
-# import env
+import env
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -47,8 +47,9 @@ def home():
 # 'Add a Recipe' Page
 @app.route('/add_recipe')
 def add_recipe():
+    units = mongo.db.units.find().sort('ingredient_units', 1)
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
-    return render_template('addrecipe.html', cuisines = cuisines)
+    return render_template('addrecipe.html', cuisines = cuisines, units=units)
 
 # 'Add a Cuisine' Page
 @app.route('/add_cuisine')
@@ -83,9 +84,10 @@ def manage_recipes():
 # 'Edit Recipe' Page (via 'Manage Your Recipes')
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
+    units = mongo.db.units.find().sort('ingredient_units', 1)
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines)
+    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, units = units)
     
 # 'Edit Cuisine' Page (via 'Manage Your Recipes' Secondary tab - 'Manage Your Cuisines')
 @app.route('/edit_cuisine/<cuisine_id>')
@@ -102,8 +104,8 @@ def recipes_for_cuisine(cuisine_type):
     return render_template('recipesforcuisine.html', recipes = public_recipes, cuisines = cuisines, heading = heading)
     
 # View Recipe Page (Recipes where public_visibility = 'on')
-@app.route('/load_recipe/<recipe_name>/<recipe_id>/')
-def load_recipe(recipe_name, recipe_id):
+@app.route('/view_recipe/<recipe_name>/<recipe_id>/')
+def view_recipe(recipe_name, recipe_id):
     cuisines = mongo.db.cuisines.find()
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     heading = recipe_name
@@ -111,12 +113,13 @@ def load_recipe(recipe_name, recipe_id):
     return render_template('viewrecipe.html', recipes = view_recipe, cuisines = cuisines, heading = heading, previous_url = previous_url)
     
 # View Your Recipe Page (via Manage Your Recipes)
-@app.route('/load_your_recipe/<recipe_name>/<recipe_id>')
-def load_your_recipe(recipe_name, recipe_id):
+@app.route('/view_your_recipe/<recipe_name>/<recipe_id>')
+def view_your_recipe(recipe_name, recipe_id):
     heading = recipe_name
     view_your_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = url_for('manage_recipes')
     previous_page = 'Manage Your Recipes'
+  
     return render_template('viewrecipe.html', recipes = view_your_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
 
 # Submission of 'Add a Recipe' Form to mLab Database
@@ -132,69 +135,69 @@ def insert_recipe():
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.get('allergens'),
-        'gluten-free': request.form.get('gluten-free'),
+        'allergens': request.form.getlist('allergens'),
+        'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
             'ingredient1_quantity': request.form.get('ingredient1_quantity'),
-            'ingredient1_unit': request.form.get('ingredient1_units'),
+            'ingredient1_units': request.form.get('ingredient1_units'),
             'ingredient1_name': request.form.get('ingredient1_name'),
             'ingredient2_quantity': request.form.get('ingredient2_quantity'),
-            'ingredient2_unit': request.form.get('ingredient2_units'),
+            'ingredient2_units': request.form.get('ingredient2_units'),
             'ingredient2_name': request.form.get('ingredient2_name'),
             'ingredient3_quantity': request.form.get('ingredient3_quantity'),
-            'ingredient3_unit': request.form.get('ingredient3_units'),
+            'ingredient3_units': request.form.get('ingredient3_units'),
             'ingredient3_name': request.form.get('ingredient3_name'),
             'ingredient4_quantity': request.form.get('ingredient4_quantity'),
-            'ingredient4_unit': request.form.get('ingredient4_units'),
+            'ingredient4_units': request.form.get('ingredient4_units'),
             'ingredient4_name': request.form.get('ingredient4_name'),
             'ingredient5_quantity': request.form.get('ingredient5_quantity'),
-            'ingredient5_unit': request.form.get('ingredient5_units'),
+            'ingredient5_units': request.form.get('ingredient5_units'),
             'ingredient5_name': request.form.get('ingredient5_name'),
             'ingredient6_quantity': request.form.get('ingredient6_quantity'),
-            'ingredient6_unit': request.form.get('ingredient6_units'),
+            'ingredient6_units': request.form.get('ingredient6_units'),
             'ingredient6_name': request.form.get('ingredient6_name'),
             'ingredient7_quantity': request.form.get('ingredient7_quantity'),
-            'ingredient7_unit': request.form.get('ingredient7_units'),
+            'ingredient7_units': request.form.get('ingredient7_units'),
             'ingredient7_name': request.form.get('ingredient7_name'),
             'ingredient8_quantity': request.form.get('ingredient8_quantity'),
-            'ingredient8_unit': request.form.get('ingredient8_units'),
+            'ingredient8_units': request.form.get('ingredient8_units'),
             'ingredient8_name': request.form.get('ingredient8_name'),
             'ingredient9_quantity': request.form.get('ingredient9_quantity'),
-            'ingredient9_unit': request.form.get('ingredient9_units'),
+            'ingredient9_units': request.form.get('ingredient9_units'),
             'ingredient9_name': request.form.get('ingredient9_name'),
             'ingredient10_quantity': request.form.get('ingredient10_quantity'),
-            'ingredient10_unit': request.form.get('ingredient10_units'),
+            'ingredient10_units': request.form.get('ingredient10_units'),
             'ingredient10_name': request.form.get('ingredient10_name'),
             'ingredient11_quantity': request.form.get('ingredient11_quantity'),
-            'ingredient11_unit': request.form.get('ingredient11_units'),
+            'ingredient11_units': request.form.get('ingredient11_units'),
             'ingredient11_name': request.form.get('ingredient11_name'),
             'ingredient12_quantity': request.form.get('ingredient12_quantity'),
-            'ingredient12_unit': request.form.get('ingredient12_units'),
+            'ingredient12_units': request.form.get('ingredient12_units'),
             'ingredient12_name': request.form.get('ingredient12_name'),
             'ingredient13_quantity': request.form.get('ingredient13_quantity'),
-            'ingredient13_unit': request.form.get('ingredient13_units'),
+            'ingredient13_units': request.form.get('ingredient13_units'),
             'ingredient13_name': request.form.get('ingredient13_name'),
             'ingredient14_quantity': request.form.get('ingredient14_quantity'),
-            'ingredient14_unit': request.form.get('ingredient14_units'),
+            'ingredient14_units': request.form.get('ingredient14_units'),
             'ingredient14_name': request.form.get('ingredient14_name'),
             'ingredient15_quantity': request.form.get('ingredient15_quantity'),
-            'ingredient15_unit': request.form.get('ingredient15_units'),
+            'ingredient15_units': request.form.get('ingredient15_units'),
             'ingredient15_name': request.form.get('ingredient15_name'),
             'ingredient16_quantity': request.form.get('ingredient16_quantity'),
-            'ingredient16_unit': request.form.get('ingredient16_units'),
+            'ingredient16_units': request.form.get('ingredient16_units'),
             'ingredient16_name': request.form.get('ingredient16_name'),
             'ingredient17_quantity': request.form.get('ingredient17_quantity'),
-            'ingredient17_unit': request.form.get('ingredient17_units'),
+            'ingredient17_units': request.form.get('ingredient17_units'),
             'ingredient17_name': request.form.get('ingredient17_name'),
             'ingredient18_quantity': request.form.get('ingredient18_quantity'),
-            'ingredient18_unit': request.form.get('ingredient18_units'),
+            'ingredient18_units': request.form.get('ingredient18_units'),
             'ingredient18_name': request.form.get('ingredient18_name'),
             'ingredient19_quantity': request.form.get('ingredient19_quantity'),
-            'ingredient19_unit': request.form.get('ingredient19_units'),
+            'ingredient19_units': request.form.get('ingredient19_units'),
             'ingredient19_name': request.form.get('ingredient19_name'),
             'ingredient20_quantity': request.form.get('ingredient20_quantity'),
-            'ingredient20_unit': request.form.get('ingredient20_units'),
+            'ingredient20_units': request.form.get('ingredient20_units'),
             'ingredient20_name': request.form.get('ingredient20_name')
         },
         'method': {
@@ -233,69 +236,69 @@ def update_recipe(recipe_id):
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.get('allergens'),
-        'gluten-free': request.form.get('gluten-free'),
+        'allergens': request.form.getlist('allergens'),
+        'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
             'ingredient1_quantity': request.form.get('ingredient1_quantity'),
-            'ingredient1_unit': request.form.get('ingredient1_units'),
+            'ingredient1_units': request.form.get('ingredient1_units'),
             'ingredient1_name': request.form.get('ingredient1_name'),
             'ingredient2_quantity': request.form.get('ingredient2_quantity'),
-            'ingredient2_unit': request.form.get('ingredient2_units'),
+            'ingredient2_units': request.form.get('ingredient2_units'),
             'ingredient2_name': request.form.get('ingredient2_name'),
             'ingredient3_quantity': request.form.get('ingredient3_quantity'),
-            'ingredient3_unit': request.form.get('ingredient3_units'),
+            'ingredient3_units': request.form.get('ingredient3_units'),
             'ingredient3_name': request.form.get('ingredient3_name'),
             'ingredient4_quantity': request.form.get('ingredient4_quantity'),
-            'ingredient4_unit': request.form.get('ingredient4_units'),
+            'ingredient4_units': request.form.get('ingredient4_units'),
             'ingredient4_name': request.form.get('ingredient4_name'),
             'ingredient5_quantity': request.form.get('ingredient5_quantity'),
-            'ingredient5_unit': request.form.get('ingredient5_units'),
+            'ingredient5_units': request.form.get('ingredient5_units'),
             'ingredient5_name': request.form.get('ingredient5_name'),
             'ingredient6_quantity': request.form.get('ingredient6_quantity'),
-            'ingredient6_unit': request.form.get('ingredient6_units'),
+            'ingredient6_units': request.form.get('ingredient6_units'),
             'ingredient6_name': request.form.get('ingredient6_name'),
             'ingredient7_quantity': request.form.get('ingredient7_quantity'),
-            'ingredient7_unit': request.form.get('ingredient7_units'),
+            'ingredient7_units': request.form.get('ingredient7_units'),
             'ingredient7_name': request.form.get('ingredient7_name'),
             'ingredient8_quantity': request.form.get('ingredient8_quantity'),
-            'ingredient8_unit': request.form.get('ingredient8_units'),
+            'ingredient8_units': request.form.get('ingredient8_units'),
             'ingredient8_name': request.form.get('ingredient8_name'),
             'ingredient9_quantity': request.form.get('ingredient9_quantity'),
-            'ingredient9_unit': request.form.get('ingredient9_units'),
+            'ingredient9_units': request.form.get('ingredient9_units'),
             'ingredient9_name': request.form.get('ingredient9_name'),
             'ingredient10_quantity': request.form.get('ingredient10_quantity'),
-            'ingredient10_unit': request.form.get('ingredient10_units'),
+            'ingredient10_units': request.form.get('ingredient10_units'),
             'ingredient10_name': request.form.get('ingredient10_name'),
             'ingredient11_quantity': request.form.get('ingredient11_quantity'),
-            'ingredient11_unit': request.form.get('ingredient11_units'),
+            'ingredient11_units': request.form.get('ingredient11_units'),
             'ingredient11_name': request.form.get('ingredient11_name'),
             'ingredient12_quantity': request.form.get('ingredient12_quantity'),
-            'ingredient12_unit': request.form.get('ingredient12_units'),
+            'ingredient12_units': request.form.get('ingredient12_units'),
             'ingredient12_name': request.form.get('ingredient12_name'),
             'ingredient13_quantity': request.form.get('ingredient13_quantity'),
-            'ingredient13_unit': request.form.get('ingredient13_units'),
+            'ingredient13_units': request.form.get('ingredient13_units'),
             'ingredient13_name': request.form.get('ingredient13_name'),
             'ingredient14_quantity': request.form.get('ingredient14_quantity'),
-            'ingredient14_unit': request.form.get('ingredient14_units'),
+            'ingredient14_units': request.form.get('ingredient14_units'),
             'ingredient14_name': request.form.get('ingredient14_name'),
             'ingredient15_quantity': request.form.get('ingredient15_quantity'),
-            'ingredient15_unit': request.form.get('ingredient15_units'),
+            'ingredient15_units': request.form.get('ingredient15_units'),
             'ingredient15_name': request.form.get('ingredient15_name'),
             'ingredient16_quantity': request.form.get('ingredient16_quantity'),
-            'ingredient16_unit': request.form.get('ingredient16_units'),
+            'ingredient16_units': request.form.get('ingredient16_units'),
             'ingredient16_name': request.form.get('ingredient16_name'),
             'ingredient17_quantity': request.form.get('ingredient17_quantity'),
-            'ingredient17_unit': request.form.get('ingredient17_units'),
+            'ingredient17_units': request.form.get('ingredient17_units'),
             'ingredient17_name': request.form.get('ingredient17_name'),
             'ingredient18_quantity': request.form.get('ingredient18_quantity'),
-            'ingredient18_unit': request.form.get('ingredient18_units'),
+            'ingredient18_units': request.form.get('ingredient18_units'),
             'ingredient18_name': request.form.get('ingredient18_name'),
             'ingredient19_quantity': request.form.get('ingredient19_quantity'),
-            'ingredient19_unit': request.form.get('ingredient19_units'),
+            'ingredient19_units': request.form.get('ingredient19_units'),
             'ingredient19_name': request.form.get('ingredient19_name'),
             'ingredient20_quantity': request.form.get('ingredient20_quantity'),
-            'ingredient20_unit': request.form.get('ingredient20_units'),
+            'ingredient20_units': request.form.get('ingredient20_units'),
             'ingredient20_name': request.form.get('ingredient20_name')
         },
         'method': {
