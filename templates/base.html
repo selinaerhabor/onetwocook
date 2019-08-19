@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
       <!--Website Icon-->
       <link rel="icon" href="{{url_for('static', filename='images/website_icon.png')}}">
@@ -10,6 +10,8 @@
       <!--Custom CSS-->
       <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!--Page Title-->
+      <title>{{page_title}}</title>
     </head>
     <body>
       <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
@@ -18,7 +20,7 @@
       <nav>
           <div class="nav-wrapper green lighten-4">
               <a href="{{url_for('login')}}">
-                  <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}">
+                  <img class="logo responsive-img" src="{{url_for('static', filename='images/cookbook_logo.png')}}" alt="OneTwoCook Logo">
               </a>
               <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
@@ -81,9 +83,9 @@
       <!--Materialize 0.100.2 Javascript-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
       <!--Twitter Widget Icon (Bottom of Recipe Page)-->
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <script async src="https://platform.twitter.com/widgets.js"></script>
       <!--Custom Javascript-->
-      <script type="text/javascript">
+      <script>
         $(document).ready(function(){
           //Materialize - :
           $('select').material_select();
@@ -237,7 +239,8 @@
           $('.modal').modal();
   
           $(".scrollspy").scrollSpy();
-  
+          
+          $('.tabs').tabs();
           });
     </script>
   </body>
