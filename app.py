@@ -18,43 +18,48 @@ mongo = PyMongo(app)
 # Application Login
 @app.route('/', methods = ['GET', 'POST'])
 def login():
+    page_title = 'Login | OneTwoCook'
     if request.method == 'POST':
         session['username'] = request.form['username']
         session['user_dob'] = request.form['user_dob']
         session['user_region'] = request.form['user_region']
     if 'username' in session:
         return redirect(url_for('home'))
-    return render_template('login.html')
+    return render_template('login.html', page_title = page_title)
 
 # Logout Page
 @app.route('/logout')
 def logout():
+    page_title = 'Logout | OneTwoCook'
     session.pop('username', None)
-    return render_template('logout.html')
+    return render_template('logout.html', page_title = page_title)
 
 # Welcome Page - Guest View
 @app.route('/guest')
 def guest():
+    page_title = 'Home | OneTwoCook'
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
-    return render_template('home.html', cuisines = cuisines)
+    return render_template('home.html', cuisines = cuisines, page_title = page_title)
 
 # Welcome Page - Users who created username
 @app.route('/home')
 def home():
+    page_title = 'Home | OneTwoCook'
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
-    return render_template('home.html', cuisines = cuisines)
+    return render_template('home.html', cuisines = cuisines, page_title = page_title)
     
 # 'Add a Recipe' Page
 @app.route('/add_recipe')
 def add_recipe():
-    units = mongo.db.units.find().sort('ingredient_units', 1)
+    page_title = 'Add Recipe | OneTwoCook'
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
-    return render_template('addrecipe.html', cuisines = cuisines, units=units)
+    return render_template('addrecipe.html', cuisines = cuisines, page_title = page_title)
 
 # 'Add a Cuisine' Page
 @app.route('/add_cuisine')
 def add_cuisine():
-    return render_template('addcuisine.html')
+    page_title = 'Add Cuisine | OneTwoCook'
+    return render_template('addcuisine.html', page_title = page_title)
     
 # Submission of 'Add a Cuisine' Form to mLab Database
 @app.route('/insert_cuisine', methods=['POST'])
@@ -71,56 +76,77 @@ def insert_cuisine():
 # 'Manage Your Recipes' Page
 @app.route('/manage_recipes')
 def manage_recipes():
+    page_title = 'Manage Your Recipes | OneTwoCook'
     # 'Manage Your Recipes' Section
-    user_recipes = mongo.db.recipes.find({'author.author_username' : session['username'], 'author.author_region' : session['user_region'], 'author.author_dob' : session['user_dob']}).sort('recipe_name', 1)
+    user_recipes = mongo.db.recipes.find({
+        'author.author_username' : session['username'], 
+        'author.author_region' : session['user_region'], 
+        'author.author_dob' : session['user_dob']}).sort('recipe_name', 1)
     # 'Manage Your Cuisines' Section
-    user_cuisines = mongo.db.cuisines.find({'author_username' : session['username'], 'author_region' : session['user_region'], 'author_dob' : session['user_dob']}).sort('cuisine_type', 1)
+    user_cuisines = mongo.db.cuisines.find({
+        'author_username' : session['username'], 
+        'author_region' : session['user_region'], 
+        'author_dob' : session['user_dob']}).sort('cuisine_type', 1)
     # Recipe count for user
-    user_recipe_count = mongo.db.recipes.find({'author.author_username' : session['username'], 'author.author_region' : session['user_region'], 'author.author_dob' : session['user_dob']}).count()
+    user_recipe_count = mongo.db.recipes.find({
+        'author.author_username' : session['username'], 
+        'author.author_region' : session['user_region'], 
+        'author.author_dob' : session['user_dob']}).count()
     # Cuisine count for user
-    user_cuisine_count = mongo.db.cuisines.find({'author_username' : session['username'], 'author_region' : session['user_region'], 'author_dob' : session['user_dob']}).count()
-    return render_template('managerecipes.html', recipes=user_recipes, cuisines=user_cuisines, user_recipe_count=user_recipe_count, user_cuisine_count=user_cuisine_count)
+    user_cuisine_count = mongo.db.cuisines.find({
+        'author_username' : session['username'], 
+        'author_region' : session['user_region'], 
+        'author_dob' : session['user_dob']}).count()
+    return render_template('managerecipes.html', 
+        recipes = user_recipes, 
+        cuisines = user_cuisines, 
+        user_recipe_count = user_recipe_count, 
+        user_cuisine_count = user_cuisine_count,
+        page_title = page_title)
     
 # 'Edit Recipe' Page (via 'Manage Your Recipes')
-@app.route('/edit_recipe/<recipe_id>')
-def edit_recipe(recipe_id):
+@app.route('/edit_recipe/<recipe_name>/<recipe_id>')
+def edit_recipe(recipe_name, recipe_id):
+    page_title = 'Edit' + recipe_name + ' | OneTwoCook'
     units = mongo.db.units.find().sort('ingredient_units', 1)
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
-    recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, units = units)
+    recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
+    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, units = units, page_title = page_title)
     
 # 'Edit Cuisine' Page (via 'Manage Your Recipes' Secondary tab - 'Manage Your Cuisines')
-@app.route('/edit_cuisine/<cuisine_id>')
-def edit_cuisine(cuisine_id):
-    cuisine_selected =  mongo.db.cuisines.find_one({'_id': ObjectId(cuisine_id)})
-    return render_template('editcuisine.html', cuisines = cuisine_selected)
+@app.route('/edit_cuisine/<cuisine_type>/<cuisine_id>')
+def edit_cuisine(cuisine_type, cuisine_id):
+    page_title = 'Edit' + cuisine_type + ' | OneTwoCook'
+    cuisine_selected =  mongo.db.cuisines.find_one({'_id': ObjectId(cuisine_id), 'cuisine_type': cuisine_type })
+    return render_template('editcuisine.html', cuisines = cuisine_selected, page_title = page_title)
     
 # List of all recipes under selected Cuisine Type
 @app.route('/recipes_for_cuisine/<cuisine_type>')
 def recipes_for_cuisine(cuisine_type):
+    page_title = cuisine_type + ' Recipes | OneTwoCook'
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
     public_recipes = mongo.db.recipes.find({'cuisine_type' : cuisine_type, 'public_visibility' : 'on'}).sort('recipe_name', 1)
     heading = cuisine_type + ' Recipes'
-    return render_template('recipesforcuisine.html', recipes = public_recipes, cuisines = cuisines, heading = heading)
+    return render_template('recipesforcuisine.html', recipes = public_recipes, cuisines = cuisines, heading = heading, page_title = page_title)
     
 # View Recipe Page (Recipes where public_visibility = 'on')
 @app.route('/view_recipe/<recipe_name>/<recipe_id>/')
 def view_recipe(recipe_name, recipe_id):
+    page_title = recipe_name + ' | OneTwoCook'
     cuisines = mongo.db.cuisines.find()
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
-    heading = recipe_name
     previous_url = 'recipes_for_cuisine'
-    return render_template('viewrecipe.html', recipes = view_recipe, cuisines = cuisines, heading = heading, previous_url = previous_url)
+    return render_template('viewrecipe.html', recipes = view_recipe, cuisines = cuisines, previous_url = previous_url, page_title = page_title)
     
 # View Your Recipe Page (via Manage Your Recipes)
 @app.route('/view_your_recipe/<recipe_name>/<recipe_id>')
 def view_your_recipe(recipe_name, recipe_id):
-    heading = recipe_name
+    page_title = recipe_name + ' | OneTwoCook'
     view_your_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = url_for('manage_recipes')
     previous_page = 'Manage Your Recipes'
   
-    return render_template('viewrecipe.html', recipes = view_your_recipe, heading = heading, previous_url = previous_url, previous_page = previous_page)
+    return render_template('viewrecipe.html', recipes = view_your_recipe, previous_url = previous_url, previous_page = previous_page, page_title = page_title)
 
 # Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
@@ -214,7 +240,6 @@ def insert_recipe():
         },
         'author': {
             'author_username': session['username'],
-            'author_dob': session['user_dob'],
             'author_region': session['user_region']
         },
         'public_visibility': request.form.get('public_visibility')
@@ -315,12 +340,12 @@ def update_recipe(recipe_id):
         },
         'author': {
             'author_username': session['username'],
-            'author_dob': session['user_dob'],
             'author_region': session['user_region']
         },
         'public_visibility': request.form.get('public_visibility')
     })
-    return redirect(url_for('manage_recipes'))
+    units = mongo.db.units.find()
+    return redirect(url_for('manage_recipes'), units=units)
     
 # Update cuisines in mLab database
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
@@ -340,16 +365,18 @@ def update_cuisine(cuisine_id):
 # Index of Recipes Page
 @app.route('/index_of_recipes')
 def index_of_recipes():
+    page_title = 'Index of Recipes | OneTwoCook'
     all_public_recipes = mongo.db.recipes.find({'public_visibility' : 'on'}).sort('recipe_name', 1)
-    return render_template('indexofrecipes.html', recipes = all_public_recipes)
+    return render_template('indexofrecipes.html', recipes = all_public_recipes, page_title = page_title)
 
 # Viewing a Recipe from Index of Recipes Page
 @app.route('/index_of_recipes/<recipe_id>/<recipe_name>')
 def recipe_from_index(recipe_id, recipe_name):
+    page_title = recipe_name + ' | OneTwoCook'
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = url_for('index_of_recipes')
     previous_page = 'Index of Recipes'
-    return render_template('viewrecipe.html', recipes = view_recipe, previous_url = previous_url, previous_page = previous_page)
+    return render_template('viewrecipe.html', recipes = view_recipe, previous_url = previous_url, previous_page = previous_page, page_title = page_title)
 
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')

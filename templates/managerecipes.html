@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block document %}
-  <title>Manage Your Recipes | OneTwoCook</title>
   <div class="background responsive-img">
     <div class="container">
       <div class="card-panel managerecipe-border">
@@ -53,7 +52,7 @@
                               <a href="{{url_for('view_your_recipe', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}" class="waves-effect waves-light green btn manager">View<i class="material-icons right">fullscreen</i></i></a>
                             </div>
                             <div class="col-12"> 
-                              <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                              <a href="{{url_for('edit_recipe', recipe_id = recipe._id, recipe_name = recipe.recipe_name)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                             </div>
                             <div class="col-12">
                               <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{recipe.recipe_name}}">Delete<i class="material-icons right">delete</i></a>
@@ -154,7 +153,7 @@
                         </span>
                         <p>{{cuisine.cuisine_summary}}</p>
                          <div class="col-12"> 
-                          <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                          <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id, cuisine_type = cuisine.cuisine_type)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
                         </div>
                         <div class="col-12">
                           <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{cuisine.cuisine_type}}">Delete<i class="material-icons right">delete</i></a>

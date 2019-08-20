@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block document %}
-  <title>Add a Recipe | OneTwoCook</title>
     <div class="background responsive-img">
       <div class="container">
         <div class="card-panel addrecipe-border">
@@ -196,7 +195,7 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient1_units">
-                        <option value="" selected>Units</option>
+                        <option value="" >Units</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)">teaspoon(s)</option>
@@ -224,19 +223,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient2_units">
-                        <option value="" selected>Units</option>
+                        <option value="" disabled selected>Units</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
                         <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="pound(s)">pound(s)</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
                       </select>
                       <label for="ingredient2_units">Units</label>
                     </div>
@@ -890,12 +891,8 @@
                     <input disabled value="{{ session['username'] }}" id="author_name" type="text" name="author_username" class="validate">
                     <label for="author_username">Your Name</label>
                   </div>
-                  <div class="input-field col s12 m5">
-                    <input disabled value="{{ session['user_dob'] }}" type="text" id="user_dob" name="author_dob">
-                    <label for="author_dob">User ID (Hidden from public)</label>
-                  </div>
                   <div class="input-field col s12 m3">
-                    <input disabled value="{{ session['user_region'] }}" type="text" id="user_region" name="author_region">
+                    <input disabled value="{{ session['user_region'] }}" type="text" id="user_region" name="author_region" class="validate">
                     <label for="author_region">Your Region</label>
                   </div>
                 </div>
