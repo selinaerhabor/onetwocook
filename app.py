@@ -1,5 +1,4 @@
 import os
-import env
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -70,7 +69,7 @@ def insert_cuisine():
             "$options":"i"}
         })
     if cuisines:
-        alert = "Cuisine Type already exists"
+        alert = "*The cuisine type you entered already exists. Please choose another cuisine.*"
         return render_template('addcuisine.html', alert = alert, cuisines = cuisines)
     else:
         mongo.db.cuisines.insert_one({
@@ -249,6 +248,7 @@ def insert_recipe():
         },
         'author': {
             'author_username': session['username'],
+            'author_dob': session['user_dob'],
             'author_region': session['user_region']
         },
         'public_visibility': request.form.get('public_visibility')
@@ -349,11 +349,11 @@ def update_recipe(recipe_id):
         },
         'author': {
             'author_username': session['username'],
+            'author_dob': session['user_dob'],
             'author_region': session['user_region']
         },
         'public_visibility': request.form.get('public_visibility')
     })
-    units = mongo.db.units.find()
     return redirect(url_for('manage_recipes'))
     
 # Update cuisines in mLab database
@@ -390,14 +390,9 @@ def recipe_from_index(recipe_id, recipe_name):
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
 def delete_cuisine(cuisine_id, cuisine_type):
-    recipes_for_cuisines = mongo.db.recipes.find({'cuisine_type': cuisine_type})
-    selected_cuisine = mongo.db.cuisines.find_one({'cuisine_type': cuisine_type })
-    if selected_cuisine in recipes_for_cuisines:
-        alert = "Cannot delete" + cuisine_type + "as recipes exist in this cuisine."
-        return render_template('managerecipes.html', alert = alert)
-    else: 
-        mongo.db.cuisines.remove({'cuisine_type': cuisine_type})
-        return redirect(url_for('manage_recipes'))
+    cuisine_has_recipes = mongo.db.recipes.find({'cuisine_type': cuisine_type})
+    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
+    return render_template('managerecipe.html', cuisine_has_recipes = cuisine_has_recipes)
     
 # Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')
