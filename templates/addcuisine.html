@@ -11,8 +11,11 @@
                 <h2 class="center">Add A Cuisine</h2>
                 <p class="center">To add a new cuisine to the online cookbook please complete the form below</p>
                 <p class="center">The new cuisine will then be added to the cuisine type dropdown menu on the Add a Recipe page.</p>
+                
                 <div class="divider"></div>
+                <p class="center alert">{{ alert }}</p>
                 <form id="cuisine_form" class="padding" action="{{ url_for('insert_cuisine') }}" method="POST">
+                
                     <div class="row">
                         <div class="input-field col s6">
                           <input id="cuisine_type" placeholder="Cuisine Type" type="text" name="cuisine_type" class="validate" required>
