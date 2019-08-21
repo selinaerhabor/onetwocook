@@ -133,9 +133,9 @@
                   
                   <!--Allergens-->
                   <div class="input-field col s8 m5" id="allergens">
-                    <select name="allergens" multiple placeholder="Allergens" class="select-options" required>
+                    <select multiple name="allergens" placeholder="Allergens" class="select-options" required>
                       <option value="{{recipes.allergens}}" disabled selected>{{recipes.allergens}}</option>
-                      <option value="no allergens">No Allergens</option>
+                      <option value="none">No Allergens</option>
                       <option value="celery">Celery</option>
                       <option value="crustaceans">Crustaceans</option>
                       <option value="eggs">Eggs</option>
@@ -221,20 +221,22 @@
                       <label for="ingredient1_quantity">Quantity</label>
                     </div>
                     <div class="input-field col s4 m3">
-                      <select name="ingredient1_units">
+                      <select name="ingredient1_units" id="ingredient1_units">
                         <option value="{{recipes.ingredients.ingredient1_units}}" selected>{{recipes.ingredients.ingredient1_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient1_units">Units</label>
                     </div>
@@ -249,20 +251,22 @@
                       <label for="ingredient2_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
-                      <select name="ingredient2_units">
+                      <select name="ingredient2_units" id="ingredient2_units">
                         <option value="{{recipes.ingredients.ingredient2_units}}" selected>{{recipes.ingredients.ingredient2_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient2_units">Units</label>
                     </div>
@@ -277,20 +281,22 @@
                       <label for="ingredient3_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
-                      <select name="ingredient3_units">
+                      <select name="ingredient3_units" id="ingredient3_quantity">
                         <option value="{{recipes.ingredients.ingredient3_units}}" selected>{{recipes.ingredients.ingredient3_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient3_units">Units</label>
                     </div>
@@ -306,19 +312,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient4_units" id="ingredient4_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient4_units}}" selected>{{recipes.ingredients.ingredient4_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient4_units">Units</label>
                     </div>
@@ -334,19 +342,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient5_units" id="ingredient5_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient5_units}}" selected>{{recipes.ingredients.ingredient5_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient5_units">Units</label>
                     </div>
@@ -362,19 +372,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient6_units" id="ingredient6_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient6_units}}" selected>{{recipes.ingredients.ingredient6_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient6_units">Units</label>
                     </div>
@@ -390,19 +402,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient7_units" id="ingredient7_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient7_units}}" selected>{{recipes.ingredients.ingredient7_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient7_units">Units</label>
                     </div>
@@ -417,20 +431,22 @@
                       <label for="ingredient8_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
-                      <select name="ingredient8_units">
-                        <option value="" disabled selected>Units</option>
+                      <select name="ingredient8_units" id="ingredient8_units">
+                        <option value="{{recipes.ingredients.ingredient8_units}}" selected>{{recipes.ingredients.ingredient8_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient8_units">Units</label>
                     </div>
@@ -446,19 +462,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient9_units" id="ingredient9_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient9_units}}" selected>{{recipes.ingredients.ingredient9_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient9_units">Units</label>
                     </div>
@@ -474,19 +492,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient10_units" id="ingredient10_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient10_units}}" selected>{{recipes.ingredients.ingredient10_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient10_units">Units</label>
                     </div>
@@ -502,19 +522,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient11_units" id="ingredient11_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient11_units}}" selected>{{recipes.ingredients.ingredient11_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient11_units">Units</label>
                     </div>
@@ -530,19 +552,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient12_units" id="ingredient12_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient12_units}}" selected>{{recipes.ingredients.ingredient12_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient12_units">Units</label>
                     </div>
@@ -558,19 +582,21 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient13_units" id="ingredient13_units">
-                        <option value="" disabled selected>Units</option>
+                        <option value="{{recipes.ingredients.ingredient13_units}}" selected>{{recipes.ingredients.ingredient13_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient13_units">Units</label>
                     </div>
@@ -589,16 +615,18 @@
                         <option value="{{recipes.ingredients.ingredient14_units}}" selected>{{recipes.ingredients.ingredient14_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient14_units">Units</label>
                     </div>
@@ -617,16 +645,18 @@
                         <option value="{{recipes.ingredients.ingredient15_units}}" selected>{{recipes.ingredients.ingredient15_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient15_units">Units</label>
                     </div>
@@ -645,16 +675,18 @@
                         <option value="{{recipes.ingredients.ingredient16_units}}" selected>{{recipes.ingredients.ingredient16_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient16_units">Units</label>
                     </div>
@@ -673,16 +705,18 @@
                         <option value="{{recipes.ingredients.ingredient17_units}}" selected>{{recipes.ingredients.ingredient17_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient17_units">Units</label>
                     </div>
@@ -701,16 +735,18 @@
                         <option value="{{recipes.ingredients.ingredient18_units}}" selected>{{recipes.ingredients.ingredient18_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient18_units">Units</label>
                     </div>
@@ -729,16 +765,18 @@
                         <option value="{{recipes.ingredients.ingredient19_units}}" selected>{{recipes.ingredients.ingredient19_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient19_units">Units</label>
                     </div>
@@ -757,16 +795,18 @@
                         <option value="{{recipes.ingredients.ingredient20_units}}" selected>{{recipes.ingredients.ingredient20_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
-                        <option value="teaspoon(s)">teaspoon(s)</option>
-                        <option value="tablespoon(s)">tablespoon(s)</option>
+                        <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
+                        <option value="tablespoon(s)/tbsp">tablespoon(s)/tbsp</option>
                         <option value="cup(s)">cup(s)</option>
-                        <option value="millimetres(mm)">millimetres(mm)</option>
-                        <option value="centimetres(cm)">centimetres(cm)</option>
-                        <option value="millilitres(ml)">millilitres(ml)</option>
-                        <option value="milligrams(mg)">milligrams(mg)</option>
-                        <option value="litres(l)">litres(l)</option>
-                        <option value="grams(g)">grams(g)</option>
-                        <option value="kilograms(kg)">kilograms(kg)</option>
+                        <option value="millimetre(s)/mm">millimetre(s)/mm</option>
+                        <option value="centimetre(s)/cm">centimetre(s)/cm</option>
+                        <option value="millilitre(s)/ml">millilitre(s)/ml</option>
+                        <option value="milligram(s)/mg">milligram(s)/mg</option>
+                        <option value="litre(s)/l">litre(s)/l</option>
+                        <option value="gram(s)/g">gram(s)/g</option>
+                        <option value="kilogram(s)/kg">kilogram(s)/kg</option>
+                        <option value="pound(s)/lb">pound(s)/lb</option>
+                        <option value="ounce(s)/oz">ounce(s)/oz</option>
                       </select>
                       <label for="ingredient20_units">Units</label>
                     </div>
