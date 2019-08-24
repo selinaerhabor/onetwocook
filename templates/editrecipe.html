@@ -195,9 +195,14 @@
                 
                 <!--Recipe Image URL & Need Help For Form Completion Modal-->
                 <div class="row">
-                  <div class="input-field col s12 m11">
+                  <div class="input-field col s12 m9">
                     <label for="img_path">Recipe Image URL<span class="input_required">*</span></label>
                     <input value="{{recipes.img_path}}" id="img_path" placeholder="Enter here a link to an image of outcome of your recipe" type="text" name="img_path" class="validate" required>
+                    <button id="deleteInput">Remove URL</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12 m9">
                     <a href="#needHelp" class="btn modal-trigger">Need help?</a>
                   </div>
                 </div>
