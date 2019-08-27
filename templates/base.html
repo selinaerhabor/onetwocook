@@ -7,6 +7,8 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <!--Materialize 0.100.2 CSS Framework-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!--Custom JS-->
+      <script src="{{url_for('static', filename='js/onetwocook.js')}}"></script>
       <!--Custom CSS-->
       <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,7 +29,7 @@
                   {% if "username" in session %}
                   <li class="nav-tab"><a href="{{url_for('login')}}">Home</a></li>
                   <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                  <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('manage_creations')}}">Manage Your Creations</a></li>
                   <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
                   {% else %}
                   <li class="nav-tab"><a href="{{url_for('guest')}}">Home</a></li>
@@ -41,7 +43,7 @@
                   <hr>
                   <li class="nav-tab"><a href="{{url_for('login')}}">Home ({{ session['username'] }})</a></li>
                   <li class="nav-tab"><a href="{{url_for('add_recipe')}}">Add a Recipe</a></li>
-                  <li class="nav-tab"><a href="{{url_for('manage_recipes')}}">Manage Your Recipes</a></li>
+                  <li class="nav-tab"><a href="{{url_for('manage_creations')}}">Manage Your Creations</a></li>
                   <li class="nav-tab"><a href="{{url_for('index_of_recipes')}}">Index of Recipes</a></li>
                   <li class="nav-tab"><a href="{{url_for('logout')}}">Logout</a></li>
                   

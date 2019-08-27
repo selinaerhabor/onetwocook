@@ -7,11 +7,11 @@
           <!--Back to Previous Page Link-->
           <div class="row">
             <div class="col s12">
-              <a href="{{url_for('manage_recipes')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Recipes</a>
+              <a href="{{url_for('manage_creations')}}"><i class="material-icons left">arrow_back</i>Back to Manage Your Creations</a>
             </div>
           </div>
           
-          <h2>Edit A Recipe</h2>
+          <h2 class="center">Edit A Recipe</h2>
           
           <!--Page Divider-->
           <div class="divider"></div>
@@ -135,7 +135,7 @@
                   <div class="input-field col s8 m5" id="allergens">
                     <select multiple name="allergens" placeholder="Allergens" class="select-options" required>
                       <option value="{{recipes.allergens}}" disabled selected>{{recipes.allergens}}</option>
-                      <option value="none">No Allergens</option>
+                      <option value="">No Allergens</option>
                       <option value="celery">Celery</option>
                       <option value="crustaceans">Crustaceans</option>
                       <option value="eggs">Eggs</option>
@@ -286,7 +286,7 @@
                       <label for="ingredient3_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
-                      <select name="ingredient3_units" id="ingredient3_quantity">
+                      <select name="ingredient3_units" id="ingredient3_units">
                         <option value="{{recipes.ingredients.ingredient3_units}}" selected>{{recipes.ingredients.ingredient3_units}}</option>
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
@@ -792,7 +792,7 @@
                       <label for="ingredient20_name">Ingredient 20</label>
                     </div>
                     <div class="input-field col s3 m3">
-                      <input value="{{recipes.ingredients.ingredient20_units}}" id="ingredient20_quantity" type="number" name="ingredient20_quantity" min="0" max="9999" step=".01" class="validate">
+                      <input value="{{recipes.ingredients.ingredient20_quantity}}" id="ingredient20_quantity" type="number" name="ingredient20_quantity" min="0" max="9999" step=".01" class="validate">
                       <label for="ingredient20_quantity">Qty</label>
                     </div>
                     <div class="input-field col s4 m3">
@@ -833,7 +833,7 @@
                     <label for="preparation_time">Prep Time:</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <select name="pt_units" required>
+                    <select name="pt_units">
                       <option value="{{recipes.pt_units}}" disabled selected>{{recipes.pt_units}}</option>
                       <option value="second(s)">second(s)</option>
                       <option value="minute(s)">minute(s)</option>

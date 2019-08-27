@@ -121,7 +121,7 @@ def manage_creations():
 # 'Edit Recipe' Page (via 'Manage Your Creations')
 @app.route('/edit_recipe/<recipe_name>/<recipe_id>')
 def edit_recipe(recipe_name, recipe_id):
-    page_title = 'Edit' + recipe_name + ' | OneTwoCook'
+    page_title = 'Edit ' + recipe_name + ' | OneTwoCook'
     units = mongo.db.units.find().sort('ingredient_units', 1)
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
