@@ -1,7 +1,9 @@
 import os
+import env
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from jinja2 import Template
 
 # Flask
 app = Flask(__name__)
@@ -59,8 +61,12 @@ def add_recipe():
 def add_cuisine():
     page_title = 'Add Cuisine | OneTwoCook'
     return render_template('addcuisine.html', page_title = page_title)
-    
-# Submission of 'Add a Cuisine' Form to mLab Database
+
+"""  
+Checks if a cuisine with the same name already exists and if so prompts user to 
+create a different cuisine type. Only unique cuisine types will be submitted to 
+MongoDB mLab Database.
+"""
 @app.route('/insert_cuisine', methods=['POST'])
 def insert_cuisine():
     cuisines = mongo.db.cuisines.find_one({ 
@@ -82,8 +88,8 @@ def insert_cuisine():
     return redirect(url_for('add_recipe'))
     
 # 'Manage Your Recipes' Page
-@app.route('/manage_recipes')
-def manage_recipes():
+@app.route('/manage_creations')
+def manage_creations():
     page_title = 'Manage Your Recipes | OneTwoCook'
     # 'Manage Your Recipes' Section
     user_recipes = mongo.db.recipes.find({
@@ -105,14 +111,14 @@ def manage_recipes():
         'author_username' : session['username'], 
         'author_region' : session['user_region'], 
         'author_dob' : session['user_dob']}).count()
-    return render_template('managerecipes.html', 
-        recipes = user_recipes, 
-        cuisines = user_cuisines, 
-        user_recipe_count = user_recipe_count, 
-        user_cuisine_count = user_cuisine_count,
-        page_title = page_title)
+    return render_template('manageyourcreations.html', 
+    recipes = user_recipes, 
+    cuisines = user_cuisines, 
+    user_recipe_count = user_recipe_count, 
+    user_cuisine_count = user_cuisine_count,
+    page_title = page_title)
     
-# 'Edit Recipe' Page (via 'Manage Your Recipes')
+# 'Edit Recipe' Page (via 'Manage Your Creations')
 @app.route('/edit_recipe/<recipe_name>/<recipe_id>')
 def edit_recipe(recipe_name, recipe_id):
     page_title = 'Edit' + recipe_name + ' | OneTwoCook'
@@ -121,10 +127,10 @@ def edit_recipe(recipe_name, recipe_id):
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, units = units, page_title = page_title)
     
-# 'Edit Cuisine' Page (via 'Manage Your Recipes' Secondary tab - 'Manage Your Cuisines')
+# 'Edit Cuisine' Page (via 'Manage Your Creations' Secondary tab - 'Manage Your Creations')
 @app.route('/edit_cuisine/<cuisine_type>/<cuisine_id>')
 def edit_cuisine(cuisine_type, cuisine_id):
-    page_title = 'Edit' + cuisine_type + ' | OneTwoCook'
+    page_title = 'Edit ' + cuisine_type + ' | OneTwoCook'
     cuisine_selected =  mongo.db.cuisines.find_one({'_id': ObjectId(cuisine_id), 'cuisine_type': cuisine_type })
     return render_template('editcuisine.html', cuisines = cuisine_selected, page_title = page_title)
     
@@ -140,21 +146,23 @@ def recipes_for_cuisine(cuisine_type):
 # View Recipe Page (Recipes where public_visibility = 'on')
 @app.route('/view_recipe/<recipe_name>/<recipe_id>/')
 def view_recipe(recipe_name, recipe_id):
+    recipes = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     page_title = recipe_name + ' | OneTwoCook'
     cuisines = mongo.db.cuisines.find()
-    view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = 'recipes_for_cuisine'
-    return render_template('viewrecipe.html', recipes = view_recipe, cuisines = cuisines, previous_url = previous_url, page_title = page_title)
+    return render_template('viewrecipe.html', recipes = recipes,
+    cuisines = cuisines, previous_url = previous_url, 
+    page_title = page_title)
     
 # View Your Recipe Page (via Manage Your Recipes)
 @app.route('/view_your_recipe/<recipe_name>/<recipe_id>')
 def view_your_recipe(recipe_name, recipe_id):
     page_title = recipe_name + ' | OneTwoCook'
     view_your_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
-    previous_url = url_for('manage_recipes')
-    previous_page = 'Manage Your Recipes'
-  
-    return render_template('viewrecipe.html', recipes = view_your_recipe, previous_url = previous_url, previous_page = previous_page, page_title = page_title)
+    previous_url = url_for('manage_creations')
+    previous_page = 'Manage Your Creations'
+    return render_template('viewrecipe.html', recipes = view_your_recipe, 
+    previous_url = previous_url, previous_page = previous_page, page_title = page_title)
 
 # Submission of 'Add a Recipe' Form to mLab Database
 @app.route('/insert_recipe', methods=['POST'])
@@ -169,7 +177,7 @@ def insert_recipe():
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.getlist('allergens'),
+        'allergens': request.form.get('allergens'),
         'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
@@ -253,7 +261,7 @@ def insert_recipe():
         },
         'public_visibility': request.form.get('public_visibility')
     })
-    return redirect(url_for('manage_recipes'))
+    return redirect(url_for('manage_creations'))
 
 ### Update recipes in mLab database
 @app.route('/update_recipe/<recipe_id>', methods=['POST'])    
@@ -270,7 +278,7 @@ def update_recipe(recipe_id):
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.getlist('allergens'),
+        'allergens': request.form.get('allergens'),
         'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
@@ -354,29 +362,43 @@ def update_recipe(recipe_id):
         },
         'public_visibility': request.form.get('public_visibility')
     })
-    return redirect(url_for('manage_recipes'))
-    
-# Update cuisines in mLab database
+    return redirect(url_for('manage_creations'))
+  
+"""  
+Checks if the cuisine contains recipes and if the new cuisine name already exists. 
+If so prompts user to create a different cuisine type. Only unique cuisine types that have no recipes
+added to them will be updated to MongoDB mLab Database.
+"""  
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
 def update_cuisine(cuisine_id):
-    mongo.db.cuisines.update(
-        {'_id': ObjectId(cuisine_id)},
-        {
-        'cuisine_type': request.form.get('cuisine_type'),
-        'cuisine_summary': request.form.get('cuisine_summary'),
-        'author_username': session['username'],
-        'author_dob': session['user_dob'],
-        'author_region': session['user_region']
-        }
-    )
-    return redirect(url_for('manage_recipes'))
+    page_title = 'Manage Your Creations | OneTwoCook'
+    cuisines = mongo.db.cuisines.find({'_id': ObjectId(cuisine_id)})
+    # recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
+    return render_template('manageyourcreations.html', cuisines = cuisines, page_title = page_title)
         
 # Index of Recipes Page
 @app.route('/index_of_recipes')
 def index_of_recipes():
     page_title = 'Index of Recipes | OneTwoCook'
+    caption = 'Below is a collection of all the recipes already available and visible to the public on this site.'
     all_public_recipes = mongo.db.recipes.find({'public_visibility' : 'on'}).sort('recipe_name', 1)
-    return render_template('indexofrecipes.html', recipes = all_public_recipes, page_title = page_title)
+    return render_template('indexofrecipes.html', recipes = all_public_recipes, page_title = page_title, caption = caption)
+
+# Index of Recipes Page - Filter for Gluten Free Recipes
+@app.route('/index_of_recipes/gluten-free')
+def gluten_free():
+    page_title = 'Index of Recipes | OneTwoCook'
+    caption = 'Below shows all gluten-free recipes that are already available and visible to the public on this site.'
+    gluten_free = mongo.db.recipes.find({'gluten_free' : 'on'}).sort('recipe_name', 1)
+    return render_template('indexofrecipes.html', recipes = gluten_free, page_title = page_title, caption = caption)
+    
+# Index of Recipes Page - Filter for Recipes suitable for Vegetarians
+@app.route('/index_of_recipes/vegetarian')
+def suitable_for_vegetarians_index():
+    page_title = 'Index of Recipes | OneTwoCook'
+    caption = 'Below shows all recipes suitable for vegetarians that are already available and visible to the public on this site.'
+    vegetarians = mongo.db.recipes.find({'vegetarian' : 'on'}).sort('recipe_name', 1)
+    return render_template('indexofrecipes.html', recipes = vegetarians, page_title = page_title, caption = caption)
 
 # Viewing a Recipe from Index of Recipes Page
 @app.route('/index_of_recipes/<recipe_id>/<recipe_name>')
@@ -386,19 +408,23 @@ def recipe_from_index(recipe_id, recipe_name):
     previous_url = url_for('index_of_recipes')
     previous_page = 'Index of Recipes'
     return render_template('viewrecipe.html', recipes = view_recipe, previous_url = previous_url, previous_page = previous_page, page_title = page_title)
-
+        
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
 def delete_cuisine(cuisine_id, cuisine_type):
-    cuisine_has_recipes = mongo.db.recipes.find({'cuisine_type': cuisine_type})
+    cuisines = mongo.db.cuisines.find({'_id': ObjectId(cuisine_id)})
+    recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
+    if len(recipes) > 0:
+	    print("You can't delete this cuisine has it has multiple recipes associated with it")
+	    return render_template('manageyourcreations.html', cuisines = cuisines, recipes = recipes)
     mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
-    return render_template('managerecipe.html', cuisine_has_recipes = cuisine_has_recipes)
+    return redirect(url_for('manage_creations'))
     
 # Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-    return render_template(url_for('manage_recipes'))
+    return redirect(url_for('manage_creations'))
 
 if __name__ == '__main__':
     app.run(host = os.environ.get('IP'),

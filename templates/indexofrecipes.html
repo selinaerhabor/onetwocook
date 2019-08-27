@@ -9,28 +9,35 @@
           </div>
         </div>
         <h2 class="center">Index of Recipes</h2>
-        <p class="center">Below is a collection of all the recipes already available and visible to the public on this site.</p>
-          <div class="row">
-            {% for recipe in recipes %}
+        <div class="row">
+          <div class="col s12 center">
+            <a href="{{url_for('index_of_recipes')}}" class="btn tooltipped filter" data-position="bottom" data-tooltip="Displays all recipes available">All</a>
+            <a href="{{url_for('gluten_free')}}" class="btn tooltipped filter" data-position="bottom" data-tooltip="Displays all gluten-free recipes">Gluten Free</a>
+            <a href="{{url_for('suitable_for_vegetarians_index')}}" class="btn tooltipped filter" data-position="bottom" data-tooltip="Displays all recipes suitable for vegetarians">Suitable for Vegetarians</a>
+          </div>
+        </div>
+        <p class="center">{{caption}}</p>
+        <div class="row">
+          {% for recipe in recipes %}
             <div class="col s12 m4 l4">
               <div class="card hoverable">
-              <div class="card-image waves-effect waves-block hover-content">
-                <a href="{{url_for('recipe_from_index', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
-                  <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
-                  <div class="overlay">
-                    <p class="text">
-                      {{recipe.recipe_summary}}
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div class="card-content">
-                <a class="link" href="{{url_for('recipe_from_index', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
-                  <h5 class="truncate">{{recipe.recipe_name}}</h5>
-                </a>
+                <div class="card-image waves-effect waves-block hover-content">
+                  <a href="{{url_for('recipe_from_index', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                    <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
+                    <div class="overlay">
+                      <p class="text">
+                        {{recipe.recipe_summary}}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+                <div class="card-content">
+                  <a class="link" href="{{url_for('recipe_from_index', recipe_name = recipe.recipe_name, recipe_id = recipe._id)}}">
+                    <h5 class="truncate">{{recipe.recipe_name}}</h5>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
           {% endfor %}
         </div>
       </div>
