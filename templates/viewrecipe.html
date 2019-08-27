@@ -23,11 +23,21 @@
                         {% endif %}
                         <h5><b>Summary</b></h5>
                         <p>{{recipe.recipe_name}}: {{recipe.recipe_summary}}</p>
+                        {% if recipe.gluten_free == "on" %}
+                            <p>Gluten-Free Recipe<i class="material-icons">check_circle</i></p>
+                        {% else %}
+                            <p>Not Gluten-Free</p>
+                        {% endif %}
+                        {% if recipe.vegetarian == "on" %}
+                            <p>Suitable For Vegetarians<i class="material-icons">check_circle</i></p>
+                        {% else %}
+                            <p>Not suitable for vegetarians</p>
+                        {% endif %}
                         <p>Serves: {{recipe.recipe_serves}} people</p>
                         <p>Cook Time: {{recipe.cook_time}} {{recipe.ct_units}}</p>
                         <p>Preparation Time: {{recipe.preparation_time}} {{recipe.pt_units}}</p>
-                        {% if recipe.allergens != "" %}
-                            <p>Allergens: {{recipe.allergens|capitalize}}</p>
+                        {% if recipe.allergens %}
+                            <p>Allergens: {{recipe.allergens[0]}}{{recipe.allergens[1]}}{{recipe.allergens[2]}}{{recipe.allergens[3]}}{{recipe.allergens[4]}}</p>
                         {% else %}
                             <p>Allergens: None listed</p>
                         {% endif %}
