@@ -11,16 +11,74 @@
             </div>
           </div>
           
+          <!--Modal - Need help in completing Add a Recipe Form-->
+          <div id="needHelp" class="modal">
+                <div class="modal-content">
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                  <h4>Completing the Add a Recipe Form</h4>
+                  <div class="divider"></div>
+                  <ol>
+                    <li>Summary Section</li>
+                    <div class="uppercase">Cuisine type</div>
+                    You can choose to select from the dropdown list a cuisine type or you could add a new cuisine by clicking on the Add Cuisine button 
+                    besides it. This will redirect you to a simple form where you will be required to type in the cuisine type you wish to create and a summary 
+                    of the cuisine.
+                    <div class="uppercase">Recipe Name</div>
+                    This is the name you would like to call the recipe you are creating. If your recipe has been set to make recipe public, then this is 
+                    the name that everyone will see on the site.
+                    <div class="uppercase">Recipe Summary</div>
+                    This is a summary for the recipe you are creating to give users an idea of what your recipe is about and why they should have a go
+                    to try it. Should be a maximum of 95 characters.
+                    <div class="uppercase">Serves</div>
+                    Serves refers to the number of people the recipe will cater for regarding the size of the food to be cooked. For example a serves of 5 means
+                    the recipe ingredients are enough to feed up to 5 people.
+                    <div class="uppercase">Not sure what Allergens your recipe may have?</div>
+                    The allergens listed on the dropdown list of this Add a Recipe form have been taken from the main 14 allergens in ingredients according
+                    to the <a href="https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses">UK Food Standards Agency.</a>
+                    <div class="uppercase">Gluten Free Checkbox</div>
+                    A gluten-free diet is a diet that excludes the protein gluten. Gluten is found in grains such as wheat, barley, rye, and a cross 
+                    between wheat and rye called triticale. If your recipe is gluten free, tick this box before submitting.
+                    <div class="uppercase">Suitable for Vegetarians Checkbox</div>
+                    A Vegetarian is someone who does not eat meat or fish, and sometimes other animal products, especially for moral, religious, or health 
+                    reasons. If your recipe is suitable for vegetarians, tick this box before submitting.
+                    <div class="uppercase">Recipe Image URL</div>
+                    In order to add an appropriate recipe image URL, we advise using google images to find your image. First, make a search for a
+                    suitable image on google, then click on the image to be redirected to the website it is from. Next, drag the image from the
+                    website into the current tab window and you should be redirected to a page which just displays the image.
+                    Copy the link that appears on that page, it should end with .jpg/.jpeg/.png. Paste this link into the Recipe Image URL field.
+                    <li>Ingredients Section</li>
+                    <div class="uppercase">Ingredient Name</div>
+                    This is the name of one item of ingredient for your recipe. Once you begin typing in your ingredient name, more input fields for 
+                    ingredients will appear below. Maximum number of ingredients is 20.
+                    <div class="uppercase">Ingredient Quantity</div>
+                    This is the quantity of the item of ingredient for your recipe that you mentioned on the left. 
+                    <div class="uppercase">Ingredient Units</div>
+                    This is the quantity units of the item of ingredient for your recipe that you mentioned on the left. If no units are required 
+                    for an ingredient, do not select any of the units in the dropdown.
+                    <li>Method Section</li>
+                    <div class="uppercase">Prep Time</div>
+                    Prep Time is short for Preparation Time. This is the time you advise users to prepare things before you actually begin cooking, it
+                    could include for example slicing onions and washing vegetables. A couple of minutes will be an ideal prep time.
+                    <div class="uppercase">Cook Time</div>
+                    This is the time you advise users that completing the recipe will take, this includes the completion of all the method steps
+                    listed. A recipe cook time shouldn't be too long as this is likely to make it unpopular, recipe cook times must be realistic and 
+                    appropriate.
+                    <div class="uppercase">Method Steps</div>
+                    Maximum number of steps is 10. Place each method step in chronological order, with the first step on 1. These should be clear
+                    instructions for a user to follow to successfully cook the meal.
+                    <li>What happens if I make my recipe public?</li>
+                    If you make your recipe public, everyone who visits the site will see your recipe among the other recipes made public on OneTwoCook.
+                    On our website, we display your recipe along with your name and region at the bottom of your recipe's page. We do not display date 
+                    of births, as this information is used for user identification purposes only and will not be shared with third parties.
+                  </ol>
+                </div>
+              </div>
+          
           <div class="row">
             <div class="col s12">
               <h2 class="center">Add A Recipe</h2>
-              
-              <div class="center">If you need help in completing this form, please click the NEED HELP button at the end of the Summary section.</div>
-              
-              <!--Page Divider-->
-              <div class="divider"></div>
-              
-              
+            
+              <p class="center">If you need help in completing this form, please click the need help button at the end of the Summary section.</p>
               
               <!--Add a Recipe form-->
               <form id="recipe_form" action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
@@ -70,9 +128,9 @@
                   
                   <!--Allergens-->
                   <div class="input-field col s8 m5" id="allergens">
-                    <select multiple name="allergens" placeholder="Allergens" required>
+                    <select name="allergens" multiple required>
                       <option value="" disabled selected>Allergens</option>
-                      <option value="none">No Allergens</option>
+                      <option value="">No Allergens</option>
                       <option value="celery">Celery</option>
                       <option value="crustaceans">Crustaceans</option>
                       <option value="eggs">Eggs</option>
@@ -741,7 +799,7 @@
                     <label for="preparation_time">Prep Time:</label>
                   </div>
                   <div class="input-field col s5 m2">
-                    <select name="pt_units" required>
+                    <select name="pt_units">
                       <option value="" disabled selected>Units</option>
                       <option value="second(s)">second(s)</option>
                       <option value="minute(s)">minute(s)</option>
