@@ -6,6 +6,7 @@
           <div class="row">
             <div class="col s12">
               <h2 class="center">
+                
                 <!-- Personalised greeting for users who submitted their name-->
                 {% if "username" in session %}
                   Welcome {{ session['username']}} !
@@ -16,6 +17,8 @@
               <p class="center">Explore recipes through selecting a cuisine below.</p>
             </div>
           </div>
+          
+          <!--Cuisine Card Settings--> 
           <div class="row">
             {% for cuisine in cuisines %}
               <div class="col s12 m6 l4 xl4">
@@ -24,16 +27,24 @@
                     <a href="{{url_for('recipes_for_cuisine', cuisine_type = cuisine.cuisine_type)}}">
                       {% if cuisine.cuisine_type == 'African' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_african.png')}}" />
+                      {% elif cuisine.cuisine_type == 'American' %}
+                        <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_american.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'British' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_british.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'Caribbean' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_caribbean.png')}}" />
                       {% elif cuisine.cuisine_type == 'Chinese' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_chinese.png')}}" />
+                      {% elif cuisine.cuisine_type == 'French' %}
+                        <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_french.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'Indian' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_indian.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'Irish' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_irish.jpg')}}" />
+                      {% elif cuisine.cuisine_type == 'Japanese' %}
+                        <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_japanese.jpg')}}" />
+                      {% elif cuisine.cuisine_type == 'Mexican' %}
+                        <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_mexican.jpg')}}" />
                       {% elif cuisine.cuisine_type == 'Thai' %}
                         <img class="activator responsive-img" src="{{url_for('static', filename='images/coverphoto_thai.png')}}" />
                       {% elif cuisine.cuisine_type == 'Turkish' %}
