@@ -188,12 +188,6 @@ p, h6 {
     font-size: 40px;
 }
 
-/*---------------------------------------------------------Manage Your Recipes*/
-.manager {
-    width: 180px;
-    margin: 5px;
-    text-align: center;
-}
 
 /*------------------------------------------------------------------Navigation*/
 .logo {
@@ -222,10 +216,50 @@ p, h6 {
 
 
 
-/*---------------------------------------------------------Manage Recipes Page*/
-.managerecipe-border {
+/*--------------------------------------------------Manage Your Creations Page*/
+.managecreation-border {
     border: dashed;
     border-color: #ff9800;
+}
+
+.fade-feature {
+    opacity: 0.6;
+}
+
+.manager {
+    width: 180px;
+    margin: 5px;
+    text-align: center;
+}
+
+.box-option {
+    background-color: #ffcc99;
+    color: #737373;
+    border: dotted #737373;
+    width: 175px;
+    height: 300px;
+    padding: 10px;
+    margin: 3px auto;
+    align-items: center;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.box-option:hover {
+    background-color: #ffa64d;
+    color: #000;
+    border: dotted #000;
+}
+
+#manage_creations {
+    padding-bottom: 50px;
+}
+
+#manage_recipes, #manage_cuisines, #saved_recipes {
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 
@@ -288,6 +322,12 @@ ol li{
 .select-options {
     font-size: 10px;
     padding: 5px;
+}
+
+/*-----------------------------------------------------------Index of Recipes*/
+
+.filter {
+    margin: 10px;
 }
 
 /*------------------------------------------------------------------Login Page*/

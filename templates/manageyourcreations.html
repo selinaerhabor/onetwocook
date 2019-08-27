@@ -2,16 +2,53 @@
 {% block document %}
   <div class="background responsive-img">
     <div class="container">
-      <div class="card-panel managerecipe-border">
+      <div class="card-panel managecreation-border">
         <div class="row">
           <div class="col s12">
             <div class="card-content">
+              
+              <!--Back to home page link-->
               <div class="row">
                 <div class="col s12">
                   <a href="{{url_for('login')}}"><i class="material-icons left">arrow_back</i>Back to Home</a>
                 </div>
               </div>
-              <h2 class="center">Manage Your Recipes</h2>
+              
+              <!--Manage Your Creations Options-->
+              <section id="manage_creations">
+              <h2 class="center">Manage Your Creations</h2>
+              <div class="row center">
+                <div class="col s12 m6 l4">
+                  <a href="#manage_recipes">
+                    <div class="box-option hoverable">
+                      <h3>Manage Your Recipes</h3>
+                      <p>See the recipes you've created..</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col s12 m6 l4">
+                  <a href="#manage_cuisines">
+                    <div class="box-option hoverable">
+                      <h3>Manage Your Cuisines</h3>
+                      <p>See the cuisines you've created..</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="col s12 m6 l4">
+                  <a href="#saved_recipes">
+                    <div class="box-option hoverable">
+                      <h3>Saved Recipes</h3>
+                      <p>See your saved recipes..</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              </section>
+              
+              <div class="divider"></div>
+              
+              <section id="manage_recipes">
+              <h3 class="center">Manage Your Recipes</h3>
               
               <!--No. of recipes created by user-->
               <h5 class="center">Recipes created by you: <b>{{user_recipe_count}}</b></h5>
@@ -27,12 +64,12 @@
                       </div>
                       <div class="modal-footer">
                         <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="modal-close waves-effect waves-green btn">YES</a>
-                        <a href="{{url_for('manage_recipes')}}" class="modal-close waves-effect red btn">NO</a>
+                        <a href="http://onetwocook.herokuapp.com/manage_creations#manage_recipes" class="modal-close waves-effect red btn">NO</a>
                       </div>
                     </div>  
                     
                       <!--Recipe Card Display-->
-                      <div class="col s12 m6 l4 xl4">
+                      <div class="col s12 l4">
                         <div class="card">
                           <div class="card-image waves-effect waves-block hover-content">
                             <img class="responsive-img" src="{{recipe.img_path}}" alt={{recipe.recipe_name}} >
@@ -45,7 +82,7 @@
                             <span class="card-title grey-text text-darken-4">
                               <i class="material-icons right">close</i>
                               <h4>{{recipe.recipe_name|capitalize }}</h4>
-                              <hr>
+                              <div class="divider"></div>
                             </span>
                             <p>Public Visibility: {{recipe.public_visibility}}</p>
                             <div class="col-12">
@@ -68,51 +105,13 @@
                   
                 </div>
               </div>
+              </section>
             </div>
           </div>
         </div>
-        <hr>
-                
-        <!--Secondary Tabs under Manage Recipes Information-->
-        <div class="row">
-          <div class="col s12 m11 offset-m1">
-            <div class="card-tabs">
-              <ul class="tabs tabs-fixed-width">
-                <li class="tab fade-feature"><a class="" href="#saved_recipes">Saved Recipes</a></li>
-                <li class="tab"><a class="hide-on-small-only right active" href="#manage_cuisines">Manage Your Cuisines</a></li>
-                <li class="tab"><a class="show-on-small hide-on-med-and-up right active" href="#manage_cuisines">Your Cuisines</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <div class="divider"></div>
             
-        <!--Saved Recipes Information-->
-        <section id="saved_recipes">
-          <div class="row fade-feature">
-            <div class="col s12">
-              <h3 class="center">Saved Recipes</h3>
-              
-                {% for recipe in recipes %}
-                <!--Saved Recipes Card display here-->
-                <div class="col s12 m6 l4 xl4">
-                  <div class="card">
-                    <span class="card-title">{{recipe.recipe_name}}</span>
-                    <div class="card-content">
-                      <p>{{recipe.recipe_name}}</p>
-                    </div>
-                  </div>
-                </div>
-                {% else %}
-                  <!--If user has not saved any recipes, provide link for user if they want to create one-->
-                    <p class="center"><b>{{ session['username'] }}, you have no saved recipes.</b></p>
-                    <p class="center">To save a recipe click on <a class="btn tooltipped" data-position="bottom" data-tooltip="Coming Soon!"><i class="material-icons">thumb_up</i></a> 
-                    by the title of a recipe and the recipes you liked will appear in this section.</p>
-                    
-                {% endfor %}
-              
-            </div>
-          </div>
-        </section>
+            
               
         <!--Manage Cuisines Information-->
         <section id="manage_cuisines">
@@ -131,12 +130,11 @@
                     </div>
                     <div class="modal-footer">
                       <a href="{{url_for('delete_cuisine', cuisine_id = cuisine._id, cuisine_type = cuisine.cuisine_type)}}" class="modal-close waves-effect waves-green btn">YES</a>
-                      <a href="#manage_cuisines" class="modal-close waves-effect red btn">NO</a>
+                      <a href="http://onetwocook.herokuapp.com/manage_creations#manage_cuisines" class="modal-close waves-effect red btn">NO</a>
                     </div>
                   </div>
-                  
                   <!--Cuisine Card Display-->
-                  <div class="col s12 m6 l4 xl4">
+                  <div class="col s12 l4">
                     <div class="card">
                       <div class="card-image waves-effect waves-block">
                           <img class="responsive-img" src="{{url_for('static', filename='images/coverphoto_other.jpg')}}" alt={{cuisine.cuisine_type}}>
@@ -149,15 +147,17 @@
                         <span class="card-title grey-text text-darken-4">
                           <i class="material-icons right">close</i>
                           <h4>{{cuisine.cuisine_type|capitalize }}</h4>
-                          <hr>
+                          <div class="divider"></div>
                         </span>
                         <p>{{cuisine.cuisine_summary}}</p>
-                         <div class="col-12"> 
-                          <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id, cuisine_type = cuisine.cuisine_type)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
-                        </div>
-                        <div class="col-12">
-                          <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{cuisine.cuisine_type}}">Delete<i class="material-icons right">delete</i></a>
-                        </div>
+                          <div class="col-12"> 
+                            <a href="{{url_for('edit_cuisine', cuisine_id = cuisine._id, cuisine_type = cuisine.cuisine_type)}}" class="btn halfway-fab waves-effect grey lighten-2 manager">Edit<i class="material-icons right">edit</i></a>
+                          </div>
+                          <div class="col-12">
+                            <a class="waves-effect waves-light red btn modal-trigger manager" href="#delete{{cuisine.cuisine_type}}">Delete<i class="material-icons right">delete</i></a>
+                          </div>
+                          <!--<p class="alert">Recipes available. This cuisine cannot be edited/deleted.</p>-->
+                        
                       </div>
                     </div>
                   </div>
@@ -172,15 +172,33 @@
             </div>
           </div>
         </section>
+        
+        <div class="divider"></div>
+        
+        <!--Saved Recipes Information-->
+        <section id="saved_recipes">
+          <div class="row">
+            <div class="col s12">
+              <h3 class="center">Saved Recipes</h3>
+                {% for recipe in recipes %}
+                <!--Saved Recipes Card display here-->
+                  <div class="card">
+                    <span class="card-title">{{recipe.recipe_name}}</span>
+                    <div class="card-content">
+                      <p>{{recipe.recipe_name}}</p>
+                    </div>
+                  </div>
+                {% else %}
+                  <!--If user has not saved any recipes, provide link for user if they want to create one-->
+                    <p class="center fade-feature"><b>{{ session['username'] }}, you have no saved recipes.</b></p>
+                    <p class="center fade-feature">To save a recipe click on <a class="btn"><i class="material-icons">thumb_up</i></a> 
+                    by the title of a recipe and the recipes you liked will appear in this section.</p>
+                {% endfor %}
+            </div>
+          </div>
+        </section>
+        
       </div>
     </div>
   </div>
-  
-  
-  <!--Scripts-->
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#deleteModal').modal('open');
-    });
-  </script>
 {% endblock %}
