@@ -90,7 +90,7 @@ def insert_cuisine():
 # 'Manage Your Recipes' Page
 @app.route('/manage_creations')
 def manage_creations():
-    page_title = 'Manage Your Recipes | OneTwoCook'
+    page_title = 'Manage Your Creations | OneTwoCook'
     # 'Manage Your Recipes' Section
     user_recipes = mongo.db.recipes.find({
         'author.author_username' : session['username'], 
@@ -111,7 +111,7 @@ def manage_creations():
         'author_username' : session['username'], 
         'author_region' : session['user_region'], 
         'author_dob' : session['user_dob']}).count()
-    return render_template('manageyourcreations.html', 
+    return render_template('managecreations.html', 
     recipes = user_recipes, 
     cuisines = user_cuisines, 
     user_recipe_count = user_recipe_count, 
@@ -374,7 +374,7 @@ def update_cuisine(cuisine_id):
     page_title = 'Manage Your Creations | OneTwoCook'
     cuisines = mongo.db.cuisines.find({'_id': ObjectId(cuisine_id)})
     # recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
-    return render_template('manageyourcreations.html', cuisines = cuisines, page_title = page_title)
+    return render_template('managecreations.html', cuisines = cuisines, page_title = page_title)
         
 # Index of Recipes Page
 @app.route('/index_of_recipes')
@@ -412,13 +412,12 @@ def recipe_from_index(recipe_id, recipe_name):
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
 def delete_cuisine(cuisine_id, cuisine_type):
-    cuisines = mongo.db.cuisines.find({'_id': ObjectId(cuisine_id)})
-    recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
-    if len(recipes) > 0:
-	    print("You can't delete this cuisine has it has multiple recipes associated with it")
-	    return render_template('manageyourcreations.html', cuisines = cuisines, recipes = recipes)
-    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
-    return redirect(url_for('manage_creations'))
+    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
+    if cuisine_has_recipes:
+        mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
+        return redirect(url_for('manage_creations'))
+    else:
+        return redirect(url_for('manage_creations'))
     
 # Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')
