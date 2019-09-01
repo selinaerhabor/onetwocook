@@ -155,25 +155,4 @@ $(document).ready(function(){
     //Deleting Recipe or Cuisine created by user
     $('.modal').modal('show');
     $('#deleteModal').modal('open');
-    
-    /*Displays number of times a user has clicked Thumbs Up Button 
-    (liked the recipe) */
-    // document.getElementById("count").innerHTML = localStorage.clickcount;
-    // if (localStorage.clickcount == undefined) {
-    //     localStorage.clickcount == 1;
-    // }
-    // $("#thumbsUp").click(function(){
-    //     if (typeof(Storage) !== "undefined") {
-    //         if (localStorage.clickcount) {
-    //             localStorage.clickcount == Number(localStorage.clickcount)+1;
-    //         } 
-    //         else {
-    //             localStorage.clickcount = 1;
-    //         }
-    //     document.getElementById("count").innerHTML = localStorage.clickcount;
-    //     } 
-    //     else {
-    //         document.getElementById("count").innerHTML = localStorage.clickcount;
-    //     }
-    // });
  });

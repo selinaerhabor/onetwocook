@@ -227,7 +227,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient1_units" id="ingredient1_units">
-                        <option value="{{recipes.ingredients.ingredient1_units}}" selected>{{recipes.ingredients.ingredient1_units}}</option>
+                        {% if recipes.ingredients.ingredient1_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient1_units}}" disabled selected>{{recipes.ingredients.ingredient1_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -257,7 +261,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient2_units" id="ingredient2_units">
-                        <option value="{{recipes.ingredients.ingredient2_units}}" selected>{{recipes.ingredients.ingredient2_units}}</option>
+                        {% if recipes.ingredients.ingredient2_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient2_units}}" disabled selected>{{recipes.ingredients.ingredient2_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -287,7 +295,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient3_units" id="ingredient3_units">
-                        <option value="{{recipes.ingredients.ingredient3_units}}" selected>{{recipes.ingredients.ingredient3_units}}</option>
+                        {% if recipes.ingredients.ingredient3_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient3_units}}" disabled selected>{{recipes.ingredients.ingredient3_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -317,7 +329,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient4_units" id="ingredient4_units">
-                        <option value="{{recipes.ingredients.ingredient4_units}}" selected>{{recipes.ingredients.ingredient4_units}}</option>
+                        {% if recipes.ingredients.ingredient4_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient4_units}}" disabled selected>{{recipes.ingredients.ingredient4_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -347,7 +363,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient5_units" id="ingredient5_units">
-                        <option value="{{recipes.ingredients.ingredient5_units}}" selected>{{recipes.ingredients.ingredient5_units}}</option>
+                        {% if recipes.ingredients.ingredient5_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient5_units}}" disabled selected>{{recipes.ingredients.ingredient5_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -377,7 +397,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient6_units" id="ingredient6_units">
-                        <option value="{{recipes.ingredients.ingredient6_units}}" selected>{{recipes.ingredients.ingredient6_units}}</option>
+                        {% if recipes.ingredients.ingredient6_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient6_units}}" disabled selected>{{recipes.ingredients.ingredient6_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -407,7 +431,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient7_units" id="ingredient7_units">
-                        <option value="{{recipes.ingredients.ingredient7_units}}" selected>{{recipes.ingredients.ingredient7_units}}</option>
+                        {% if recipes.ingredients.ingredient7_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient7_units}}" disabled selected>{{recipes.ingredients.ingredient7_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -437,7 +465,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient8_units" id="ingredient8_units">
-                        <option value="{{recipes.ingredients.ingredient8_units}}" selected>{{recipes.ingredients.ingredient8_units}}</option>
+                        {% if recipes.ingredients.ingredient8_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient8_units}}" disabled selected>{{recipes.ingredients.ingredient8_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -467,7 +499,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient9_units" id="ingredient9_units">
-                        <option value="{{recipes.ingredients.ingredient9_units}}" selected>{{recipes.ingredients.ingredient9_units}}</option>
+                        {% if recipes.ingredients.ingredient9_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient9_units}}" disabled selected>{{recipes.ingredients.ingredient9_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -497,7 +533,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient10_units" id="ingredient10_units">
-                        <option value="{{recipes.ingredients.ingredient10_units}}" selected>{{recipes.ingredients.ingredient10_units}}</option>
+                        {% if recipes.ingredients.ingredient10_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient10_units}}" disabled selected>{{recipes.ingredients.ingredient10_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -527,7 +567,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient11_units" id="ingredient11_units">
-                        <option value="{{recipes.ingredients.ingredient11_units}}" selected>{{recipes.ingredients.ingredient11_units}}</option>
+                        {% if recipes.ingredients.ingredient11_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient11_units}}" disabled selected>{{recipes.ingredients.ingredient11_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -557,7 +601,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient12_units" id="ingredient12_units">
-                        <option value="{{recipes.ingredients.ingredient12_units}}" selected>{{recipes.ingredients.ingredient12_units}}</option>
+                        {% if recipes.ingredients.ingredient12_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient12_units}}" disabled selected>{{recipes.ingredients.ingredient12_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -587,7 +635,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient13_units" id="ingredient13_units">
-                        <option value="{{recipes.ingredients.ingredient13_units}}" selected>{{recipes.ingredients.ingredient13_units}}</option>
+                        {% if recipes.ingredients.ingredient13_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient13_units}}" disabled selected>{{recipes.ingredients.ingredient13_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -617,7 +669,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient14_units" id="ingredient14_units">
-                        <option value="{{recipes.ingredients.ingredient14_units}}" selected>{{recipes.ingredients.ingredient14_units}}</option>
+                        {% if recipes.ingredients.ingredient14_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient14_units}}" disabled selected>{{recipes.ingredients.ingredient14_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -647,7 +703,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient15_units" id="ingredient15_units">
-                        <option value="{{recipes.ingredients.ingredient15_units}}" selected>{{recipes.ingredients.ingredient15_units}}</option>
+                        {% if recipes.ingredients.ingredient15_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient15_units}}" disabled selected>{{recipes.ingredients.ingredient15_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -677,7 +737,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient16_units" id="ingredient16_units">
-                        <option value="{{recipes.ingredients.ingredient16_units}}" selected>{{recipes.ingredients.ingredient16_units}}</option>
+                        {% if recipes.ingredients.ingredient16_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient16_units}}" disabled selected>{{recipes.ingredients.ingredient16_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -707,7 +771,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient17_units" id="ingredient17_units">
-                        <option value="{{recipes.ingredients.ingredient17_units}}" selected>{{recipes.ingredients.ingredient17_units}}</option>
+                        {% if recipes.ingredients.ingredient17_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient17_units}}" disabled selected>{{recipes.ingredients.ingredient17_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -737,7 +805,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient18_units" id="ingredient18_units">
-                        <option value="{{recipes.ingredients.ingredient18_units}}" selected>{{recipes.ingredients.ingredient18_units}}</option>
+                        {% if recipes.ingredients.ingredient18_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient18_units}}" disabled selected>{{recipes.ingredients.ingredient18_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -767,7 +839,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient19_units" id="ingredient19_units">
-                        <option value="{{recipes.ingredients.ingredient19_units}}" selected>{{recipes.ingredients.ingredient19_units}}</option>
+                        {% if recipes.ingredients.ingredient19_units == "" %}
+                          <option value="" disabled selected>Units</option>
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient19_units}}" disabled selected>{{recipes.ingredients.ingredient19_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
@@ -797,7 +873,11 @@
                     </div>
                     <div class="input-field col s4 m3">
                       <select name="ingredient20_units" id="ingredient20_units">
-                        <option value="{{recipes.ingredients.ingredient20_units}}" selected>{{recipes.ingredients.ingredient20_units}}</option>
+                        {% if recipes.ingredients.ingredient20_units == "" %}
+                          <option value="" disabled selected>Units</option>                        
+                        {% else %}
+                          <option value="{{recipes.ingredients.ingredient20_units}}" disabled selected>{{recipes.ingredients.ingredient20_units}}</option>
+                        {% endif %}
                         <option value="can(s)">can(s)</option>
                         <option value="pinch(es)">pinch(es)</option>
                         <option value="teaspoon(s)/tsp">teaspoon(tsp)/tsp</option>
