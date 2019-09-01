@@ -3,6 +3,8 @@
     <div class="background responsive-img">
         <div class="container">
             <div class="card-panel recipe-border">
+                
+                <!--Back to previous page link-->
                 <div class="row">
                     <div class="col s12">
                         {% for recipe in recipes %}
@@ -14,13 +16,17 @@
                         {% endif %}
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col s12 m6">
+                        <!--Thumbs Up button (Features left to implement)-->
                         {% if "username" in session %}
                             <h3>{{recipe.recipe_name}}<a class="btn right fade-feature tooltipped" data-position="bottom" data-tooltip="Coming Soon!" id="thumbsUp"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
                         {% else %}
                             <h3>{{recipe.recipe_name}}<a class="btn right" href="{{url_for('login')}}"><i class="material-icons">thumb_up</i><span id="count"></span></a></h3>
                         {% endif %}
+                        
+                        <!--Summary Section-->
                         <h5><b>Summary</b></h5>
                         <p>{{recipe.recipe_name}}: {{recipe.recipe_summary}}</p>
                         {% if recipe.gluten_free == "on" %}
@@ -37,7 +43,12 @@
                         <p>Cook Time: {{recipe.cook_time}} {{recipe.ct_units}}</p>
                         <p>Preparation Time: {{recipe.preparation_time}} {{recipe.pt_units}}</p>
                         {% if recipe.allergens %}
-                            <p>Allergens: {{recipe.allergens[0]}}{{recipe.allergens[1]}}{{recipe.allergens[2]}}{{recipe.allergens[3]}}{{recipe.allergens[4]}}</p>
+                            <p>Allergens: {{recipe.allergens[0]}} {{recipe.allergens[1]}} {{recipe.allergens[2]}} 
+                            {{recipe.allergens[3]}} {{recipe.allergens[4]}} {{recipe.allergens[5]}} {{recipe.allergens[6]}} 
+                            {{recipe.allergens[7]}} {{recipe.allergens[8]}} {{recipe.allergens[9]}} {{recipe.allergens[10]}} 
+                            {{recipe.allergens[11]}} {{recipe.allergens[12]}} {{recipe.allergens[13]}}</p>
+                        {% elif recipe.allergens.count == 1 %}
+                            <p>Allergens: {{recipe.allergens}}</p>
                         {% else %}
                             <p>Allergens: None listed</p>
                         {% endif %}
@@ -48,6 +59,7 @@
                         </a>
                     </div>
                 </div>
+                <!--Ingredients Section-->
                 <div class="row">
                     <div class="col s12">
                         <h5><b>Ingredients</b></h5>
@@ -127,6 +139,8 @@
                         {% endif %}
                     </div>
                 </div>
+                
+                <!--Method Section-->
                 <div class="row">
                     <div class="col s12">
                         <h5><b>Method</b></h5>
@@ -160,6 +174,8 @@
                         {% endif %}
                     </div>
                 </div>
+                
+                <!--Author Summary-->
                 <div class="row">
                     <div class="col s6 m3">
                         <h5><b>Author</b></h5>
@@ -168,6 +184,8 @@
                         {% endfor %}
                     </div>
                 </div>
+                
+                <!--Extra Features-->
                 <div class="row">
                     <div class="col s12">
                         <i class="material-icons options" id="printButton">print</i>
