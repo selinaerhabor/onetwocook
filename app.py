@@ -177,7 +177,7 @@ def insert_recipe():
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.get('allergens'),
+        'allergens': request.form.getlist('allergens'),
         'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
@@ -278,7 +278,7 @@ def update_recipe(recipe_id):
         'pt_units': request.form.get('pt_units'),
         'cook_time': request.form.get('cook_time'),
         'ct_units': request.form.get('ct_units'),
-        'allergens': request.form.get('allergens'),
+        'allergens': request.form.getlist('allergens'),
         'gluten_free': request.form.get('gluten_free'),
         'vegetarian': request.form.get('vegetarian'),
         'ingredients': {
@@ -371,10 +371,20 @@ added to them will be updated to MongoDB mLab Database.
 """  
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
 def update_cuisine(cuisine_id):
-    page_title = 'Manage Your Creations | OneTwoCook'
-    cuisines = mongo.db.cuisines.find({'_id': ObjectId(cuisine_id)})
-    # recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
-    return render_template('managecreations.html', cuisines = cuisines, page_title = page_title)
+    cuisine_has_recipes = mongo.db.recipes.find({'_id': ObjectId(cuisine_id)})
+    if cuisine_has_recipes:
+        return redirect(url_for('manage_creations'))
+    else:
+        mongo.db.cuisines.update(
+            {'_id': ObjectId(cuisine_id)},
+            {
+            'cuisine_type': request.form.get('cuisine_type'),
+            'cuisine_summary': request.form.get('cuisine_summary'),
+            'author_username': session['username'],
+            'author_dob': session['user_dob'],
+            'author_region': session['user_region']
+        })
+        return redirect(url_for('manage_creations'))
         
 # Index of Recipes Page
 @app.route('/index_of_recipes')
@@ -407,17 +417,27 @@ def recipe_from_index(recipe_id, recipe_name):
     view_recipe = mongo.db.recipes.find({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
     previous_url = url_for('index_of_recipes')
     previous_page = 'Index of Recipes'
-    return render_template('viewrecipe.html', recipes = view_recipe, previous_url = previous_url, previous_page = previous_page, page_title = page_title)
-        
+    return render_template('viewrecipe.html', recipes = view_recipe, 
+    previous_url = previous_url, previous_page = previous_page, page_title = page_title)
+
+# Check recipes attached to Cuisine type to be deleted
+@app.route('/check_before_delete/<cuisine_type>')
+def check_before_delete(cuisine_type):
+    cuisine = mongo.db.cuisines.find_one({"cuisine_type": cuisine_type})
+    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type}).count()
+    if cuisine_has_recipes:
+        alert = 'Recipes have been found. This cuisine cannot be edited/deleted.'
+        return redirect(url_for('manage_creations', alert = alert))
+    else:
+        return redirect(url_for('delete_cuisine', cuisine_id = cuisine['_id'], cuisine_type = cuisine_type))
+    
+    
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
 def delete_cuisine(cuisine_id, cuisine_type):
-    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type})
-    if cuisine_has_recipes:
-        mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
-        return redirect(url_for('manage_creations'))
-    else:
-        return redirect(url_for('manage_creations'))
+    alert = cuisine_type + 'cuisine has now been deleted'
+    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
+    return redirect(url_for('manage_creations', alert = alert))
     
 # Delete a Recipe
 @app.route('/delete_recipe/<recipe_id>')
