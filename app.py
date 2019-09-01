@@ -123,10 +123,9 @@ def manage_creations():
 @app.route('/edit_recipe/<recipe_name>/<recipe_id>')
 def edit_recipe(recipe_name, recipe_id):
     page_title = 'Edit ' + recipe_name + ' | OneTwoCook'
-    units = mongo.db.units.find().sort('ingredient_units', 1)
     cuisines = mongo.db.cuisines.find().sort('cuisine_type', 1)
     recipe_selected =  mongo.db.recipes.find_one({'_id': ObjectId(recipe_id), 'recipe_name': recipe_name})
-    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, units = units, page_title = page_title)
+    return render_template('editrecipe.html', recipes = recipe_selected, cuisines = cuisines, page_title = page_title)
     
 # 'Edit Cuisine' Page (via 'Manage Your Creations' Secondary tab - 'Manage Your Creations')
 @app.route('/edit_cuisine/<cuisine_type>/<cuisine_id>')
@@ -372,6 +371,15 @@ added to them will be updated to MongoDB mLab Database.
 """  
 @app.route('/update_cuisine/<cuisine_id>', methods=['POST'])    
 def update_cuisine(cuisine_id):
+    cuisines = mongo.db.cuisines.find_one({ 
+        "cuisine_type": 
+            {"$regex": request.form.get('cuisine_type'),
+            "$options":"i"}
+        })
+    if cuisines:
+        alert = "*The cuisine type you entered already exists. Please choose another cuisine.*"
+        return render_template('editcuisine.html', alert = alert, cuisines = cuisines)
+    else:
         mongo.db.cuisines.update(
             {'_id': ObjectId(cuisine_id)},
             {
@@ -396,7 +404,7 @@ def index_of_recipes():
 def gluten_free():
     page_title = 'Index of Recipes | OneTwoCook'
     caption = 'Below shows all gluten-free recipes that are already available and visible to the public on this site.'
-    gluten_free = mongo.db.recipes.find({'gluten_free' : 'on'}).sort('recipe_name', 1)
+    gluten_free = mongo.db.recipes.find({'gluten_free' : 'on', 'public_visibility' : 'on'}).sort('recipe_name', 1)
     return render_template('indexofrecipes.html', recipes = gluten_free, page_title = page_title, caption = caption)
     
 # Index of Recipes Page - Filter for Recipes suitable for Vegetarians
@@ -404,7 +412,7 @@ def gluten_free():
 def suitable_for_vegetarians_index():
     page_title = 'Index of Recipes | OneTwoCook'
     caption = 'Below shows all recipes suitable for vegetarians that are already available and visible to the public on this site.'
-    vegetarians = mongo.db.recipes.find({'vegetarian' : 'on'}).sort('recipe_name', 1)
+    vegetarians = mongo.db.recipes.find({'vegetarian' : 'on', 'public_visibility' : 'on'}).sort('recipe_name', 1)
     return render_template('indexofrecipes.html', recipes = vegetarians, page_title = page_title, caption = caption)
 
 # Viewing a Recipe from Index of Recipes Page
@@ -441,9 +449,9 @@ def check_before_edit(cuisine_type):
         'author_region' : session['user_region'], 
         'author_dob' : session['user_dob']}).count()
     cuisine = mongo.db.cuisines.find_one({"cuisine_type": cuisine_type})
-    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type}).count()
+    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type, "public_visibility": "on"}).count()
     if cuisine_has_recipes:
-        messages = 'Recipes have been found. This cuisine cannot be edited/deleted.'
+        messages = 'Recipes have been found in ' + cuisine_type + '. This cuisine cannot be edited/deleted.'
         return render_template('managecreations.html', 
             messages = messages, 
             recipes = user_recipes, 
@@ -477,9 +485,9 @@ def check_before_delete(cuisine_type):
         'author_region' : session['user_region'], 
         'author_dob' : session['user_dob']}).count()
     cuisine = mongo.db.cuisines.find_one({"cuisine_type": cuisine_type})
-    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type}).count()
+    cuisine_has_recipes = mongo.db.recipes.find({"cuisine_type": cuisine_type, "public_visibility": "on"}).count()
     if cuisine_has_recipes:
-        messages = 'Recipes have been found. This cuisine cannot be edited/deleted.'
+        messages = 'Recipes have been found. The ' + cuisine_type + ' cuisine cannot be edited/deleted.'
         return render_template('managecreations.html', 
             messages = messages, 
             recipes = user_recipes, 
@@ -493,6 +501,7 @@ def check_before_delete(cuisine_type):
 # Delete created Cuisine Type
 @app.route('/delete_cuisine/<cuisine_id>/<cuisine_type>')
 def delete_cuisine(cuisine_id, cuisine_type):
+    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
     # 'Manage Your Recipes' Section
     user_recipes = mongo.db.recipes.find({
         'author.author_username' : session['username'], 
@@ -514,7 +523,6 @@ def delete_cuisine(cuisine_id, cuisine_type):
         'author_region' : session['user_region'], 
         'author_dob' : session['user_dob']}).count()
     messages = cuisine_type + ' cuisine has now been deleted.'
-    mongo.db.cuisines.remove({'_id': ObjectId(cuisine_id)})
     return render_template('managecreations.html', 
         messages = messages, 
         recipes = user_recipes, 
@@ -523,10 +531,36 @@ def delete_cuisine(cuisine_id, cuisine_type):
         user_cuisine_count = user_cuisine_count)
     
 # Delete a Recipe
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
+@app.route('/delete_recipe/<recipe_name>/<recipe_id>')
+def delete_recipe(recipe_name, recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('manage_creations'))
+    # 'Manage Your Recipes' Section
+    user_recipes = mongo.db.recipes.find({
+        'author.author_username' : session['username'], 
+        'author.author_region' : session['user_region'], 
+        'author.author_dob' : session['user_dob']}).sort('recipe_name', 1)
+    # 'Manage Your Cuisines' Section
+    user_cuisines = mongo.db.cuisines.find({
+        'author_username' : session['username'], 
+        'author_region' : session['user_region'], 
+        'author_dob' : session['user_dob']}).sort('cuisine_type', 1)
+    # Recipe count for user
+    user_recipe_count = mongo.db.recipes.find({
+        'author.author_username' : session['username'], 
+        'author.author_region' : session['user_region'], 
+        'author.author_dob' : session['user_dob']}).count()
+    # Cuisine count for user
+    user_cuisine_count = mongo.db.cuisines.find({
+        'author_username' : session['username'], 
+        'author_region' : session['user_region'], 
+        'author_dob' : session['user_dob']}).count()
+    messages = recipe_name + ' recipe has now been deleted'
+    return render_template('managecreations.html', 
+        messages = messages, 
+        recipes = user_recipes, 
+        cuisines = user_cuisines, 
+        user_recipe_count = user_recipe_count, 
+        user_cuisine_count = user_cuisine_count)
 
 if __name__ == '__main__':
     app.run(host = os.environ.get('IP'),
