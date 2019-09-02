@@ -41,7 +41,7 @@ OneTwoCook can be accessed [here].
 
       4.2 [HTML and CSS Validation](https://github.com/selinaerhabor/onetwocook#42-html-and-css-validation-results)
       
-      4.3 [Jasmine Test Results](https://github.com/selinaerhabor/onetwocook#43-jasmine-tests-results)
+      4.3 [Automated Test Results](https://github.com/selinaerhabor/onetwocook#43-automated-test-results)
       
       4.4 [Device Screen Size and Browser Compatibility Test Results](https://github.com/selinaerhabor/onetwocook#44-device-screen-size-and-browser-compatibility-test-results)
       
@@ -66,7 +66,8 @@ OneTwoCook can be accessed [here].
 
 ## 1. User Experience Design (UX)
 
-The aim of OneTwoCook is to provide users with an interactive cookbook application which has a creative flair and inspires users to create and share recipes on the application. The suggested age range for this application is 11 years and up. The brand name OneTwoCook is a play on the words ‘Want to Cook’, to provide users with a catchy and creative application brand. Some main highlights in the OneTwoCook application features include a personalised dashboard ‘Manage Your Creations’ where users can manage the recipes they’ve created, below this page users can also manage the cuisines they’ve created. Another interesting feature is the ability to cross out method steps after the user has completed the step, this makes it easier to keep track of cooking progress and avoid accidently repeating steps that will hinder recipe success.
+The aim of OneTwoCook is to provide users with an interactive cookbook application which has a creative flair and inspires users 
+to create and share recipes on the application. The suggested age range for this application is 11 years and up. The brand name OneTwoCook is a play on the words ‘Want to Cook’, to provide users with a catchy and creative application brand. Some main highlights in the OneTwoCook application features include a personalised dashboard ‘Manage Your Creations’ where users can manage the recipes they’ve created, below this page users can also manage the cuisines they’ve created. Another interesting feature is the ability to cross out method steps after the user has completed the step, this makes it easier to keep track of cooking progress and avoid accidently repeating steps that will hinder recipe success.
 
 Main Requirements for the Online Cookbook: 
 * Should allow users to store and easily access recipes. 
@@ -221,7 +222,7 @@ This section discusses the testing process of key features of the OneTwoCook onl
 * Typed in date of birth
 * Selected Region from dropdown list
 * Submitted name, date of birth and region and was then redirected to welcome home page.
-*Tried clicking submit button with only one of the three fields completed and was prompted to complete the remaining input fields in order to submit. 
+* Tried clicking submit button with only one of the three fields completed and was prompted to complete the remaining input fields in order to submit. 
 
 
 **Home – Cuisine selected**
@@ -303,9 +304,39 @@ This section discusses the testing process of key features of the OneTwoCook onl
 * Clicked YES and cuisine is deleted
 
 
+**New input field appearing below:** 
+
+* Clicked 'Add a Recipe' tab on navigation bar
+* Redirected to Add a Recipe form page
+* Typed on first line of Ingredients and first line of Method sections
+* Both sections display a new input line below it
+* This test demonstrated whether the application was correctly calling the next input field whenever the user made an entry in an input field above. 
+
+
+**Method step strikethrough toggle:**
+* Opened a view recipe page for an individual recipe
+* Clicked on a method step
+* Method step clicked has line going through it
+* Clicked on the method step again
+* Strikethrough removed
+* This test demonstrated whether the application was correctly calling the score feature whenever the user clicked a method step listed on the recipe page. 
+
+
+**Recipe Image URL:**
+* Copied image URL (.jpg/.png/.jpeg) from website
+* Pasted URL in recipe image URL link
+* Complete other sections of Add a Recipe form
+* Submitted Add a Recipe
+* Viewed recipe page and image is loading
+* This test demonstrated whether the application was correctly reading the URL submitted by the user via the Add a Recipe form. 
+
+Overall, the results from testing the application shows that the application is working as it should be. 
+The script for the main JavaScript code (onetwocook.js) had no major issues appear in JSHint Quality tool.
+
+
 
 ## 4.2 HTML and CSS Validation Results:
-The HTML and CSS code for the OneTwoCook application has been tested using official validators, screenshots of the Browser Test results are available via the links below and can also be found in a folder called `browser-tests` under the `tests` folder.
+The HTML and CSS code for the OneTwoCook application has been tested using official validators.
 
 **HTML code**
 * No major application errors returned for HTML code for OneTwoCook Online Cookbook.
@@ -314,30 +345,27 @@ The HTML and CSS code for the OneTwoCook application has been tested using offic
 * No major application errors returned for the CSS code for OneTwoCook Online Cookbook. 
 
 
-## 4.3 Jasmine Tests Results: 
-The Jasmine tests that were carried out for the application include, how OneTwoCook produces new input fields below when a user has made an entry in the field above, testing toggle feature of scoring out method steps and a test for inputting recipe image URLs. 
+## 4.3 Automated Test Results: 
+Automated testing has been used to test the capitalize function when a user enters a lowercase cuisine type. In order to ensure uniform presentation quality
+in cuisine type and recipe names, it is important that the capitalize function is used.
 
-**New input field appearing below:** 
-* This test demonstrated whether the application was correctly calling the next input field whenever the user made an entry in an input field above. 
+Similarly, allergens are listed on the Add a Recipe form via dropdown multiple selection. It is important that the brackets are not
+displayed when rendering the results on view recipe page for presentation purposes.
 
-* This test demonstrated whether the hint function correctly recalls the last selected buzzer ID. For this test, I declared 
-an example selection of buzzers up to level 6. The buzzers are symbolised by ID numbers (0, 1, 2 and 3).
+Please see below results from the automated test:
 
-**Method step strikethrough toggle:**
-* This test demonstrated whether the application was correctly calling the score feature whenever the user clicked a method step listed on the recipe page. 
-* For the first test, I declared the variable for the game's moves and another variable to select a buzzer ID at random. The test 
-checked that the buzzer ID selected at random by the game is between 0 and 3.
-* For the second test, I declared a variable which is a representation of having multiple classes in a `<div>`. This test checked that the 
-game correctly reads the squareColor class using the `.split()` method and therefore assign the right style properties to the buzzer.
+```sh
+$ python3 tests/tests.py -v
+test_capitalize (__main__.test_display_features) ... ok
+test_index (__main__.test_display_features) ... ok
 
-**Recipe Image URL:**
-* This test demonstrated whether the application was correctly reading the URL submitted by the user via the Add a Recipe form. 
-* This test demonstrated whether the game can correctly select the corresponding audio file from a buzzer ID. For this test, I declared 
-the buzzer IDs, four example audio files in an array and a sound player variable which uses the index of an array to map it to each buzzer. 
-This test checked that the game correctly selects a buzzer's matching audio file so the right buzzer sound plays upon selection.
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
 
-Overall, the results from testing the application shows that the correct variables are being selected. 
-Screenshot of the [Jasmine Test Results Page] and the script for the main JavaScript code (onetwocook.js) had no major issues appear in JSHint Quality tool.
+OK
+```
+
+The automated tests can be found in tests.py file in [tests] folder
 
 
 ## 4.4 Device Screen Size and Browser Compatibility Test Results:
@@ -509,7 +537,7 @@ $ git clone https://selinaerhabor.github.io/onetwocook.git
 * Majority of recipes inspired from Olive Magazine, Naija Chef and BBC Good Food. 
 * Allergens list (also accessible on application via Need Help button on Add a Recipe page) – https://www.food.gov.uk/business-guidance/allergen-guidance-for-food-businesses
 * Ingredient Units - https://www.dummies.com/food-drink/recipes/measurement-abbreviations-and-conversions/
-* Recipe Image URLs and Cuisine cover-photos were taken from Google Images.
+* Recipe Image URLs and Cuisine cover-photos were taken from BBC Good Food and Google Images.
 
 ## 6.2 Acknowledgements:
 
@@ -534,3 +562,4 @@ I would like to thank my mentor Aaron and all the tutors at Code Institute for t
 [Initial Ideas - Wireframes]: <https://github.com/selinaerhabor/onetwocook/tree/master/static/wireframes>
 [JSHint]: <https://jshint.com/>
 [Database Schema]: <https://github.com/selinaerhabor/onetwocook/tree/master/database_schema>
+[tests]: <https://github.com/selinaerhabor/onetwocook/tree/master/tests>
