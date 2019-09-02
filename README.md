@@ -1,5 +1,9 @@
 # Data Centric Development Project: OneTwoCook – Online Cookbook
-OneTwoCook is an interactive web application allowing users to enjoy access to a collection of cooking recipes. A user can choose to access the website as a guest or type in their name on the login page to get free and full access to create and edit their recipes online. This online cookbook aims to create a community to encourage the sharing of cooking recipes and explores the different cuisines people would like to share to others. The application is able to filter recipes into clear categories to make it easy to view. 
+OneTwoCook is an interactive web application allowing users to enjoy access to a collection of cooking recipes. 
+A user can choose to access the website as a guest or type in their name on the login page to get free and full access to create 
+and edit their recipes online. This online cookbook aims to create a community to encourage the sharing of cooking recipes and explores 
+the different cuisines people would like to share to others. The application is able to filter recipes into clear categories to make it easy to view.
+There are currently 13 cuisines and 52 recipes available on the site (as of 31st August 2019).
 
 OneTwoCook can be accessed [here].
 
