@@ -4,50 +4,52 @@ OneTwoCook is an interactive web application allowing users to enjoy access to a
 OneTwoCook can be accessed [here].
 
 ## List of Contents
-1. [**User Experience Design (UX)**](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#1-user-experience-design-ux)
+1. [**User Experience Design (UX)**](https://github.com/selinaerhabor/onetwocook#1-user-experience-design-ux)
       
-1.1	[User Stories](https://github.com/selinaerhabor/one-game/blob/master/README.md#11-user-stories)
-1.2	[Database Layout](https://github.com/selinaerhabor/one-game/blob/master/README.md#11-user-stories)
-1.2.1 [Collections](https://github.com/selinaerhabor/one-game/blob/master/README.md#11-user-stories)
+    1.1	[User Stories](https://github.com/selinaerhabor/onetwocook#11-user-stories)
+
+    1.2	[Database Layout](https://github.com/selinaerhabor/onetwocook#12-database-layout)
+
+    1.2.1 [Collections](https://github.com/selinaerhabor/onetwocook#121-collections)
 
 
-2. [**Features**](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#2-features)
+2. [**Features**](https://github.com/selinaerhabor/onetwocook#2-features)
       
-    2.1 [Existing Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#21-existing-features)
+    2.1 [Existing Features](https://github.com/selinaerhabor/onetwocook#21-existing-features)
 
-    2.1.1 [Create (**C**RUD) Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#)
-
-    2.1.2 [Read (C**R**UD) Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#)
-
-    2.1.3 [Update (CR**U**D) Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#)
-
-    2.1.4 [Delete (CRU**D**) Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#)
+    2.1.1 [Create (**C**RUD) Features](https://github.com/selinaerhabor/onetwocook#211-create-crud-features)
+    
+    2.1.2 [Read (C**R**UD) Features](https://github.com/selinaerhabor/onetwocook#212-read-crud-features)
+    
+    2.1.3 [Update (CR**U**D) Features](https://github.com/selinaerhabor/onetwocook#213-update-crud-features)
+    
+    2.1.4 [Delete (CRU**D**) Features](https://github.com/selinaerhabor/onetwocook#214-delete-crud-features)
       
-      2.2 [Layout and Overall Aesthetics](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#22-potential-features-to-implement-in-the-future)
+    2.2 [Layout and Overall Aesthetics](https://github.com/selinaerhabor/onetwocook#22-layout-and-overall-aesthetics)
 
-2.2 [Potential Features to Implement](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#22-potential-features-to-implement-in-the-future)
+    2.3 [Potential Features to Implement](https://github.com/selinaerhabor/onetwocook#23-potential-features-to-implement-in-the-future)
 
-3. [**Technologies used**](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#3-technologies-used)
+3. [**Technologies used**](https://github.com/selinaerhabor/onetwocook#3-technologies-used)
 
-4. [**Testing**](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#4-testing)
+4. [**Testing**](https://github.com/selinaerhabor/onetwocook#4-testing)
       
-      4.1 [Process of Testing Features](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#41-process-of-testing-features)
+      4.1 [Process of Testing Features](https://github.com/selinaerhabor/onetwocook#41-process-of-testing-key-features)
 
-      4.2 [HTML and CSS Validation](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#42-html-and-css-validation-results)
+      4.2 [HTML and CSS Validation](https://github.com/selinaerhabor/onetwocook#42-html-and-css-validation-results)
       
-      4.3 [Jasmine Test Results](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#43-jasmine-tests-results)
+      4.3 [Jasmine Test Results](https://github.com/selinaerhabor/onetwocook#43-jasmine-tests-results)
       
-      4.4 [Device Screen Size and Browser Compatibility Test Results](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#44-device-screen-size-and-browser-compatibility-test-results)
+      4.4 [Device Screen Size and Browser Compatibility Test Results](https://github.com/selinaerhabor/onetwocook#44-device-screen-size-and-browser-compatibility-test-results)
       
-      4.5 [Responses from users who tried out the OneTwoCook application](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#45-responses-from-users-who-tried-out-the-onetwocook)
+      4.5 [Responses from users who tried out the OneTwoCook application](https://github.com/selinaerhabor/onetwocook#45-responses-from-users-who-tried-out-the-online-cookbook-application)
       
-      4.6 [Interesting bugs or problems discovered during testing](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#46-interesting-bugs-or-problems-discovered-during-testing)
+      4.6 [Interesting bugs or problems discovered during testing](https://github.com/selinaerhabor/onetwocook#46-interesting-bugs-or-problems-discovered-during-testing)
 
 5. [**Deployment**](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#5-deployment)
       
       5.1 [Deployment Process](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#51-deployment-process)
 
-      5.2 [Running the code locally](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#52--running-the-code-locally)
+      5.2 [Running the code locally](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#52-running-the-code-locally)
       
       5.3 [Discussion on the differences between the development code and the deployed Code Version](https://github.com/selinaerhabor/onetwocook/blob/master/README.md#53-discussion-on-the-differences-between-the-development-code-and-the-deployed-code-version)
 
@@ -94,17 +96,22 @@ I collected opinions from what users would like in an online cookbook. From glut
 The wireframes were based on meeting the project's requirements and the needs of users, covering each of the pages of the online cookbook from the home page to the logout page. Wireframes are available in this folder: [Initial Ideas - Wireframes].
 
 ## 1.2 Database Layout
-For the OneTwoCook application, MongoDB mLab application was chosen as the platform to build a non-relational database structure
+For the OneTwoCook application, MongoDB mLab application was chosen as the platform to build a non-relational database structure.
+The database currently has two collections - Recipes and Cuisines with a primary key of cuisine_type which appears in both collections.
 
 ### 1.2.1 Collections: 
-**recipes** and **cuisines**
-(add schema example .txt file)
+* There are two collections in the database: **Recipes** and **Cuisines**.
+* For the Recipes collection, embedded style structure has been used to ensure information collected from Add a Recipe 
+form is neatly collated and easy to read when being displayed to users. One of the key requirements of users for the
+cookbook is for a clear and easy to understand layout.
+
+* Please see [Database Schema] Folder for details of collection database structure.
 
 ## 2. Features
 OneTwoCook combines stylishness and user-friendliness in meeting the needs of users’ as an online cookbook. The overall aesthetics for the application are clean with white card panel backgrounds to avoid the overcrowding of style features so that every intended style feature can be appreciated. From the website navigation layout to the scoring out of recipe method steps when clicked on. The user stories were taken into account when building the features and components of the online cookbook. I have chosen a contrasting colour effect for this application to guide the users focus to the text and images displayed on the application. 
 
 ## 2.1 Existing Features 
-###2.1.1 Create (**C**RUD) Features
+### 2.1.1 Create (**C**RUD) Features
 **Add a Recipe** 
 * **Recipe Summary** - allows the recipe author to describe the recipe they have created, the recipe summary displays when user hovers over a recipe card. Recipe summary is limited to 180 characters, which allows the recipe summary to display on the recipe card (when hovered) without any text being cut off.
 * **Required input fields** - adding the required attribute to input fields ensures that no users can submit an empty add a recipe form. For a user to submit a new recipe, they must ensure they complete all the required fields (cuisine type, recipe name, recipe summary, serves, allergens, at least 1 ingredient, at least 1 method step, author region). This ensures that the quality of recipes created by users are consistent in quality when viewing.
@@ -151,12 +158,12 @@ Access to editing recipes and cuisines made by a user is restricted to only user
 
 **Manage Your Creations Page** 
 
-***Manage Your Recipes Section** 
+**Manage Your Recipes Section** 
 This page displays the list of recipe types (in a card form) created by the username.
 * **More symbol** - reveals Edit and Delete buttons for each recipe/cuisine created by the user
 * **Edit created recipe** - allows user to make changes to the recipe they created. They can edit their cuisine type, recipe name, recipe summary, serves, allergens, ingredients, method and public visibility. After changes have been made and user clicks submit, the recipe will be updated in the database.
 
-***Manage Your Cuisines Section** 
+**Manage Your Cuisines Section** 
 This section is found under the Manage Your Creations section and displays the list of cuisine types (in a card form) created by the username.
 * **Edit created cuisine** - allows user to make changes to the cuisine they created. They can edit their cuisine type and cuisine summary. After changes have been made and user clicks submit, the cuisine will be updated in the database. All cuisine types created are made public.
 
@@ -186,12 +193,12 @@ The Thumb Up button on the top of recipe pages and the Saved Recipes Section are
 
 
 ## 3. Technologies Used
-*  	[AWS Cloud 9] - The Integrated Development Environment (IDE) used for building the website.
+*  	[AWS Cloud9] - The Integrated Development Environment (IDE) used for building the website.
 *	[HTML] - Used for the structure and format of the entire website.
 *	[CSS] - For styling the website and maintaining its responsiveness across various screen sizes.
 *	[Materialize] - Used for grid form and assistance in styling.
 *	[JQuery] - Used for the interactive features of the online cookbook to enhance user experience.
-*	[Material Icons] - Used for displaying the social logos and vector icons present on the website.
+*	[Material Icon] - Used for displaying the social logos and vector icons present on the website.
 *	[Browsershots.org] - For checking browser compatibility and cross platform browser testing.
 * 	[Jasmine CDNJS] – For testing key sections of jQuery code for the online cookbook.
 *	[W3C HTML Validator] - Used to check that no errors were present in the HTML code before final deployment.
@@ -297,10 +304,10 @@ This section discusses the testing process of key features of the OneTwoCook onl
 The HTML and CSS code for the OneTwoCook application has been tested using official validators, screenshots of the Browser Test results are available via the links below and can also be found in a folder called `browser-tests` under the `tests` folder.
 
 **HTML code**
-* OneTwoCook Online Cookbook has [passed](https://github.com/selinaerhabor/onetwocook/tree/master/tests/browser-tests/result-html-validator.png) with no errors returned.
+* OneTwoCook Online Cookbook has [passed]() with no errors returned.
 
 **CSS Code**
-* OneTwoCook Online Cookbook has [passed](https://github.com/selinaerhabor/onetwocook/tree/master/tests/browser-tests/result-css-validator.png) with no errors returned. 
+* No application errors for the style.css code was returned for OneTwoCook Online Cookbook. 
 
 
 ## 4.3 Jasmine Tests Results: 
@@ -347,7 +354,7 @@ Sony Bravia Television 4K |5280 width (55")|✓ |
 
 In addition, the website has also been tested on other browsers including Firefox and Google Chrome at the various screen sizes using [Browsershots.org]. This allowed me to test the online cookbook application on Linux and Windows operating systems. Below are the test results of the website deployed on Heroku when tested on Browsershots.org on various browsers. 
 
-Key screenshots of the Browser Test results can be found in a folder called `browser-tests` under the `tests` folder.
+Key screenshots of the Browser Test results can be found in the `tests` folder.
 * Key: ✓ - Application loads successfully
 
 Operating System | Browser | OneTwoCook 
@@ -515,5 +522,6 @@ I would like to thank my mentor Aaron and all the tutors at Code Institute for t
 [JQuery]: <https://jquery.com/download/>
 [W3C HTML Validator]: <https://validator.w3.org/>
 [W3C CSS Validator]: <http://jigsaw.w3.org/css-validator/>
-[Initial Ideas - Wireframes]: < >
+[Initial Ideas - Wireframes]: <https://github.com/selinaerhabor/onetwocook/tree/master/static/wireframes>
 [JSHint]: <https://jshint.com/>
+[Database Schema]: <https://github.com/selinaerhabor/onetwocook/tree/master/database_schema>
