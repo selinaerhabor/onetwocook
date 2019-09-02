@@ -304,10 +304,10 @@ This section discusses the testing process of key features of the OneTwoCook onl
 The HTML and CSS code for the OneTwoCook application has been tested using official validators, screenshots of the Browser Test results are available via the links below and can also be found in a folder called `browser-tests` under the `tests` folder.
 
 **HTML code**
-* No application errors returned for OneTwoCook Online Cookbook.
+* No major application errors returned for HTML code for OneTwoCook Online Cookbook.
 
 **CSS Code**
-* No application errors for the style.css code was returned for OneTwoCook Online Cookbook. 
+* No major application errors returned for the CSS code for OneTwoCook Online Cookbook. 
 
 
 ## 4.3 Jasmine Tests Results: 
