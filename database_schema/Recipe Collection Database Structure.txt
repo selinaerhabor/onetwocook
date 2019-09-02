@@ -1,0 +1,49 @@
+{
+    "_id": {
+        "$oid": "5c599f9ae7179a2ed60f5373"
+    },
+    "cuisine_type": "Irish",
+    "recipe_name": "Mustard Champ",
+    "img_path": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--9040_12.jpg?itok=PrmW0Vtg",
+    "recipe_summary": "This quick meal is perfect in addition to fish pie or sausages and gravy",
+    "recipe_serves": "4",
+    "preparation_time": "10",
+    "pt_units": "minute(s)",
+    "cook_time": "20",
+    "ct_units": "minute(s)",
+    "allergens": [
+        "Milk"
+    ],
+    "gluten_free": "",
+    "vegetarian": "",
+    "ingredients": {
+        "ingredient1_quantity": "1",
+        "ingredient1_units": "kg",
+        "ingredient1_name": "Potato, peeled and quartered",
+        "ingredient2_quantity": "200",
+        "ingredient2_units": "ml",
+        "ingredient2_name": "Milk",
+        "ingredient3_quantity": "2",
+        "ingredient3_units": "bunches",
+        "ingredient3_name": "Washed and sliced spring onions",
+        "ingredient4_quantity": "1-2",
+        "ingredient4_units": "tbsp",
+        "ingredient4_name": "Wholegrain mustard",
+        "ingredient5_quantity": "50",
+        "ingredient5_units": "g",
+        "ingredient5_name": "Butter"
+    },
+    "method": {
+        "method_step1": "Boil the potatoes for 15 mins or until tender",
+        "method_step2": "Drain, then mash",
+        "method_step3": "Heat the milk and half the butter in the corner of the pan",
+        "method_step4": "Then beat into the mash, along with the wholegrain mustard",
+        "method_step5": "Gently fry the spring onions in the remaining butter for 2 mins until just soft but still a perky green. Fold into the mash and serve."
+    },
+    "author": {
+        "author_username": "Aine Erhabor",
+	    "author_dob": "XXXX-XX-XX"
+        "author_region": "Europe"
+    },
+    "public_visibility": "on"
+}

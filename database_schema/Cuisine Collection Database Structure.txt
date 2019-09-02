@@ -1,0 +1,10 @@
+{
+    "_id": {
+        "$oid": "5c5c17d6e7179a2ed610ee2c"
+    },
+    "cuisine_type": "Irish",
+    "cuisine_summary": "Try recipes that showcase traditional Irish foods, with quality and freshness of ingredients.",
+    "author_username": "XXXXXXXXX",
+    "author_dob": "XXXX-XX-XX",
+    "author_region": "XXXXXX"
+}
