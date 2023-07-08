@@ -5,7 +5,6 @@ and edit their recipes online. This online cookbook aims to create a community t
 the different cuisines people would like to share to others. The application is able to filter recipes into clear categories to make it easy to view.
 There are currently 13 cuisines and 52 recipes available on the site (as of 31st August 2019).
 
-OneTwoCook can be accessed [here].
 
 ## List of Contents
 1. [**User Experience Design (UX)**](https://github.com/selinaerhabor/onetwocook#1-user-experience-design-ux)
